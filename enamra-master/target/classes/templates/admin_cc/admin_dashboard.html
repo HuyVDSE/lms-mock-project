@@ -2,46 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
- <!--   <style>
-        .nav.nav-tabs {
-            float: left;
-            display: block;
-            margin-right: 20px;
-            border-bottom:0;
-            border-right: 1px solid #ddd;
-            padding-right: 15px;
-        }
-        .nav-tabs .nav-link {
-            border: 1px solid transparent;
-            border-top-left-radius: .25rem;
-            border-top-right-radius: .25rem;
-            background: #ccc;
-        }
+    <!--   <style>
+           .nav.nav-tabs {
+               float: left;
+               display: block;
+               margin-right: 20px;
+               border-bottom:0;
+               border-right: 1px solid #ddd;
+               padding-right: 15px;
+           }
+           .nav-tabs .nav-link {
+               border: 1px solid transparent;
+               border-top-left-radius: .25rem;
+               border-top-right-radius: .25rem;
+               background: #ccc;
+           }
 
-        .nav-tabs .nav-link.active {
-            color: #495057;
-           /* background-color:#007bff !important;*/
-            border-color: transparent !important;
-        }
-        .nav-tabs .nav-link {
-            border: 1px solid transparent;
-            border-top-left-radius: 0rem!important;
-            border-top-right-radius: 0rem!important;
-        }
-        .tab-content>.active {
-            display: block;
-         /*   background: #007bff;*/
-            min-height: 565px;
-        }
-        .nav.nav-tabs {
-            float: left;
-            display: block;
-            margin-right: 20px;
-            border-bottom: 0;
-            border-right: 1px solid transparent;
-            padding-right: 15px;
-        }
-    </style>-->
+           .nav-tabs .nav-link.active {
+               color: #495057;
+              /* background-color:#007bff !important;*/
+               border-color: transparent !important;
+           }
+           .nav-tabs .nav-link {
+               border: 1px solid transparent;
+               border-top-left-radius: 0rem!important;
+               border-top-right-radius: 0rem!important;
+           }
+           .tab-content>.active {
+               display: block;
+            /*   background: #007bff;*/
+               min-height: 565px;
+           }
+           .nav.nav-tabs {
+               float: left;
+               display: block;
+               margin-right: 20px;
+               border-bottom: 0;
+               border-right: 1px solid transparent;
+               padding-right: 15px;
+           }
+       </style>-->
     <!--    <h2>bootstrap 4 vertical tabs</h2>
          <ul class="nav nav-tabs" id="myTab" role="tablist">
              <li class="nav-item">
@@ -71,10 +71,8 @@
 <div class="container-fluid">
 
 
-
-        <div th:replace="/fragments/header :: banner"></div>
-        <div th:replace="/fragments/header :: navigation_menu"></div>
-
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
 
 
     <div th:replace="/fragments/admin :: admin-dashboard"></div>
@@ -82,12 +80,10 @@
     <div th:replace="/fragments/header :: footer-Copyright"></div>
 
 
-
-
     <br>
 
 </div>
 
-  <div th:replace="/fragments/header :: all-js"></div>
+<div th:replace="/fragments/header :: all-js"></div>
 </body>
 </html>

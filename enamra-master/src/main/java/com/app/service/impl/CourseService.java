@@ -26,7 +26,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public void savCourse(Course course) {
+    public void saveCourse(Course course) {
         courseRepo.save(course);
     }
 

@@ -9,17 +9,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
 
@@ -29,15 +32,17 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin/home")
-    public String homeAdmin(){return "admin/home";}
+    @GetMapping("/home")
+    public String homeAdmin() {
+        return "admin/home";
+    }
 
 
-
-    @GetMapping("/admin/signup")
-    public ModelAndView createadminPage(){
+    @GetMapping("/signup")
+    public ModelAndView createadminPage() {
         ModelAndView model = new ModelAndView();
         model.addObject("user", new User());
         model.setViewName("admin/signup");
@@ -46,10 +51,10 @@ public class AdminController {
     }
 
 
-    @PostMapping("/admin/signup")
-    public ModelAndView signup(@Valid User user, BindingResult bindingResult){
+    @PostMapping("/signup")
+    public ModelAndView signup(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
-        if (!user.getPassword().equals(user.getConfirmPassword())){
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
             bindingResult.rejectValue("password", "error.user", "Password not match!!!!");
         }
 
@@ -66,15 +71,18 @@ public class AdminController {
     }
 
 
-    @GetMapping("/admin/list")
-    public ModelAndView adminList(){
+    @GetMapping("/list")
+    public ModelAndView adminList() {
         ModelAndView model = new ModelAndView("admin/home");
         List<User> adminList = adminService.getAllAdmin();
         model.addObject("adminLIST", adminList);
         return model;
     }
 
-
-
-
+    @GetMapping("/edit/{id}")
+    public String loadUserDetailForUpdate(@PathVariable("id") Long id, Model model) {
+        User currentUser = userService.findUserById(id);
+        model.addAttribute("USER", currentUser);
+        return "admin/update-user";
+    }
 }
