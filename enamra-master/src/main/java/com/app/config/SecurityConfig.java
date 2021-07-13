@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -21,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private DataSource dataSource;
-    private final String USERS_QUERY = "select email, password, active from user where email=?";
+    private final String USERS_QUERY = "select email, active from user where email=?";
     private final String ROLES_QUERY = "select u.email, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.email=?";
 
     @Override
@@ -41,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/files/**", "/academic/**","/professional/**","/general/**",
                                        "**/img/**","**/img/logo.png","**/img/favicon.ico","/v/**",
                                        "/error","/user/logout",
-                                       "/g/topic/**","/g/**", "/user/signup","/user/login",
+                                       "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login",
                                        "/","/entry","/blog/**",
                                        "/media/files/blog/img/**",
                                        "**/webjars/**","/webjars/**","/resources/static/**").permitAll()
@@ -62,8 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .antMatchers("/your_Dashboard","/user","/user/**").hasAuthority("USER")
                 //.anyRequest().authenticated()
-
-
+//                .and()
+//                .oauth2Login().failureUrl("/user/login?error=true")
+//                .defaultSuccessUrl("/home", true)
                 .and()
                 .csrf().disable()
                 .formLogin().loginPage("/user/login").failureUrl("/user/login?error=true")

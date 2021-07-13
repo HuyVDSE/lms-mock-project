@@ -1,22 +1,34 @@
 package com.app.controller;
 
+import com.app.google.GooglePojo;
+import com.app.google.GoogleUtils;
 import com.app.model.User;
 import com.app.service.AdminService;
 import com.app.service.SendMailService;
 import com.app.service.impl.AdminServiceImpl;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 public class AuthController {
 
+    @Autowired
+    private GoogleUtils googleUtils;
 
     @Autowired
     private UserService userService;
@@ -37,6 +49,23 @@ public class AuthController {
         model.setViewName("user/login");
         return model;
     }
+
+    @RequestMapping("/signin-google")
+    public ModelAndView signinEmail(HttpServletRequest request) throws IOException {
+        String code = request.getParameter("code");
+        String accessToken = googleUtils.getToken(code);
+        GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+        System.out.println(googlePojo.getEmail());
+        UserDetails userDetail = googleUtils.buildUser(googlePojo);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                userDetail.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        ModelAndView model = new ModelAndView();
+        model.setViewName("user/login");
+        return model;
+    }
+
 
 
     @GetMapping("/user/signup")
