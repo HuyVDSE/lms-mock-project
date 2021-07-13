@@ -125,7 +125,6 @@ public class AuthController {
                 model.setViewName("user/signup");
             } else {
                 userService.saveUser(user);
-                sendMailService.sendMail(user.getEmail());
                 model.addObject("msg", "User has been registered successfully!");
                 model.addObject("user", new User());
                 model.setViewName("user/signup");

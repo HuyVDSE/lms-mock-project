@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
 
-    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6" style="display: flex; flex-direction: column">
         <!-- Default form login -->
         <form class="text-center border border-light p-5" th:action="@{/user/login}" method="post" >
 
@@ -57,8 +57,8 @@
             </p>
         </form>
             <a class="gmail" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8088/signin-google&response_type=code
-                   &client_id=617062620956-etef48kd3ubf1mdpa2o9h2vvt6orq0jg.apps.googleusercontent.com&approval_prompt=force">
-                <img class="gmail_logo" src="IMAGE/btn_google_signin_dark_normal_web.png">
+                   &client_id=617062620956-etef48kd3ubf1mdpa2o9h2vvt6orq0jg.apps.googleusercontent.com&approval_prompt=force" style="text-align: center">
+                <img class="gmail_logo" src="../img/btn_google_signin_dark_normal_web.png" style="width: 30%">
             </a>
     </div>
 
