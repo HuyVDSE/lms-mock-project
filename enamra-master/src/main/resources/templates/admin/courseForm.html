@@ -20,12 +20,12 @@
                 </div>
                 <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
 
-                <input type="text"  th:field="*{course_name}" class="form-control mb-4" placeholder="Course Name">
+                <input type="text" th:field="*{course_name}" class="form-control mb-4" placeholder="Course Name">
                 <div class="form-group">
-                    <textarea class="form-control rounded-0"  rows="3" th:field="*{description}"
+                    <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
                               placeholder="Write something about course"></textarea>
                 </div>
-
+                <input type="text" th:field="*{visibility}">
                 <button class="btn btn-info btn-block" type="submit">Send</button>
             </form>
         </div>

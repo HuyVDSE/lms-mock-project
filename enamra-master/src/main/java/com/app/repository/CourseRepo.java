@@ -1,7 +1,6 @@
 package com.app.repository;
 
 import com.app.model.Course;
-import com.app.model.Section;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -26,7 +25,6 @@ public interface CourseRepo extends JpaRepository<Course,Long> {
 
     @Query(value = "select * from course c order by course_id desc limit 4,4", nativeQuery = true)
     List<Course> recently_added_second_four_course();
-
 
 
 }

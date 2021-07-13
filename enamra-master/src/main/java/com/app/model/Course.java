@@ -17,14 +17,22 @@ import java.util.List;
 @Entity(name = "course")
 public class Course {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long course_id;
 
+    @Column(name = "course_name")
     private String course_name;
 
+    @Column(name = "description")
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility")
+    private Visibility visibility;
+
+    @Column(name = "active")
+    private boolean active;
 
     @OneToMany(mappedBy = "course",
             cascade = CascadeType.ALL,
@@ -34,6 +42,8 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Blog> blogs = new ArrayList<>();
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Course_files> courseFiles = new ArrayList<>();
 
     @Override
     public String toString() {

@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EnamraApplication.class)
@@ -39,7 +38,7 @@ public class CourseControllerTest {
         Course course = new Course();
         course.setCourse_name("XXL");
         course.setDescription("CCCCCCCCCCCCCCC");
-        courseService.savCourse(course);
+        courseService.saveCourse(course);
         log.info("SAVE COURSE -> {}", course);
 
     }

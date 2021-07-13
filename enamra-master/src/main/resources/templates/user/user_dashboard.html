@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-   <!-- <th:block th:include="fragments/header :: head"></th:block>-->
+    <!-- <th:block th:include="fragments/header :: head"></th:block>-->
     <div th:replace="/fragments/header :: header-css-and-meta"/>
 
 </head>
@@ -9,9 +9,8 @@
 <div class="container-fluid">
 
 
-
-        <div th:replace="/fragments/header :: banner"></div>
-        <div th:replace="/fragments/header :: navigation_menu"></div>
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
 
 
     <div class="row">
@@ -25,12 +24,10 @@
     <div th:replace="/fragments/header :: footer"></div>
 
 
-
-
     <br>
 
 </div>
 
-  <div th:replace="/fragments/header :: all-js"></div>
+<div th:replace="/fragments/header :: all-js"></div>
 </body>
 </html>

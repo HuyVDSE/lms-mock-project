@@ -3,14 +3,12 @@ package com.app.controller;
 
 import com.app.model.Course;
 import com.app.model.Section;
-import com.app.model.Topic;
 import com.app.repository.CourseRepo;
 import com.app.repository.SectionRepo;
 import com.app.repository.TopicRepo;
 import com.app.service.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +37,7 @@ public class CourseController_For_ADMIN {
     public String coursePage(){return "admin/coursePage";}
 
     @GetMapping("/create")
-    public ModelAndView courseFormPagt(){
+    public ModelAndView loadCourseForm(){
         ModelAndView model = new ModelAndView("admin/courseForm");
         model.addObject("course", new Course());
         return model;
@@ -54,7 +52,7 @@ public class CourseController_For_ADMIN {
             model.addObject("error","Something Went Wrong ......");
 
         }else {
-            courseService.savCourse(course);
+            courseService.saveCourse(course);
             model.addObject("msg","Course created successfully");
             model.setViewName("admin/courseForm");
 
@@ -83,7 +81,7 @@ public class CourseController_For_ADMIN {
         if (bindingResult.hasErrors()){
             model.addObject("error","something going wrong");
         }else {
-            courseService.savCourse(course);
+            courseService.saveCourse(course);
             model.addObject("msg","Course created successfully");
             model.setViewName("admin/update_course");
         }

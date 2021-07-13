@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 
-
 @Data
 @NoArgsConstructor
 @Entity(name = "user_file")
@@ -26,13 +25,9 @@ public class User_files {
 
     private String file_extension;
 
-   @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-
-
-
-
 
 
 }

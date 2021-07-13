@@ -12,6 +12,7 @@ public class ResourceWebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
        // registry.addResourceHandler("/media/**").addResourceLocations("classpath:/media/");// home/enamul/IdeaProjects/new/enamra/src/main/
-        registry.addResourceHandler("/media/files/blog/img/**").addResourceLocations("file:media/files/blog/img/");
+        registry.addResourceHandler("/resources/static/media/files/blog/img/**")
+                .addResourceLocations("file:/resources/static/media/files/blog/img/");
     }
 }
