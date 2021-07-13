@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class WelcomeController {
@@ -38,7 +37,8 @@ public class WelcomeController {
     public ModelAndView homePage(Principal principal){
         ModelAndView model = new ModelAndView("home");
         List<Course> first_four_from_last = courseRepo.recently_added_first_four_course();
-        User userCC = userService.fidUserByEmail(principal.getName());
+        System.out.println(principal.getName());
+        User userCC = userService.findUserByEmail(principal.getName());
         String str = String.valueOf(userCC.getRoles());
         String STR = str.substring(1,str.length()-1);
 

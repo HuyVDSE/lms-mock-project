@@ -88,7 +88,7 @@ public class BlogController {
     @PostMapping("/post/create")
     public ModelAndView createPost(@Valid @ModelAttribute("blogPost") Blog blogPost, BindingResult bindingResult, Principal principal){
         ModelAndView model = new ModelAndView();
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
 
         if (bindingResult.hasErrors()){
@@ -122,7 +122,7 @@ public class BlogController {
     @PostMapping("/file_upload")
     public ModelAndView uploadFile(@Valid @ModelAttribute User_files  user_file,  BindingResult bindingResult,
                                    Principal principal,MultipartFile file){
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         ModelAndView model =new ModelAndView();
         if (bindingResult.hasErrors()){
 

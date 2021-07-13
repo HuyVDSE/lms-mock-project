@@ -39,7 +39,7 @@ public class Auth_Controller {
 
      ModelAndView model = new ModelAndView();
 
-     User userExist = userService.fidUserByEmail(user.getEmail());
+     User userExist = userService.findUserByEmail(user.getEmail());
      if (userExist != null){
          bindingResult.rejectValue("email", "error.user", "This email already exists!");
      }
@@ -73,7 +73,7 @@ public class Auth_Controller {
     public ModelAndView CreateHR(@Valid User user, BindingResult bindingResult){
         ModelAndView model = new ModelAndView();
 
-        User userExist = userService.fidUserByEmail(user.getEmail());
+        User userExist = userService.findUserByEmail(user.getEmail());
         if (userExist != null){
             bindingResult.rejectValue("email", "error.user", "This email already exists!");
         }
@@ -106,7 +106,7 @@ public class Auth_Controller {
     public ModelAndView CreateMANAGER(@Valid User user, BindingResult bindingResult){
         ModelAndView model = new ModelAndView();
 
-        User userExist = userService.fidUserByEmail(user.getEmail());
+        User userExist = userService.findUserByEmail(user.getEmail());
         if (userExist != null){ bindingResult.rejectValue("email", "error.user", "This email already exists!"); }
         if (!user.getPassword().equals(user.getConfirmPassword())){
             bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!"); }

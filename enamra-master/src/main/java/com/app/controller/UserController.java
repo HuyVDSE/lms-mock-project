@@ -57,7 +57,7 @@ public class UserController {
     @GetMapping("/profile")
     public ModelAndView profilePage(Principal principal){
         ModelAndView model = new ModelAndView();
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         User user = optionalUser.get();
         model.addObject("user", user);
         model.setViewName("user/profile");
@@ -93,7 +93,7 @@ public class UserController {
     @RequestMapping(value="/profile_img", method=RequestMethod.GET)
     @ResponseBody
     ResponseEntity<InputStreamResource> uploadedFile(Principal principal) throws IOException {
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         User user = optionalUser.get();
         Path filePath = pic_service.findLastFile(user.getId()).getFilePath();
         return ResponseEntity

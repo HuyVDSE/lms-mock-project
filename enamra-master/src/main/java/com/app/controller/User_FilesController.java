@@ -1,21 +1,16 @@
 package com.app.controller;
 
 
-import com.app.model.Pager;
 import com.app.model.User;
 import com.app.model.User_files;
 import com.app.repository.User_File_Repo;
 import com.app.service.UserService;
 import com.app.service.User_File_Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -40,7 +35,7 @@ public class User_FilesController {
 
     @GetMapping("/view")
     public ModelAndView viewUserImages(Principal principal){
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
         User user = userService.findUserById(optionalUser.get().getId());
 

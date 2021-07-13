@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.PipedReader;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -39,7 +38,7 @@ public class CommentsController {
         ModelAndView model = new ModelAndView("user/commentForm");
         Comments comments = new Comments();
         Topic findtopic = topicService.findTopicByID(id);
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         comments.setUser(optionalUser.get());
         comments.setTopic(findtopic);
         model.addObject("comments", comments);
@@ -51,7 +50,7 @@ public class CommentsController {
     @PostMapping("/create")
     public ModelAndView createComment(@Valid Comments comments, BindingResult bindingResult, Principal principal){
         ModelAndView model = new ModelAndView();
-       Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+       Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
 
        if (bindingResult.hasErrors()){

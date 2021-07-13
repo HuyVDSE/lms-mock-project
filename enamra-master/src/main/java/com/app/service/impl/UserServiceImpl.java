@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder encoder;
 
     @Override
-    public User fidUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService {
         Role userRule = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRule)));
         userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }

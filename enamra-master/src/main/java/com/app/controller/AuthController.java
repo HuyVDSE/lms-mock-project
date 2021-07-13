@@ -3,9 +3,7 @@ package com.app.controller;
 import com.app.google.GooglePojo;
 import com.app.google.GoogleUtils;
 import com.app.model.User;
-import com.app.service.AdminService;
 import com.app.service.SendMailService;
-import com.app.service.impl.AdminServiceImpl;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +13,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,8 +54,9 @@ public class AuthController {
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
         System.out.println(googlePojo.getEmail());
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                userDetail.getAuthorities());
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(userDetail, null,
+                    userDetail.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         ModelAndView model = new ModelAndView();
@@ -91,7 +89,7 @@ public class AuthController {
         } else if(user.getPassword() == "") {
             bindingResult.rejectValue("password", "error.user", "Password must not empty!");
         } else {
-            User userExist = userService.fidUserByEmail(user.getEmail());
+            User userExist = userService.findUserByEmail(user.getEmail());
             if (userExist != null){
                 bindingResult.rejectValue("email", "error.user", "This email already exists!");
             }

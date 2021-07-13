@@ -108,7 +108,7 @@ public class Profile_pic_service {
     private UserService userService;
 
     public void save(Profile_pic uploadedFile, Principal principal) {
-        Optional<User> optionalUser = Optional.ofNullable(userService.fidUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         uploadedFile.setUser(optionalUser.get());
         repository.save(uploadedFile);
     }
