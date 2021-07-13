@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 public class AuthController {
@@ -52,15 +53,38 @@ public class AuthController {
         String code = request.getParameter("code");
         String accessToken = googleUtils.getToken(code);
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
-        System.out.println(googlePojo.getEmail());
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetail, null,
                     userDetail.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        User usercc = userService.findUserByEmail(googlePojo.getEmail());
+        String role = String.valueOf(usercc.getRoles());
+        role.substring(1, role.length()-1);
         ModelAndView model = new ModelAndView();
-        model.setViewName("user/login");
+        if (role.equals("USER")){
+            model.addObject("user", role);
+        }else if (role.equals("ADMIN")){
+            model.addObject("admin", role);
+        }else if (role.equals("HR")){
+            model.addObject("hr", role);
+        }else if (role.equals("MANAGER")){
+            model.addObject("manager", role);
+        }else if (role.equals("CHIF INSTRUCTOR")){
+            model.addObject("CHIF_INSTRUCTOR", role);
+        }else if (role.equals("INSTRUCTOR")){
+            model.addObject("INSTRUCTOR", role);
+        }else if (role.equals("Assistant INSTRUCTOR")){
+            model.addObject("Assistant_INSTRUCTOR", role);
+        }else if (role.equals("Teaching Assistant")){
+            model.addObject("Teaching_Assistant", role);
+        }else if (role.equals("STUFF")){
+            model.addObject("STUFF", role);
+        }else if (role.equals("EMPLOYEE")){
+            model.addObject("EMPLOYEE", role);
+        }
+        model.setViewName("home");
         return model;
     }
 

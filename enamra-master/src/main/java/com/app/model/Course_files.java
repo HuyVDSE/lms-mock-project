@@ -14,7 +14,7 @@ public class Course_files {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
-    private String file_id;
+    private int file_id;
 
     @Column(name = "file_name")
     private String file_name;
