@@ -16,10 +16,10 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class SendMailServiceImpl implements SendMailService {
     @Override
-    public String sendMail(String email) {
-        Random rnd = new Random();
-        int number = rnd.nextInt(999999);
-        String random = String.format("%06d", number);
+    public void sendMail(String email) {
+//        Random rnd = new Random();
+//        int number = rnd.nextInt(999999);
+//        String random = String.format("%06d", number);
         String from = "tringuyen11122000";
         String pass = "Minhtri11122000";
         Properties props = System.getProperties();
@@ -38,7 +38,7 @@ public class SendMailServiceImpl implements SendMailService {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
             message.setSubject("User Email Verification");
-            message.setText("Registered successfully.Please verify your account using this code: " + random);
+            message.setText("Registered successfully.Please verify your account using this link: http://localhost:8088/user/settings/verify?email=" + email);
             Transport transport = sesionMail.getTransport("smtp");
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
@@ -52,6 +52,6 @@ public class SendMailServiceImpl implements SendMailService {
 //            BasicConfigurator.configure();
 //            LOGGER.error("CreateRecordServlet_MessagingException: " + ex.getMessage());
         }
-        return random;
+//        return random;
     }
 }

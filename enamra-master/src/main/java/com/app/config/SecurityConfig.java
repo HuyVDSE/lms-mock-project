@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/files/**", "/academic/**","/professional/**","/general/**",
                         "**/img/**","**/img/logo.png","**/img/favicon.ico","/v/**",
                         "/error","/user/logout",
-                        "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login",
+                        "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login", "/user/settings/**", "user/verify",
                         "/","/entry","/blog/**",
                         "/media/files/blog/img/**",
                         "**/webjars/**","/webjars/**","/resources/static/**").permitAll()

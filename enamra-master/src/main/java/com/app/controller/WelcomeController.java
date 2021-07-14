@@ -37,7 +37,6 @@ public class WelcomeController {
     public ModelAndView homePage(Principal principal){
         ModelAndView model = new ModelAndView("home");
         List<Course> first_four_from_last = courseRepo.recently_added_first_four_course();
-        System.out.println(principal.getName());
         User userCC = userService.findUserByEmail(principal.getName());
         String role = String.valueOf(userCC.getRoles());
         role.substring(1,role.length()-1);

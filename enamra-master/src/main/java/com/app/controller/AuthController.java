@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.security.Principal;
 
 @Controller
 public class AuthController {
@@ -133,6 +132,14 @@ public class AuthController {
         return model;
     }
 
-
+    @GetMapping("/user/settings/verify")
+    public ModelAndView verify(HttpServletRequest request){
+        String email = request.getParameter("email");
+        User usercc = userService.findUserByEmail(email);
+        userService.activeUser(usercc);
+        ModelAndView model = new ModelAndView();
+        model.setViewName("user/verify");
+        return model;
+    }
 
 }
