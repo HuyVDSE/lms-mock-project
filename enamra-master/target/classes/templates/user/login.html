@@ -26,9 +26,12 @@
                 </div>
                 <div>
                     <!-- Forgot password -->
-                    <a href="#">Forgot password?</a>
+                    <a th:href="@{/user/forgot}">Forgot password?</a>
                 </div>
             </div>
+                            <div class="text-danger align-middle" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+                                <p>Invalid email or password</p>
+                            </div>
             <input class="btn btn-info btn-block my-4" type="submit" value="Sign in" onclick="lsRememberMe()">
             <script type="text/javascript">
                 const rmCheck = document.getElementById("rememberMe"),

@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.security.Principal;
+import java.util.Random;
 
 @Controller
 public class AuthController {
@@ -135,11 +139,124 @@ public class AuthController {
     @GetMapping("/user/settings/verify")
     public ModelAndView verify(HttpServletRequest request){
         String email = request.getParameter("email");
-        User usercc = userService.findUserByEmail(email);
-        userService.activeUser(usercc);
+        String code = request.getParameter("code");
+        HttpSession session = request.getSession();
+        String random = (String) session.getAttribute("CODE");
+        if(code != null){
+            if(code.equals(random)) {
+                User usercc = userService.findUserByEmail(email);
+                userService.activeUser(usercc);
+                session.setAttribute("CODE", null);
+            }
+        }
         ModelAndView model = new ModelAndView();
-        model.setViewName("user/verify");
+        model.setViewName("user/login");
         return model;
+    }
+
+    @PostMapping("/user/settings/checkVerify")
+    public String checkVerify(HttpServletRequest request){
+        String email = request.getParameter("email");
+        User usercc = userService.findUserByEmail(email);
+        if(usercc != null) {
+            int active = usercc.getActive();
+            if(active == 0) {
+                HttpSession session = request.getSession();
+                Random rnd = new Random();
+                int leftLimit = 97; // letter 'a'
+                int rightLimit = 122; // letter 'z'
+                int targetStringLength = 100;
+                Random rndd = new Random();
+                String generatedString = rndd.ints(leftLimit, rightLimit + 1)
+                        .limit(targetStringLength)
+                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                        .toString();
+                int number = rnd.nextInt(999999999);
+                String random = String.format("%09d", number);
+                session.setAttribute("CODE", random + generatedString);
+                session.setMaxInactiveInterval(60*5);
+                sendMailService.sendMail(email, random + generatedString, "VERIFY");
+                return "redirect:/user/verify";
+            }
+        }
+        return "redirect:/user/login?error=true";
+    }
+
+    @GetMapping("/user/verify")
+    public ModelAndView verifyPage(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("/user/verify");
+        return model;
+    }
+
+    @GetMapping("/user/forgot")
+    public ModelAndView forgotPage(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("/user/forgot");
+        return model;
+    }
+
+    @GetMapping("/user/reset_password")
+    public ModelAndView resetPassword(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        model.addObject("user", new User());
+        String code = request.getParameter("code");
+        HttpSession session = request.getSession();
+        String random = (String) session.getAttribute("CODE");
+        if(code != null){
+            if(code.equals(random)) {
+                session.setAttribute("CODE", null);
+                model.setViewName("/user/reset_password");
+                return model;
+            }
+        }
+        model.setViewName("/user/login");
+        return model;
+    }
+
+    @PostMapping("/user/reset_password")
+    public ModelAndView changePassword(@Valid User user, BindingResult bindingResult){
+        ModelAndView model = new ModelAndView();
+        if(user.getPassword() == "") {
+            bindingResult.rejectValue("password", "error.user", "Password must not empty!");
+        } else {
+            if (!user.getPassword().equals(user.getConfirmPassword())){
+                bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
+            }
+            if (bindingResult.hasErrors()) {
+                model.setViewName("/user/reset_password");
+            } else {
+                userService.changePassword(user.getEmail(), user.getPassword());
+                model.addObject("msg", "Reset password successfully!");
+                model.addObject("user", new User());
+                model.setViewName("/user/reset_password");
+            }
+        }
+        return model;
+    }
+
+    @PostMapping("/user/request_reset")
+    public String requestReset(HttpServletRequest request){
+        String email = request.getParameter("email");
+        User usercc = userService.findUserByEmail(email);
+        if(usercc != null) {
+            HttpSession session = request.getSession();
+            Random rnd = new Random();
+            int leftLimit = 97; // letter 'a'
+            int rightLimit = 122; // letter 'z'
+            int targetStringLength = 100;
+            Random rndd = new Random();
+            String generatedString = rndd.ints(leftLimit, rightLimit + 1)
+                    .limit(targetStringLength)
+                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                    .toString();
+            int number = rnd.nextInt(999999999);
+            String random = String.format("%09d", number);
+            session.setAttribute("CODE", random + generatedString);
+            session.setMaxInactiveInterval(60*5);
+            sendMailService.sendMail(email, random + generatedString, "RESET_PASSWORD");
+        }
+        return "/user/reset";
     }
 
 }
