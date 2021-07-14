@@ -36,26 +36,16 @@ public class UserController {
 
 
     @GetMapping("/your_Dashboard")
-    public ModelAndView userDashboard(){return new ModelAndView("user/user_dashboard");}
-
-
-
-
-
-
-
-
-
-
-
-
+    public ModelAndView userDashboard() {
+        return new ModelAndView("user/user_dashboard");
+    }
 
 
     @Value("${profile.pic.dir}")
     private String uploadDirectory;
 
     @GetMapping("/profile")
-    public ModelAndView profilePage(Principal principal){
+    public ModelAndView profilePage(Principal principal) {
         ModelAndView model = new ModelAndView();
         Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         User user = optionalUser.get();
@@ -65,18 +55,17 @@ public class UserController {
     }
 
 
-
     //----------------------------------------------
 
     @GetMapping("/profile_pic_upload")
-    public ModelAndView up(Profile_pic profile_pic){
+    public ModelAndView up(Profile_pic profile_pic) {
         ModelAndView model = new ModelAndView();
         model.addObject("profile_pic", profile_pic);
         model.setViewName("user/pro_pic_form");
         return model;
     }
 
-    @RequestMapping(value="/profile_pic_upload", method= RequestMethod.POST)
+    @RequestMapping(value = "/profile_pic_upload", method = RequestMethod.POST)
     String fileUploads(Model model, @RequestParam("file") MultipartFile file, Principal principal) {
 
         try {
@@ -90,26 +79,22 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @RequestMapping(value="/profile_img", method=RequestMethod.GET)
+    @RequestMapping(value = "/profile_img", method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<InputStreamResource> uploadedFile(Principal principal) throws IOException {
         Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
         User user = optionalUser.get();
-        Path filePath = pic_service.findLastFile(user.getId()).getFilePath();
-        return ResponseEntity
-                .ok()
-                .contentLength(Files.size(filePath))
-                .contentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(filePath.toString())))
-                .body(new InputStreamResource(Files.newInputStream(filePath, StandardOpenOption.READ)));
+        Profile_pic profilePicture = pic_service.findLastFile(user.getId());
+        if (profilePicture != null) {
+            Path filePath = profilePicture.getFilePath();
+            return ResponseEntity
+                    .ok()
+                    .contentLength(Files.size(filePath))
+                    .contentType(MediaType.parseMediaType(URLConnection.guessContentTypeFromName(filePath.toString())))
+                    .body(new InputStreamResource(Files.newInputStream(filePath, StandardOpenOption.READ)));
+        }
+        return null;
     }
-
-
-
-
-
-
-
-
 
 
 }
