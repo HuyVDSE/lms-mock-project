@@ -3,8 +3,8 @@ package com.app.controller;
 import com.app.EnamraApplication;
 import com.app.model.Course;
 import com.app.model.Section;
-import com.app.repository.CourseRepo;
-import com.app.repository.SectionRepo;
+import com.app.repository.CourseRepository;
+import com.app.repository.SectionRepository;
 import com.app.service.impl.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -26,9 +26,9 @@ public class CourseControllerTest {
     @Autowired
     private CourseService courseService;
     @Autowired
-    private CourseRepo courseRepo;
+    private CourseRepository courseRepository;
     @Autowired
-    private SectionRepo sectionRepo;
+    private SectionRepository sectionRepository;
 
 
     @Test
@@ -47,13 +47,13 @@ public class CourseControllerTest {
     @Test
     @Transactional
     public void course_with_section() {
-        List<Course> course_with_sec = courseRepo.last_10_course_with_section();
+        List<Course> course_with_sec = courseRepository.last_10_course_with_section();
         log.info("Sec with Course -> {}", course_with_sec);
     }
 
     @Test
     public void sec_with_course() {
-        List<Section> pp = sectionRepo.sec_with_course();
+        List<Section> pp = sectionRepository.sec_with_course();
         log.info("section with course :: ->{}",pp);
     }
 
@@ -62,7 +62,7 @@ public class CourseControllerTest {
     // ok
     @Test
     public void recently_added_first_four_course() {
-        List<Course> last_four = courseRepo.recently_added_first_four_course();
+        List<Course> last_four = courseRepository.recently_added_first_four_course();
         log.info("Last $$$$$  -> {}", last_four);
     }
 }

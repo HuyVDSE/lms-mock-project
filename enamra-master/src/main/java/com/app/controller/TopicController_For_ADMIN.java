@@ -6,14 +6,12 @@ import com.app.model.Course;
 import com.app.model.Section;
 import com.app.model.Topic;
 import com.app.repository.CommentRepo;
-import com.app.repository.SectionRepo;
-import com.app.repository.TopicRepo;
+import com.app.repository.SectionRepository;
+import com.app.repository.TopicRepository;
 import com.app.service.ICourseService;
 import com.app.service.ISectionService;
 import com.app.service.ITopicService;
-import com.app.service.impl.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/topic")
@@ -35,9 +32,9 @@ public class TopicController_For_ADMIN {
      @Autowired
      private ISectionService sectionService;
      @Autowired
-     private SectionRepo sectionRepo;
+     private SectionRepository sectionRepository;
      @Autowired
-     private TopicRepo topicRepo;
+     private TopicRepository topicRepository;
      @Autowired
      private CommentRepo commentRepo;
 
@@ -50,12 +47,12 @@ public class TopicController_For_ADMIN {
     }
 
     @PostMapping("/addTopic_for_section")
-    public ModelAndView addTopicForSEction(@Valid Topic topic, BindingResult bindingResult, MultipartFile file){
+    public ModelAndView addTopicForSection(@Valid Topic topic, BindingResult bindingResult, MultipartFile file){
         ModelAndView model = new ModelAndView();
         if (bindingResult.hasErrors()){
             model.addObject("error","Something Went Wrong");
             model.setViewName("admin/topicForm");
-        }else {
+        } else {
             if (file==null){
 
             }
@@ -75,7 +72,7 @@ public class TopicController_For_ADMIN {
         ModelAndView model = new ModelAndView();
         Section findSection = sectionService.findSectionByID(id);
         Course findCourseForSection = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList =   topicRepo.all_topic_BY_Section_ID(id);  //topicService.getAllTopic();
+        List<Topic> topicList =   topicRepository.all_topic_BY_Section_ID(id);  //topicService.getAllTopic();
         model.addObject("course", findCourseForSection);
         model.addObject("section",findSection);
         model.addObject("topic", topicList);
@@ -108,7 +105,7 @@ public class TopicController_For_ADMIN {
         ModelAndView model = new ModelAndView("admin/all_topic");
         Section findSection = sectionService.findSectionByID(id);
         Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepo.all_topic_BY_Section_ID(findSection.getSection_id());
+        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
 
         model.addObject("course", findCourse);
         model.addObject("section", findSection);
@@ -131,7 +128,7 @@ public class TopicController_For_ADMIN {
         List<Comments> commentsList = commentRepo.findAll_by_desc(id);
         Section findSection = sectionService.findSectionByID(findTopic.getSection_id().getSection_id());
         Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepo.all_topic_BY_Section_ID(findSection.getSection_id());
+        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
         model.addObject("course1", findCourse);
         model.addObject("section1", findSection);
         model.addObject("topicList1", topicList);

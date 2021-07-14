@@ -2,18 +2,18 @@ package com.app.controller;
 
 
 import com.app.model.Course;
+import com.app.model.CourseFile;
 import com.app.model.Section;
-import com.app.repository.CourseRepo;
-import com.app.repository.SectionRepo;
-import com.app.repository.TopicRepo;
+import com.app.repository.CourseRepository;
+import com.app.repository.SectionRepository;
+import com.app.repository.TopicRepository;
+import com.app.service.impl.CourseFileService;
 import com.app.service.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -25,35 +25,48 @@ public class CourseController_For_ADMIN {
 
     @Autowired
     private CourseService courseService;
+
     @Autowired
-    private CourseRepo courseRepo;
+    private CourseRepository courseRepository;
+
     @Autowired
-    private SectionRepo sectionRepo;
+    private SectionRepository sectionRepository;
+
     @Autowired
-    private TopicRepo topicRepo;
+    private TopicRepository topicRepository;
+
+    @Autowired
+    private CourseFileService courseFileService;
 
 
     @GetMapping
-    public String coursePage(){return "admin/coursePage";}
+    public String coursePage() {
+        return "admin/coursePage";
+    }
 
     @GetMapping("/create")
-    public ModelAndView loadCourseForm(){
+    public ModelAndView loadCourseForm() {
         ModelAndView model = new ModelAndView("admin/courseForm");
         model.addObject("course", new Course());
         return model;
     }
 
     @PostMapping("/create")
-    public ModelAndView createCourse(@Valid Course course, BindingResult bindingResult){
+    public ModelAndView createCourse(@Valid Course course, MultipartFile file, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.setViewName("admin/courseForm");
-            model.addObject("error","Something Went Wrong ......");
+            model.addObject("error", "Something Went Wrong ......");
 
-        }else {
+        } else {
             courseService.saveCourse(course);
-            model.addObject("msg","Course created successfully");
+            if (file != null) {
+                CourseFile courseFile = new CourseFile();
+                courseFile.setCourse(course);
+                courseFileService.saveFile(file, courseFile);
+            }
+            model.addObject("msg", "Course created successfully");
             model.setViewName("admin/courseForm");
 
         }
@@ -61,14 +74,14 @@ public class CourseController_For_ADMIN {
     }
 
     @GetMapping("/delete_course/{course_id}")
-    public ModelAndView deleteCourse(@PathVariable("course_id") Long id){
+    public ModelAndView deleteCourse(@PathVariable("course_id") Long id) {
         courseService.deleteCourse(id);
         return new ModelAndView("redirect:/admin/course/last_10_course");
     }
 
 
     @GetMapping("/update_course/{course_id}")
-    public ModelAndView updateCourse(@PathVariable("course_id") Long id){
+    public ModelAndView updateCourse(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/update_course");
         Course findCourse = courseService.findCourseById(id);
         model.addObject("course", findCourse);
@@ -76,67 +89,61 @@ public class CourseController_For_ADMIN {
     }
 
     @PostMapping("/update")
-    public ModelAndView update_course(@Valid Course course, BindingResult bindingResult){
+    public ModelAndView update_course(@Valid Course course, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
-        if (bindingResult.hasErrors()){
-            model.addObject("error","something going wrong");
-        }else {
+        if (bindingResult.hasErrors()) {
+            model.addObject("error", "something going wrong");
+        } else {
             courseService.saveCourse(course);
-            model.addObject("msg","Course created successfully");
+            model.addObject("msg", "Course created successfully");
             model.setViewName("admin/update_course");
         }
         return model;
     }
 
 
-
-
-
     @GetMapping("/last_10_course")
-    public ModelAndView show_Last_10_course(){
+    public ModelAndView show_Last_10_course() {
         ModelAndView model = new ModelAndView("admin/course_list_last_10");
         List<Course> courseList = courseService.getLast_10_course();
         model.addObject("courseLists", courseList);
         return model;
     }
 
-
     @GetMapping("/course_with_section_last_10")
-    public ModelAndView course_with_section(){
+    public ModelAndView course_with_section() {
         ModelAndView model = new ModelAndView();
-        List<Course> course_with_sec = courseRepo.last_10_course_with_section();
-        model.addObject("course_w_sec",course_with_sec);
+        List<Course> course_with_sec = courseRepository.last_10_course_with_section();
+        model.addObject("course_w_sec", course_with_sec);
         model.setViewName("admin/course_with_section");
         return model;
     }
 
-
     @GetMapping("/single_course_with_all_section/{course_id}")
-    public ModelAndView single_course_wit_all_section(@PathVariable("course_id")  Long id){
+    public ModelAndView single_course_wit_all_section(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/single_course_with_all_sec");
         Course findCourse = courseService.findCourseById(id);
-        List<Section> all_sec_for__course = sectionRepo.all_sec_by_course_ID(findCourse.getCourse_id());
+        List<Section> all_sec_for__course = sectionRepository.all_sec_by_course_ID(findCourse.getCourse_id());
         model.addObject("course", findCourse);
-        model.addObject("all_sec",all_sec_for__course);
+        model.addObject("all_sec", all_sec_for__course);
         return model;
     }
 
-// last_10_final
+    // last_10_final
     @GetMapping("/last_10_final")
-    public ModelAndView finalcourse(){
+    public ModelAndView finalcourse() {
         ModelAndView model = new ModelAndView("admin/last_10_final");
         List<Course> courseList = courseService.getLast_10_course();
         model.addObject("courseLists", courseList);
         return model;
     }
 
-
-    ///admin/course/full_details
+    //admin/course/full_details
     @GetMapping("/full_details/{course_id}")
-    public ModelAndView full_details(@PathVariable("course_id") Long id){
+    public ModelAndView full_details(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/full_course");
         Course findCourse = courseService.findCourseById(id);
-        List<Section> allSection = sectionRepo.all_sec_by_course_ID(findCourse.getCourse_id());
+        List<Section> allSection = sectionRepository.all_sec_by_course_ID(findCourse.getCourse_id());
         model.addObject("course", findCourse);
         model.addObject("allSection", allSection);
         return model;
@@ -144,7 +151,7 @@ public class CourseController_For_ADMIN {
 
     // /admin/course/blog/__${course_id}__
     @GetMapping("/blog/{course_id}")
-    public ModelAndView blogpage(@PathVariable("course_id") Long id){
+    public ModelAndView blogpage(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/blog");
         Course findCourse = courseService.findCourseById(id);
         model.addObject("course", findCourse);

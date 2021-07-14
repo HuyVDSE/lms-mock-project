@@ -43,7 +43,7 @@ public class Course {
     private List<Blog> blogs = new ArrayList<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Course_files> courseFiles = new ArrayList<>();
+    private List<CourseFile> courseFiles = new ArrayList<>();
 
     @Override
     public String toString() {

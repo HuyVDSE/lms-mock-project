@@ -11,26 +11,57 @@
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
             <!-- Default form contact -->
-            <form class="text-center border border-light p-5" method="POST" th:action="@{/admin/course/create}" th:object="${course}">
+            <p class="h4 mb-4">Create Course</p>
+            <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
+            <div class="alert alert-success" role="alert" th:if="${msg}">
+                <a class="nav-link" href="/admin/course">go course page</a>
+            </div>
+            <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
+            <form class="text-center border border-light p-5" method="POST"
+                  th:action="@{/admin/course/create}" th:object="${course}" enctype="multipart/form-data">
 
-                <p class="h4 mb-4">Create Course</p>
-                <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-                <div class="alert alert-success" role="alert" th:if="${msg}">
-                    <a class="nav-link" href="/admin/course">go course page</a>
-                </div>
-                <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
-
-                <input type="text" th:field="*{course_name}" class="form-control mb-4" placeholder="Course Name">
-                <div class="form-group">
-                    <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
-                              placeholder="Write something about course"></textarea>
-                </div>
-                <input type="text" th:field="*{visibility}">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Course Name</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{course_name}" class="form-control" placeholder="Course Name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Visibility</label>
+                        </td>
+                        <td>
+                            <select class="form-control" th:field="*{visibility}">
+                                <option th:each="visibilityOpt : ${T(com.app.model.Visibility).values()}"
+                                        th:value="${visibilityOpt}" th:text="${visibilityOpt.displayValue}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Description</label>
+                        </td>
+                        <td>
+                            <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
+                                      placeholder="Write something about course"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>File of course</label>
+                        </td>
+                        <td>
+                            <input class="form-control" type="file" th:name="file">
+                        </td>
+                    </tr>
+                </table>
                 <button class="btn btn-info btn-block" type="submit">Send</button>
             </form>
         </div>
     </div>
-
 
 
 </div>

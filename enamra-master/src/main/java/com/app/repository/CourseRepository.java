@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Repository
-public interface CourseRepo extends JpaRepository<Course,Long> {
+public interface CourseRepository extends JpaRepository<Course,Long> {
 
 
     @Query(value = "select * from course order by course_id desc limit 10", nativeQuery = true)

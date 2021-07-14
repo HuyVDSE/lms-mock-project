@@ -2,8 +2,9 @@ package com.app.service;
 
 
 import com.app.model.User_files;
-import com.app.repository.User_File_Repo;
+import com.app.repository.UserFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,11 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class User_File_Service {
 
-
     @Autowired
-    private UserService userService;
+    private UserFileRepository userFileRepository;
 
-    @Autowired
-    private User_File_Repo file_repo;
-
-
-    String user_file_dir = "./src/main/resources/static/media/files/blog/img";
+    @Value("${user.file.dir}")
+    private String user_file_dir;
 
 
     //   Upload & then store it to the server.
@@ -52,22 +49,19 @@ public class User_File_Service {
         userFiles.setFile_dir(user_file_dir + "/" + modifiedName);
         userFiles.setFile_extension(file_extension);
         userFiles.setFull_path("./src/main/resources/static/media/files/blog/img/" + modifiedName); //   user_files
-        file_repo.save(userFiles);
+        userFileRepository.save(userFiles);
 
     }
-
 
     public void deleteFile(Long id) {
-        User_files userFile = file_repo.findById(id).get();
+        User_files userFile = this.userFileRepository.findById(id).get();
         File file = new File(userFile.getFile_dir());
         file.delete();
-        file_repo.deleteById(id);
+        this.userFileRepository.deleteById(id);
     }
-
 
     public Page<User_files> allPages(Pageable pageable) {
-        return file_repo.findAll(pageable);
+        return userFileRepository.findAll(pageable);
     }
 
-    //huyvd is here
 }

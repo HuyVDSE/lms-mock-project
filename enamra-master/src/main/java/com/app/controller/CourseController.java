@@ -4,8 +4,8 @@ package com.app.controller;
 import com.app.model.Course;
 import com.app.model.Section;
 import com.app.model.Topic;
-import com.app.repository.SectionRepo;
-import com.app.repository.TopicRepo;
+import com.app.repository.SectionRepository;
+import com.app.repository.TopicRepository;
 import com.app.service.impl.CourseService;
 import com.app.service.impl.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +25,18 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
     @Autowired
-    private SectionRepo sectionRepo;
+    private SectionRepository sectionRepository;
     @Autowired
     private SectionService sectionService;
     @Autowired
-    private TopicRepo topicRepo;
+    private TopicRepository topicRepository;
 
 
     @GetMapping("/full/{course_id}")
     public ModelAndView fullCourse(@PathVariable("course_id") Long id){
         ModelAndView model = new ModelAndView("page/course_full");
         Course course = courseService.findCourseById(id);
-        List<Section> allSection = sectionRepo.all_sec_by_course_ID(course.getCourse_id());
+        List<Section> allSection = sectionRepository.all_sec_by_course_ID(course.getCourse_id());
         model.addObject("course_full", course);
         model.addObject("section", allSection);
         return model;
@@ -49,7 +49,7 @@ public class CourseController {
         ModelAndView model = new ModelAndView("page/full_topic");
         Section findSection = sectionService.findSectionByID(id);
         Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepo.all_topic_BY_Section_ID(findSection.getSection_id());
+        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
 
         model.addObject("course1", findCourse);
         model.addObject("section1", findSection);

@@ -1,9 +1,8 @@
 package com.app.controller;
 
 
-import com.app.model.Course;
 import com.app.model.Section;
-import com.app.repository.SectionRepo;
+import com.app.repository.SectionRepository;
 import com.app.service.impl.CourseService;
 import com.app.service.impl.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class SectionController_FOR_ADMIN {
     private SectionService sectionService;
 
     @Autowired
-    private SectionRepo sectionRepo;
+    private SectionRepository sectionRepository;
 
     @GetMapping("/addSec_for_course")
     public ModelAndView sectionPage(){
@@ -76,7 +75,7 @@ public class SectionController_FOR_ADMIN {
         if (bindingResult.hasErrors()){
             model.addObject("error","something went wrong ....");
         }else {
-            sectionRepo.save(section);
+            sectionRepository.save(section);
             model.addObject("msg","Course Has been Updated Successfully...");
             model.setViewName("admin/UpdateSection");
         }

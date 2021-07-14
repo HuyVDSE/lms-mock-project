@@ -9,24 +9,21 @@ import javax.persistence.*;
 @Table(name = "course_file")
 @Data
 @NoArgsConstructor
-public class Course_files {
+public class CourseFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
-    private int file_id;
+    private Integer fileId;
 
     @Column(name = "file_name")
-    private String file_name;
-
-    @Column(name = "file_dir")
-    private String file_dir;
+    private String fileName;
 
     @Column(name = "file_path")
-    private String file_path;
+    private String filePath;
 
     @Column(name = "file_extension")
-    private String file_extension;
+    private String fileExtension;
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")

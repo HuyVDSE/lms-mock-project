@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SectionRepo extends JpaRepository<Section,Long> {
+public interface SectionRepository extends JpaRepository<Section,Long> {
 
 
     @Query(value = "select  * from section left join course on(section.section_id=course.course_id)", nativeQuery = true)

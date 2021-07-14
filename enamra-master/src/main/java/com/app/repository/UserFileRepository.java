@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public interface User_File_Repo extends JpaRepository<User_files,Long> {
+public interface UserFileRepository extends JpaRepository<User_files,Long> {
 
 
     @Query(value = "select  * from user_file where user_id=? AND (file_extension='png' or file_extension='jpg' or " +

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TopicRepo extends JpaRepository<Topic,Long> {
+public interface TopicRepository extends JpaRepository<Topic,Long> {
 
 
     @Query(value = "select * from topic t where t.section_id=? ", nativeQuery = true)
