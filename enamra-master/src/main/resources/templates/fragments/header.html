@@ -124,47 +124,47 @@
                     </ul>
 
                     <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
-                        <li class="nav-item right" th:if="${user}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'USER')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/your_Dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
-                        <li class="nav-item right" th:if="${admin}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'ADMIN')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/admin_Dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
-                        <li class="nav-item right" th:if="${hr}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'HR')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/hr/hr_Dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
-                        <li class="nav-item right" th:if="${manager}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'MANAGER')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/manager_dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
-                        <li class="nav-item right" th:if="${CHIF_INSTRUCTOR}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li class="nav-item right" th:if="${INSTRUCTOR}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li class="nav-item right" th:if="${Assistant_INSTRUCTOR}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li class="nav-item right" th:if="${Teaching_Assistant}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li class="nav-item right" th:if="${STUFF}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li class="nav-item right" th:if="${EMPLOYEE}">
-                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
-                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
-                        </li>
-                        <li>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">App</button></li>
+<!--                        <li class="nav-item right" th:if="${CHIF_INSTRUCTOR}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item right" th:if="${INSTRUCTOR}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item right" th:if="${Assistant_INSTRUCTOR}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item right" th:if="${Teaching_Assistant}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item right" th:if="${STUFF}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item right" th:if="${EMPLOYEE}">-->
+<!--                            <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"-->
+<!--                               th:href="@{/dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>-->
+<!--                        </li>-->
+<!--                        <li>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">App</button></li>-->
                     </ul>
 
 
