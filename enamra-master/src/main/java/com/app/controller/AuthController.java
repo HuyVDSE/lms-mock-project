@@ -53,6 +53,7 @@ public class AuthController {
 
     @RequestMapping("/signin-google")
     public ModelAndView signinEmail(HttpServletRequest request) throws IOException {
+        ModelAndView model = new ModelAndView();
         String code = request.getParameter("code");
         String accessToken = googleUtils.getToken(code);
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
@@ -63,9 +64,12 @@ public class AuthController {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         User usercc = userService.findUserByEmail(googlePojo.getEmail());
+        if(usercc == null) {
+            model.setViewName("/user/login");
+            return model;
+        }
         String role = String.valueOf(usercc.getRoles());
         role.substring(1, role.length()-1);
-        ModelAndView model = new ModelAndView();
         if (role.equals("USER")){
             model.addObject("user", role);
         }else if (role.equals("ADMIN")){
