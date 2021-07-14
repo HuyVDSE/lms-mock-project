@@ -50,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "**/img/**","**/img/logo.png","**/img/favicon.ico","/v/**",
                         "/error","/user/logout",
                         "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login", "/user/settings/**", "/user/verify",
-                        "/","/entry","/blog/**", "/user/login?error=true",
-                        "/media/files/blog/img/**",
+                        "/","/entry","/blog/**", "/user/login?error=true", "/user/forgot", "/user/reset_password", "/user/request_reset",
+                        "/media/files/blog/img/**", "/user/reset/",
                         "**/webjars/**","/webjars/**","/resources/static/**").permitAll()
 
 

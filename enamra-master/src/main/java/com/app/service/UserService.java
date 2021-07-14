@@ -12,6 +12,8 @@ public interface UserService {
 
     void activeUser(User user);
 
+    void changePassword(String email, String pass);
+
     User findUserByUsername(String username);
 
 }

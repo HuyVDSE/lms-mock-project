@@ -16,10 +16,7 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class SendMailServiceImpl implements SendMailService {
     @Override
-    public void sendMail(String email) {
-//        Random rnd = new Random();
-//        int number = rnd.nextInt(999999);
-//        String random = String.format("%06d", number);
+    public void sendMail(String email, String random, String msg) {
         String from = "tringuyen11122000";
         String pass = "Minhtri11122000";
         Properties props = System.getProperties();
@@ -36,9 +33,13 @@ public class SendMailServiceImpl implements SendMailService {
         try {
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-            message.setSubject("User Email Verification");
-            message.setText("Registered successfully.Please verify your account using this link: http://localhost:8088/user/settings/verify?email=" + email);
+            if (msg.equals("VERIFY")) {
+                message.setSubject("User Email Verification");
+                message.setText("Registered successfully.Please verify your account using this link: http://localhost:8088/user/settings/verify?email=" + email + "&code=" + random);
+            } else if (msg.equals("RESET_PASSWORD")) {
+                message.setSubject("Reset password");
+                message.setText("Please using this link: http://localhost:8088/user/reset_password?email=" + email + "&code=" + random + " to reset your password.");
+            }
             Transport transport = sesionMail.getTransport("smtp");
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
