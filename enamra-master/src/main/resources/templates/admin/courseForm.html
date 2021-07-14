@@ -19,7 +19,6 @@
             <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
             <form class="text-center border border-light p-5" method="POST"
                   th:action="@{/admin/course/create}" th:object="${course}" enctype="multipart/form-data">
-
                 <table>
                     <tr>
                         <td>

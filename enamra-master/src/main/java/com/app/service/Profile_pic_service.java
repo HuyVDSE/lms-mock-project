@@ -21,7 +21,7 @@ import java.util.Optional;
 public class Profile_pic_service {
 
     @Autowired
- private Profile_pic_Repository repository;
+    private Profile_pic_Repository repository;
 
 
     @Value("${profile.pic.extensions}")
@@ -30,19 +30,25 @@ public class Profile_pic_service {
 
     String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf(".");
-        if(dotIndex < 0) { return null; }
-        return fileName.substring(dotIndex+1);
+        if (dotIndex < 0) {
+            return null;
+        }
+        return fileName.substring(dotIndex + 1);
     }
 
 
     boolean isValidExtension(String fileName) throws InvalidFileException {
         String fileExtension = getFileExtension(fileName);
 
-        if (fileExtension == null) { throw new InvalidFileException("No File Extension"); }
+        if (fileExtension == null) {
+            throw new InvalidFileException("No File Extension");
+        }
         fileExtension = fileExtension.toLowerCase();
 
         for (String validExtension : validExtensions.split(",")) {
-            if (fileExtension.equals(validExtension)) { return true; }
+            if (fileExtension.equals(validExtension)) {
+                return true;
+            }
         }
         return false;
     }
@@ -51,13 +57,14 @@ public class Profile_pic_service {
     private int getOpenParenthesisIndex(String baseFileName) {
         int openParIndex = baseFileName.lastIndexOf("(");
         int closeParIndex = baseFileName.lastIndexOf(")");
-        boolean isParenthesis = openParIndex > 0 && closeParIndex == baseFileName.length()-1;
+        boolean isParenthesis = openParIndex > 0 && closeParIndex == baseFileName.length() - 1;
 
-        if (isParenthesis && baseFileName.substring(openParIndex+1, closeParIndex).matches("[1-9][0-9]*"))
-        { return openParIndex;
-        } else { return -1; }
+        if (isParenthesis && baseFileName.substring(openParIndex + 1, closeParIndex).matches("[1-9][0-9]*")) {
+            return openParIndex;
+        } else {
+            return -1;
+        }
     }
-
 
 
     String handleFileName(String fileName, String uploadDirectory) throws InvalidFileException {
@@ -65,28 +72,29 @@ public class Profile_pic_service {
         String cleanFileName = fileName.replaceAll("[^A-Za-z0-9.()]", "");
         String extension = getFileExtension(cleanFileName);
 
-        if(!isValidExtension(cleanFileName)) {
+        if (!isValidExtension(cleanFileName)) {
             throw new InvalidFileException("Invalid File Extension");
-        };
+        }
+        ;
 
-        String base = cleanFileName.substring(0, cleanFileName.length()-extension.length()-1);
+        String base = cleanFileName.substring(0, cleanFileName.length() - extension.length() - 1);
         int openParIndex = getOpenParenthesisIndex(base);
         if (openParIndex > 0) {
             base = base.substring(0, openParIndex);
-            cleanFileName =  base + "." + extension;
+            cleanFileName = base + "." + extension;
         }
 
-        if (Files.exists(Paths.get(uploadDirectory, cleanFileName))) { cleanFileName =  base + "(1)." + extension; }
+        if (Files.exists(Paths.get(uploadDirectory, cleanFileName))) {
+            cleanFileName = base + "(1)." + extension;
+        }
 
         while (Files.exists(Paths.get(uploadDirectory, cleanFileName))) {
-            String nString = cleanFileName.substring(base.length()+1, cleanFileName.length()-extension.length()-2);
+            String nString = cleanFileName.substring(base.length() + 1, cleanFileName.length() - extension.length() - 2);
             int n = Integer.parseInt(nString) + 1;
-            cleanFileName =  base + "(" + n + ")." + extension;
+            cleanFileName = base + "(" + n + ")." + extension;
         }
         return cleanFileName;
     }
-
-
 
 
     public Profile_pic uploadFile(MultipartFile file, String uploadDirectory) throws InvalidFileException, IOException {
@@ -94,15 +102,9 @@ public class Profile_pic_service {
         Path path = Paths.get(uploadDirectory, fileName);
         Files.copy(file.getInputStream(), path);
         String extension = getFileExtension(fileName);
-        String fileBaseName = fileName.substring(0, fileName.length()-extension.length()-1);
-        return new Profile_pic( fileName,uploadDirectory, fileBaseName);
+        String fileBaseName = fileName.substring(0, fileName.length() - extension.length() - 1);
+        return new Profile_pic(fileName, uploadDirectory, fileBaseName);
     }
-
-
-
-
-
-
 
     @Autowired
     private UserService userService;
@@ -116,9 +118,5 @@ public class Profile_pic_service {
     public Profile_pic findLastFile(Long id) {
         return repository.findByIdDesc(id);
     }
-
-
-
-
 
 }

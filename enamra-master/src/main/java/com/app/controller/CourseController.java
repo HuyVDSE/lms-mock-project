@@ -72,14 +72,10 @@ public class CourseController {
     @GetMapping("/load-image/{course_id}")
     public void loadCourseImage(@PathVariable("course_id") Long id,
                                 HttpServletResponse response) throws IOException {
-        //get the course file object by course id
         CourseFile courseFile = courseFileService.getFileByCourseId(id);
-        //get the file in directory server
         File imageFile = new File(courseImageDir + "/" + courseFile.getFileName());
-        //write it to output stream
         response.setHeader("Content-Length", String.valueOf(imageFile.length()));
         response.setHeader("Content-Disposition", "inline-filename\"" + imageFile.getName() + "\"");
-
         Files.copy(imageFile.toPath(), response.getOutputStream());
     }
 

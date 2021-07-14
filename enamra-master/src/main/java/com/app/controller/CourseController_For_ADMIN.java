@@ -68,7 +68,6 @@ public class CourseController_For_ADMIN {
             }
             model.addObject("msg", "Course created successfully");
             model.setViewName("admin/courseForm");
-
         }
         return model;
     }
@@ -89,12 +88,18 @@ public class CourseController_For_ADMIN {
     }
 
     @PostMapping("/update")
-    public ModelAndView update_course(@Valid Course course, BindingResult bindingResult) {
+    public ModelAndView update_course(@Valid Course course, MultipartFile file,
+                                      BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         if (bindingResult.hasErrors()) {
             model.addObject("error", "something going wrong");
         } else {
             courseService.saveCourse(course);
+            if (file != null) {
+                CourseFile courseFile = new CourseFile();
+                courseFile.setCourse(course);
+                courseFileService.saveFile(file, courseFile);
+            }
             model.addObject("msg", "Course created successfully");
             model.setViewName("admin/update_course");
         }
