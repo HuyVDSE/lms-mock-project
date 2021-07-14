@@ -20,9 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Email not exist!!");
         }
-        if(user.getActive() == 0){
-            sendMailService.sendMail(user.getEmail());
-        }
         return new UserDetailsImpl(user);
     }
 }

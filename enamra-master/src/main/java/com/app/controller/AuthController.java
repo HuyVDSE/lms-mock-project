@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 public class AuthController {
@@ -138,7 +139,28 @@ public class AuthController {
         User usercc = userService.findUserByEmail(email);
         userService.activeUser(usercc);
         ModelAndView model = new ModelAndView();
-        model.setViewName("user/verify");
+        model.setViewName("user/login");
+        return model;
+    }
+
+    @PostMapping("/user/settings/checkVerify")
+    public String checkVerify(HttpServletRequest request){
+        String email = request.getParameter("email");
+        User usercc = userService.findUserByEmail(email);
+        if(usercc != null) {
+            int active = usercc.getActive();
+            if(active == 0) {
+                sendMailService.sendMail(email);
+                return "redirect:/user/verify";
+            }
+        }
+        return "redirect:/user/login?error=true";
+    }
+
+    @GetMapping("/user/verify")
+    public ModelAndView verifyPage(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("/user/verify");
         return model;
     }
 

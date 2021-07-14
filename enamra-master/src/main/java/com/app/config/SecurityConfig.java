@@ -49,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/files/**", "/academic/**","/professional/**","/general/**",
                         "**/img/**","**/img/logo.png","**/img/favicon.ico","/v/**",
                         "/error","/user/logout",
-                        "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login", "/user/settings/**", "user/verify",
-                        "/","/entry","/blog/**",
+                        "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login", "/user/settings/**", "/user/verify",
+                        "/","/entry","/blog/**", "/user/login?error=true",
                         "/media/files/blog/img/**",
                         "**/webjars/**","/webjars/**","/resources/static/**").permitAll()
 
@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .defaultSuccessUrl("/home", true)
                 .and()
                 .csrf().disable()
-                .formLogin().loginPage("/user/login").failureUrl("/user/login?error=true")
+                .formLogin().loginPage("/user/login").failureForwardUrl("/user/settings/checkVerify")
                 .defaultSuccessUrl("/home", true)
                 .usernameParameter("email")
                 .passwordParameter("password")
