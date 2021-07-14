@@ -344,6 +344,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${first.course_name}">Course Name </h5>
+                        <!--/*@thymesVar id="description" type=""*/-->
+                        <img th:src="@{/v/course/load-image/__${first.course_id}__}" alt="Course Image"
+                             height="100px" width="50px">
                         <p class="card-text" th:text="${first.description}">Some quick example text to build on the panel title and make up the bulk of the
                             panel's content.</p>
 

@@ -48,4 +48,8 @@ public class CourseFileService {
         fileInServer.delete();
         courseFileRepo.delete(courseFile);
     }
+
+    public CourseFile getFileByCourseId(Long id) {
+        return courseFileRepo.getCourseFileByCourse(id);
+    }
 }
