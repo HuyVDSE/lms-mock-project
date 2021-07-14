@@ -57,17 +57,17 @@ public class AuthController {
         String code = request.getParameter("code");
         String accessToken = googleUtils.getToken(code);
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+        User usercc = userService.findUserByEmail(googlePojo.getEmail());
+        if(usercc == null) {
+            model.setViewName("/user/login");
+            return model;
+        }
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetail, null,
                     userDetail.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        User usercc = userService.findUserByEmail(googlePojo.getEmail());
-        if(usercc == null) {
-            model.setViewName("/user/login");
-            return model;
-        }
         String role = String.valueOf(usercc.getRoles());
         role.substring(1, role.length()-1);
         if (role.equals("USER")){
