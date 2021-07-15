@@ -65,7 +65,7 @@ public class AuthController {
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetail, null,
-                    userDetail.getAuthorities());
+                    usercc.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String role = String.valueOf(usercc.getRoles());
