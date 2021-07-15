@@ -1,2 +1,1 @@
 * Bug
-+ Login bằng gmail thì auto là role USER

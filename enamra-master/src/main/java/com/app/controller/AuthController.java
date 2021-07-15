@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.security.Principal;
 import java.util.Random;
 
 @Controller
@@ -30,11 +29,12 @@ public class AuthController {
 
     @Autowired
     private GoogleUtils googleUtils;
-
     @Autowired
     private UserService userService;
     @Autowired
     private SendMailService sendMailService;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @GetMapping("/error")
     public String error(){return "user/error";}
@@ -94,8 +94,6 @@ public class AuthController {
         model.setViewName("home");
         return model;
     }
-
-
 
     @GetMapping("/user/signup")
     public ModelAndView signupPage(){
@@ -261,6 +259,45 @@ public class AuthController {
             sendMailService.sendMail(email, random + generatedString, "RESET_PASSWORD");
         }
         return "/user/reset";
+    }
+
+    @GetMapping("/admin/edit")
+    public ModelAndView updatePage(HttpServletRequest request){
+        User user = userService.findUserById(Long.parseLong(request.getParameter("id")));
+        ModelAndView model = new ModelAndView();
+        model.addObject("id", request.getParameter("id"));
+        model.addObject("user", user);
+        model.setViewName("admin/edit");
+        return model;
+    }
+
+    @PostMapping("/admin/edit")
+    public ModelAndView updateUser(@Valid User user, BindingResult bindingResult, HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        User userUpdate = userService.findUserByEmail(user.getEmail());
+        String currentpassword = request.getParameter("currentpassword");
+        Long id = Long.parseLong(request.getParameter("id"));
+        if(user.getFirstname() == "") {
+            bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
+        } else if(currentpassword == null ||!encoder.matches(currentpassword, userUpdate.getPassword())) {
+            model.addObject("passworderror", "Current password didnt match!!!!");
+        } else if(user.getPassword() == "") {
+            bindingResult.rejectValue("password", "error.user", "Password must not empty!");
+        } else {
+            if (!user.getPassword().equals(user.getConfirmPassword())){
+                bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
+            }
+            if (bindingResult.hasErrors()) {
+                model.setViewName("admin/edit");
+            } else {
+                user.setId(id);
+                userService.saveUser(user, userUpdate.getRoles());
+                model.addObject("msg", "User has been registered successfully!");
+                model.addObject("user", new User());
+                model.setViewName("admin/edit");
+            }
+        }
+        return model;
     }
 
 }
