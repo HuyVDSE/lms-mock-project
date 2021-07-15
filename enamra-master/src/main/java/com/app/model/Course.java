@@ -42,8 +42,8 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Blog> blogs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<CourseFile> courseFiles = new ArrayList<>();
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Override
     public String toString() {

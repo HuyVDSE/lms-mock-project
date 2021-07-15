@@ -1,9 +1,8 @@
 package com.app.service.impl;
 
 import com.app.model.Course;
-import com.app.model.CourseFile;
-import com.app.repository.CourseFileRepository;
 import com.app.repository.CourseRepository;
+import com.app.service.CourseImageService;
 import com.app.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ public class CourseService implements ICourseService {
     private CourseRepository courseRepository;
 
     @Autowired
-    private CourseFileRepository courseFileRepository;
+    private CourseImageService courseImageService;
 
     @Override
     public List<Course> findAllCourse() {
@@ -38,12 +37,8 @@ public class CourseService implements ICourseService {
 
     @Override
     public void deleteCourse(Long courseId) {
-        CourseFile courseFile = courseFileRepository.getCourseFileByCourse(courseId);
-        File courseFileInServer = new File(courseFile.getFilePath());
-        courseFileInServer.delete();
         courseRepository.deleteById(courseId);
     }
-
 
     @Override
     public List<Course> getLast_10_course() {

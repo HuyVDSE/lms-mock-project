@@ -1,2 +1,2 @@
 * Bug
-- Mất nút dashboard khi trở lại trang chủ
++ Mất nút dashboard khi trở lại trang chủ

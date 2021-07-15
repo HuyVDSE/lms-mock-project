@@ -2,12 +2,11 @@ package com.app.controller;
 
 
 import com.app.model.Course;
-import com.app.model.CourseFile;
 import com.app.model.Section;
 import com.app.repository.CourseRepository;
 import com.app.repository.SectionRepository;
 import com.app.repository.TopicRepository;
-import com.app.service.impl.CourseFileService;
+import com.app.service.CourseImageService;
 import com.app.service.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +35,7 @@ public class CourseController_For_ADMIN {
     private TopicRepository topicRepository;
 
     @Autowired
-    private CourseFileService courseFileService;
-
+    private CourseImageService courseImageService;
 
     @GetMapping
     public String coursePage() {
@@ -52,20 +50,21 @@ public class CourseController_For_ADMIN {
     }
 
     @PostMapping("/create")
-    public ModelAndView createCourse(@Valid Course course, MultipartFile file, BindingResult bindingResult) {
+    public ModelAndView createCourse(@Valid Course course, MultipartFile file,
+                                     BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
             model.setViewName("admin/courseForm");
             model.addObject("error", "Something Went Wrong ......");
-
         } else {
-            courseService.saveCourse(course);
-            if (file != null) {
-                CourseFile courseFile = new CourseFile();
-                courseFile.setCourse(course);
-                courseFileService.saveFile(file, courseFile);
+            if (file.getOriginalFilename().equals("")) {
+                course.setImageUrl("courses.png");
+            } else {
+                course.setImageUrl(file.getOriginalFilename());
+                courseImageService.saveImage(file);
             }
+            courseService.saveCourse(course);
             model.addObject("msg", "Course created successfully");
             model.setViewName("admin/courseForm");
         }
@@ -94,12 +93,16 @@ public class CourseController_For_ADMIN {
         if (bindingResult.hasErrors()) {
             model.addObject("error", "something going wrong");
         } else {
-            courseService.saveCourse(course);
-            if (file != null) {
-                CourseFile courseFile = new CourseFile();
-                courseFile.setCourse(course);
-                courseFileService.saveFile(file, courseFile);
+            course = courseService.findCourseById(course.getCourse_id());
+            String imageUrlOfCourse = course.getImageUrl();
+
+            if (file.getOriginalFilename().equals("") && imageUrlOfCourse == null) {
+                course.setImageUrl("courses.png");
+            } else if (!file.getOriginalFilename().equals("")){
+                course.setImageUrl(file.getOriginalFilename());
+                courseImageService.saveImage(file);
             }
+            courseService.saveCourse(course);
             model.addObject("msg", "Course created successfully");
             model.setViewName("admin/update_course");
         }
@@ -163,6 +166,5 @@ public class CourseController_For_ADMIN {
 
         return model;
     }
-
 
 }
