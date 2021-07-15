@@ -87,8 +87,8 @@ public class CourseController_For_ADMIN {
     }
 
     @PostMapping("/update")
-    public ModelAndView update_course(@Valid Course course, MultipartFile file,
-                                      BindingResult bindingResult) {
+    public ModelAndView saveUpdateCourse(@Valid Course course, MultipartFile file,
+                                         BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         if (bindingResult.hasErrors()) {
             model.addObject("error", "something going wrong");
@@ -98,7 +98,7 @@ public class CourseController_For_ADMIN {
 
             if (file.getOriginalFilename().equals("") && imageUrlOfCourse == null) {
                 course.setImageUrl("courses.png");
-            } else if (!file.getOriginalFilename().equals("")){
+            } else if (!file.getOriginalFilename().equals("")) {
                 course.setImageUrl(file.getOriginalFilename());
                 courseImageService.saveImage(file);
             }
@@ -113,7 +113,7 @@ public class CourseController_For_ADMIN {
     @GetMapping("/last_10_course")
     public ModelAndView show_Last_10_course() {
         ModelAndView model = new ModelAndView("admin/course_list_last_10");
-        List<Course> courseList = courseService.getLast_10_course();
+        List<Course> courseList = courseService.getLast10Course();
         model.addObject("courseLists", courseList);
         return model;
     }
@@ -121,8 +121,8 @@ public class CourseController_For_ADMIN {
     @GetMapping("/course_with_section_last_10")
     public ModelAndView course_with_section() {
         ModelAndView model = new ModelAndView();
-        List<Course> course_with_sec = courseRepository.last_10_course_with_section();
-        model.addObject("course_w_sec", course_with_sec);
+        List<Course> courseList = courseRepository.findAll();
+        model.addObject("course_w_sec", courseList);
         model.setViewName("admin/course_with_section");
         return model;
     }
@@ -130,28 +130,28 @@ public class CourseController_For_ADMIN {
     @GetMapping("/single_course_with_all_section/{course_id}")
     public ModelAndView single_course_wit_all_section(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/single_course_with_all_sec");
-        Course findCourse = courseService.findCourseById(id);
-        List<Section> all_sec_for__course = sectionRepository.all_sec_by_course_ID(findCourse.getCourse_id());
-        model.addObject("course", findCourse);
-        model.addObject("all_sec", all_sec_for__course);
+        Course courseFound = courseService.findCourseById(id);
+        List<Section> allSectionByCourseId = sectionRepository.loadSectionByCourseId(courseFound.getCourse_id());
+        model.addObject("course", courseFound);
+        model.addObject("all_sec", allSectionByCourseId);
         return model;
     }
 
     // last_10_final
     @GetMapping("/last_10_final")
-    public ModelAndView finalcourse() {
+    public ModelAndView finalCourse() {
         ModelAndView model = new ModelAndView("admin/last_10_final");
-        List<Course> courseList = courseService.getLast_10_course();
+        List<Course> courseList = courseService.getLast10Course();
         model.addObject("courseLists", courseList);
         return model;
     }
 
     //admin/course/full_details
     @GetMapping("/full_details/{course_id}")
-    public ModelAndView full_details(@PathVariable("course_id") Long id) {
+    public ModelAndView loadFullDetailOfCourse(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/full_course");
         Course findCourse = courseService.findCourseById(id);
-        List<Section> allSection = sectionRepository.all_sec_by_course_ID(findCourse.getCourse_id());
+        List<Section> allSection = sectionRepository.loadSectionByCourseId(findCourse.getCourse_id());
         model.addObject("course", findCourse);
         model.addObject("allSection", allSection);
         return model;
@@ -159,7 +159,7 @@ public class CourseController_For_ADMIN {
 
     // /admin/course/blog/__${course_id}__
     @GetMapping("/blog/{course_id}")
-    public ModelAndView blogpage(@PathVariable("course_id") Long id) {
+    public ModelAndView loadBlogPage(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/blog");
         Course findCourse = courseService.findCourseById(id);
         model.addObject("course", findCourse);

@@ -26,7 +26,8 @@
                             <label>Course Name</label>
                         </td>
                         <td>
-                            <input type="text" th:field="*{course_name}" class="form-control" placeholder="Course Name">
+                            <input type="text" th:field="*{course_name}" class="form-control"
+                                   placeholder="Course Name" required>
                         </td>
                     </tr>
                     <tr>
@@ -46,7 +47,7 @@
                         </td>
                         <td>
                             <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
-                                      placeholder="Write something about course"></textarea>
+                                      placeholder="Write something about course" required/>
                         </td>
                     </tr>
                     <tr>

@@ -15,7 +15,7 @@ public interface ICourseService {
 
     void deleteCourse(Long id);
 
-    List<Course> getLast_10_course();
+    List<Course> getLast10Course();
 
 
 

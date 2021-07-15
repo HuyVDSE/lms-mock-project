@@ -24,7 +24,7 @@ public class SectionControllerTest {
 
     @Test
     public void single_course_with_all_section() {
-        List<Section> list = sectionRepository.all_sec_by_course_ID(11l);
+        List<Section> list = sectionRepository.loadSectionByCourseId(11l);
         log.info("Section For Single Course -> {}", list);
     }
 

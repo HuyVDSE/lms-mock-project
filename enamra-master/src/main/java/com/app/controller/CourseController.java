@@ -44,7 +44,7 @@ public class CourseController {
     public ModelAndView fullCourse(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("page/course_full");
         Course course = courseService.findCourseById(id);
-        List<Section> allSection = sectionRepository.all_sec_by_course_ID(course.getCourse_id());
+        List<Section> allSection = sectionRepository.loadSectionByCourseId(course.getCourse_id());
         model.addObject("course_full", course);
         model.addObject("section", allSection);
         return model;
