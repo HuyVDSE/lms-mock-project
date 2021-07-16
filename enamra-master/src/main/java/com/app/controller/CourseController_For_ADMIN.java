@@ -93,15 +93,16 @@ public class CourseController_For_ADMIN {
         if (bindingResult.hasErrors()) {
             model.addObject("error", "something going wrong");
         } else {
-            course = courseService.findCourseById(course.getCourse_id());
-            String imageUrlOfCourse = course.getImageUrl();
+            Course oldCourse = courseService.findCourseById(course.getCourse_id());
+            String imageUrlOfCourse = oldCourse.getImageUrl();
 
-            if (file.getOriginalFilename().equals("") && imageUrlOfCourse == null) {
-                course.setImageUrl("courses.png");
-            } else if (!file.getOriginalFilename().equals("")) {
+            if (file.getOriginalFilename().equals("")) {
+                course.setImageUrl(imageUrlOfCourse);
+            } else {
                 course.setImageUrl(file.getOriginalFilename());
                 courseImageService.saveImage(file);
             }
+
             courseService.saveCourse(course);
             model.addObject("msg", "Course created successfully");
             model.setViewName("admin/update_course");
