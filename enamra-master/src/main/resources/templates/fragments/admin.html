@@ -25,7 +25,7 @@
             <td th:text="${admin.firstname+' '+ admin.lastname}"></td>
             <td th:text="${admin.email}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/admin/edit/__${admin.id}__}"  role="button" >Update</a>
+                <a class="btn btn-primary" th:href="@{/admin/edit?id=__${admin.id}__}"  role="button" >Update</a>
             </td>
             <td>
                 <a class="btn btn-primary" th:href="@{/admin/del/admin/__${admin.id}__}" role="button" >Delete</a>

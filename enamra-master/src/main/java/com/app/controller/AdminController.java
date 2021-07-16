@@ -83,6 +83,6 @@ public class AdminController {
     public String loadUserDetailForUpdate(@PathVariable("id") Long id, Model model) {
         User currentUser = userService.findUserById(id);
         model.addAttribute("USER", currentUser);
-        return "admin/update-user";
+        return "edit";
     }
 }
