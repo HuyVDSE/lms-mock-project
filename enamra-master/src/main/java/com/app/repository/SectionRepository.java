@@ -16,7 +16,7 @@ public interface SectionRepository extends JpaRepository<Section,Long> {
     List<Section> sec_with_course();
 
     @Query(value = "select * from section s where s.course_id=? ", nativeQuery = true)
-    List<Section> all_sec_by_course_ID(Long id);
+    List<Section> loadSectionByCourseId(Long id);
 
 /*
     @Query(value = "select distinct * from section s order by s.course_id desc ", nativeQuery = true)

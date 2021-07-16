@@ -41,7 +41,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public List<Course> getLast_10_course() {
+    public List<Course> getLast10Course() {
         return courseRepository.getLast_10_course();
     }
 }

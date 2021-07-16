@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,13 +24,13 @@ public class Topic {
 
     private String video_path;
 
-  @OneToMany(mappedBy = "topic",  cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
     private Collection<Comments> comments;
 
     @Getter
     @Setter
     @ManyToOne
     @JoinColumn(name = "section_id")
-    private Section section_id;
+    private Section section;
 
 }

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- <th:block th:include="fragments/header :: head"></th:block>-->
+
     <div th:replace="/fragments/header :: header-css-and-meta"/>
 
 </head>
 <body>
+
 <div class="container-fluid">
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
 
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -18,14 +21,16 @@
             </div>
             <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
             <form class="text-center border border-light p-5" method="POST"
-                  th:action="@{/admin/course/create}" th:object="${course}" enctype="multipart/form-data">
+                  th:action="@{/admin/course/create}" th:object="${course}"
+                  enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>
                             <label>Course Name</label>
                         </td>
                         <td>
-                            <input type="text" th:field="*{course_name}" class="form-control" placeholder="Course Name">
+                            <input type="text" th:field="*{course_name}" class="form-control"
+                                   placeholder="Course Name" required>
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +50,7 @@
                         </td>
                         <td>
                             <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
-                                      placeholder="Write something about course"></textarea>
+                                      placeholder="Write something about course" required/>
                         </td>
                     </tr>
                     <tr>
@@ -53,16 +58,17 @@
                             <label>File of course</label>
                         </td>
                         <td>
-                            <input class="form-control" type="file" th:name="file">
+                            <input class="form-control" type="file" th:name="file" required>
                         </td>
                     </tr>
                 </table>
-                <button class="btn btn-info btn-block" type="submit">Send</button>
+                <button class="btn btn-info" type="submit">Create</button>
+                <button class="btn btn-secondary" type="reset">Clear</button>
             </form>
         </div>
     </div>
 
-
+    <div th:replace="/fragments/header :: footer-Copyright"></div>
 </div>
 
 <div th:replace="/fragments/header :: all-js"></div>

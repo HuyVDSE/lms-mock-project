@@ -16,9 +16,9 @@ public class SectionService implements ISectionService {
 
     @Autowired
     private SectionRepository sectionRepository;
+
     @Autowired
     private CourseRepository courseRepository;
-
 
     @Override
     public List<Section> getAllSection() {
@@ -32,11 +32,9 @@ public class SectionService implements ISectionService {
 
     @Override
     public void saveSection(Section section, Long section_id) {
-
-        //
-          Course find_Course_for_adding_section = courseRepository.findById(section_id).get();
-           section.setSection_id(section_id);
-           sectionRepository.save(section);
+        Course courseFound = courseRepository.findById(section_id).get();
+        section.setCourse(courseFound);
+        sectionRepository.save(section);
     }
 
     @Override

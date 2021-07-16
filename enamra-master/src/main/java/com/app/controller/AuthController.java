@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.security.Principal;
 import java.util.Random;
 
 @Controller
@@ -30,11 +29,12 @@ public class AuthController {
 
     @Autowired
     private GoogleUtils googleUtils;
-
     @Autowired
     private UserService userService;
     @Autowired
     private SendMailService sendMailService;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @GetMapping("/error")
     public String error(){return "user/error";}
@@ -65,7 +65,7 @@ public class AuthController {
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetail, null,
-                    userDetail.getAuthorities());
+                    usercc.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String role = String.valueOf(usercc.getRoles());
@@ -94,8 +94,6 @@ public class AuthController {
         model.setViewName("home");
         return model;
     }
-
-
 
     @GetMapping("/user/signup")
     public ModelAndView signupPage(){
@@ -262,5 +260,4 @@ public class AuthController {
         }
         return "/user/reset";
     }
-
 }

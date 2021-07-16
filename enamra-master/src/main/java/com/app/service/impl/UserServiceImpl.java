@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,6 +43,14 @@ public class UserServiceImpl implements UserService {
         user.setActive(0);
         Role userRule = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRule)));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveUser(User user, Set<Role> role) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        user.setActive(1);
+        user.setRoles(role);
         userRepository.save(user);
     }
 
