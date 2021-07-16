@@ -99,6 +99,8 @@ public class AdminController {
 
         if (user.getFirstname().equals("")) {
             bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
+        } else if (user.getLastname().equals("")) {
+            bindingResult.rejectValue("lastname", "error.user", "Last name must not empty!");
         } else if (oldPassword == null || !encoder.matches(oldPassword, userUpdate.getPassword())) {
             model.addAttribute("passworderror", "Current password didn't match!!!!");
         } else if (user.getPassword().equals("")) {

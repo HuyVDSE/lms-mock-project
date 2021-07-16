@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Repository
-public interface CommentRepo extends JpaRepository<Comments,Long> {
+public interface CommentRepository extends JpaRepository<Comments,Long> {
 
 
 

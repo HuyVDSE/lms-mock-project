@@ -28,7 +28,7 @@ public class Section {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "section_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "section")
     private List<Topic> topicList= new ArrayList<>();
 
     @Override
