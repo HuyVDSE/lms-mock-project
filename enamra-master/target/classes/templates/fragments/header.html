@@ -338,7 +338,7 @@
         </div>
 
     </div>-->
-    <div class="row" >
+    <div class="row" sec:authorize="isAuthenticated()">
         <div class="col-3" th:each="first : ${recently_4}">
             <a target="_blank" th:href="@{/v/course/full/__${first.course_id}__}" class="nav-link">
                 <div class="card">
