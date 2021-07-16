@@ -21,45 +21,64 @@
                 </div>
                 <input type="hidden" th:field="*{course_id}">
                 <table>
-                    <tr>
-                        <td>
-                            <label>Course Name</label>
-                        </td>
-                        <td>
-                            <input type="text" th:field="*{course_name}" class="form-control"
-                                   placeholder="Course Name" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Visibility</label>
-                        </td>
-                        <td>
-                            <select class="form-control" th:field="*{visibility}">
-                                <option th:each="visibilityOpt : ${T(com.app.model.Visibility).values()}"
-                                        th:value="${visibilityOpt}" th:text="${visibilityOpt.displayValue}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Description</label>
-                        </td>
-                        <td>
-                            <textarea class="form-control rounded-0" rows="3" th:field="*{description}"
-                                      placeholder="Write something about course" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>File of course</label>
-                        </td>
-                        <td>
-                            <input class="form-control" type="file" th:name="file">
-                        </td>
-                    </tr>
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            <p>Course name</p>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="form--group">
+                                <input type="text" class="form-control" th:field="*{course_name}"
+                                       placeholder="Course Name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            <p>Visibility</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form--group">
+                                <select class="form-control" th:field="*{visibility}">
+                                    <option th:each="visibilityOpt : ${T(com.app.model.Visibility).values()}"
+                                            th:value="${visibilityOpt}" th:text="${visibilityOpt.displayValue}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            <p>Description</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form--group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" th:field="*{description}"
+                                          placeholder="Wirte something about course" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            <p>File of course</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form--group">
+                                <input class="form-control" type="file" id="formFile" th:name="file" >
+                            </div>
+                        </div>
+                    </div>
                 </table>
-                <button class="btn btn-info btn-block" type="submit">Send</button>
+                <div class="row my-3">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info" type="submit">Update</button>
+                        <button class="btn btn-secondary" type="reset">Clear</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
