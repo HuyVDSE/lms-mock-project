@@ -22,6 +22,7 @@
                 <thead>
                 <th scope="row">#Topic ID</th>
                 <th scope="row">Topic Name</th>
+                <th scope="row">Description</th>
                 <th scope="row">File Name</th>
                 <th scope="row">Action For Topic</th>
 
@@ -30,6 +31,7 @@
                 <tr th:each="topic : ${topicList}">
                     <td th:text="${topic.getId()}"></td>
                     <td th:text="${topic.getTopic_name()}"></td>
+                    <td th:text="${topic.getTopic_description()}"></td>
                     <!-- <td th:text="${topicList.getVideo_name()}"></td>-->
                     <td>
                         <iframe width="500" height="300" th:src="@{__${topic.video_path}__}">

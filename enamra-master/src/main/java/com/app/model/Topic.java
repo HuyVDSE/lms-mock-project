@@ -20,6 +20,8 @@ public class Topic {
 
     private String topic_name;
 
+    private String topic_description;
+
     private String video_name;
 
     private String video_path;
