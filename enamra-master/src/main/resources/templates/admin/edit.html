@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="container-fluid">
+
     <div class="row">
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
@@ -46,7 +47,7 @@
                           th:errors="*{email}"></span>
                 </small>
                 <!-- Current Password -->
-                <input type="password" name="currentpassword" class="form-control mb-4" placeholder="Password">
+                <input type="password" name="oldPassword" class="form-control mb-4" placeholder="Old password">
                 <input type="hidden" th:value="${id}" name="id">
                 <small class="form-text text-muted mb-4">
                     <input disabled="disabled" id="inputtext" style="border:none; display:none; width: 100%; text-align: center" class="text-danger align-middle" type="text" th:value="${passworderror}">
@@ -79,6 +80,7 @@
         </div>
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
     </div>
+
 </div>
 <div th:replace="/fragments/header :: all-js"></div>
 </body>

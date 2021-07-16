@@ -25,7 +25,7 @@
             <td th:text="${admin.firstname+' '+ admin.lastname}"></td>
             <td th:text="${admin.email}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/admin/edit?id=__${admin.id}__}"  role="button" >Update</a>
+                <a class="btn btn-primary" th:href="@{/admin/edit/__${admin.id}__}"  role="button" >Update</a>
             </td>
             <td>
                 <a class="btn btn-primary" th:href="@{/admin/del/admin/__${admin.id}__}" role="button" >Delete</a>
@@ -57,10 +57,10 @@
             <td th:text="${manager.firstname + ' '+ manager.lastname}"></td>
             <td th:text="${manager.email}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/XXX}"  role="button" >Update</a>
+                <a class="btn btn-primary" th:href="@{/admin/edit/__${manager.id}__}" role="button">Update</a>
             </td>
             <td>
-                <a class="btn btn-primary" th:href="@{/admin/del/manager/__${manager.id}__}" role="button" >Delete</a>
+                <a class="btn btn-primary" th:href="@{/admin/del/manager/__${manager.id}__}" role="button">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -140,8 +140,8 @@
                 </div>
                 <div class="tab-pane fade" id="role" role="tabpanel" aria-labelledby="role-tab">
                     <h2>Human Resource Executive</h2>
-                    <div th:replace="/fragments/admin ::create_and_manage_HR"></div>
-                    <div th:replace="/fragments/admin ::create_manager"></div>
+                    <div th:replace="/fragments/admin :: create_and_manage_HR"></div>
+                    <div th:replace="/fragments/admin :: create_manager"></div>
                     <div th:replace="/fragments/admin :: create_admin"></div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">

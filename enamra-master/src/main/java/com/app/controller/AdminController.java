@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -34,6 +36,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @GetMapping("/home")
     public String homeAdmin() {
@@ -82,7 +87,36 @@ public class AdminController {
     @GetMapping("/edit/{id}")
     public String loadUserDetailForUpdate(@PathVariable("id") Long id, Model model) {
         User currentUser = userService.findUserById(id);
-        model.addAttribute("USER", currentUser);
-        return "edit";
+        model.addAttribute("user", currentUser);
+        return "admin/edit";
+    }
+
+    @PostMapping("/edit")
+    public String updateUserDetail(@Valid User user, BindingResult bindingResult,
+                                   HttpServletRequest request, Model model) {
+        User userUpdate = userService.findUserByEmail(user.getEmail());
+        String oldPassword = request.getParameter("oldPassword");
+
+        if (user.getFirstname().equals("")) {
+            bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
+        } else if (oldPassword == null || !encoder.matches(oldPassword, userUpdate.getPassword())) {
+            model.addAttribute("passworderror", "Current password didn't match!!!!");
+        } else if (user.getPassword().equals("")) {
+            bindingResult.rejectValue("password", "error.user", "Password must not empty!");
+        } else {
+            if (!user.getPassword().equals(user.getConfirmPassword())) {
+                bindingResult.rejectValue("password", "error.user", "Confirm Password didnt match!!!!");
+            }
+
+            if (bindingResult.hasErrors()) {
+                return "admin/edit";
+            }
+
+            userService.saveUser(user, userUpdate.getRoles());
+            model.addAttribute("msg", "Update user successfully!");
+            model.addAttribute("user", new User());
+
+        }
+        return "admin/edit";
     }
 }

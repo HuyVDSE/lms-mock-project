@@ -260,44 +260,4 @@ public class AuthController {
         }
         return "/user/reset";
     }
-
-    @GetMapping("/admin/edit")
-    public ModelAndView updatePage(HttpServletRequest request){
-        User user = userService.findUserById(Long.parseLong(request.getParameter("id")));
-        ModelAndView model = new ModelAndView();
-        model.addObject("id", request.getParameter("id"));
-        model.addObject("user", user);
-        model.setViewName("admin/edit");
-        return model;
-    }
-
-    @PostMapping("/admin/edit")
-    public ModelAndView updateUser(@Valid User user, BindingResult bindingResult, HttpServletRequest request){
-        ModelAndView model = new ModelAndView();
-        User userUpdate = userService.findUserByEmail(user.getEmail());
-        String currentpassword = request.getParameter("currentpassword");
-        Long id = Long.parseLong(request.getParameter("id"));
-        if(user.getFirstname() == "") {
-            bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
-        } else if(currentpassword == null ||!encoder.matches(currentpassword, userUpdate.getPassword())) {
-            model.addObject("passworderror", "Current password didnt match!!!!");
-        } else if(user.getPassword() == "") {
-            bindingResult.rejectValue("password", "error.user", "Password must not empty!");
-        } else {
-            if (!user.getPassword().equals(user.getConfirmPassword())){
-                bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
-            }
-            if (bindingResult.hasErrors()) {
-                model.setViewName("admin/edit");
-            } else {
-                user.setId(id);
-                userService.saveUser(user, userUpdate.getRoles());
-                model.addObject("msg", "User has been registered successfully!");
-                model.addObject("user", new User());
-                model.setViewName("admin/edit");
-            }
-        }
-        return model;
-    }
-
 }
