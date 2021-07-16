@@ -109,7 +109,6 @@ public class CourseController_For_ADMIN {
         return model;
     }
 
-
     @GetMapping("/last_10_course")
     public ModelAndView show_Last_10_course() {
         ModelAndView model = new ModelAndView("admin/course_list_last_10");
