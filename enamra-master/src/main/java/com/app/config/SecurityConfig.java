@@ -47,10 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/files/**", "/academic/**","/professional/**","/general/**",
-                        "**/img/**","**/img/logo.png","**/img/favicon.ico","/v/**",
+                        "**/img/**","**/img/logo.png","**/img/favicon.ico",
                         "/error","/user/logout",
-                        "/g/topic/**","/g/**", "/signin-google", "/user/signup","/user/login", "/user/settings/**", "/user/verify",
-                        "/","/entry","/blog/**", "/user/login?error=true", "/user/forgot", "/user/reset_password", "/user/request_reset",
+                        "/signin-google", "/user/signup","/user/login", "/user/settings/**", "/user/verify",
+                        "/","/entry", "/user/login?error=true", "/user/forgot", "/user/reset_password", "/user/request_reset",
                         "/media/files/blog/img/**", "/user/reset/",
                         "**/webjars/**","/webjars/**","/resources/static/**").permitAll()
 
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/resources/static/user_files/**", "/img/**", "/fonts/**",
                         "/css/**","/js/**").permitAll()
 
-                .antMatchers("/home").fullyAuthenticated()
+                .antMatchers("/home","/v/**", "/g/topic/**","/g/**","/blog/**").fullyAuthenticated()
 
                 .antMatchers("/admin_Dashboard","/admin","/admin/**").hasAnyAuthority("ADMIN")
                 //   .anyRequest().authenticated()
