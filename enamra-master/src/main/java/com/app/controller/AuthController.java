@@ -2,7 +2,9 @@ package com.app.controller;
 
 import com.app.google.GooglePojo;
 import com.app.google.GoogleUtils;
+import com.app.model.Course;
 import com.app.model.User;
+import com.app.repository.CourseRepository;
 import com.app.service.SendMailService;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -34,7 +37,7 @@ public class AuthController {
     @Autowired
     private SendMailService sendMailService;
     @Autowired
-    private BCryptPasswordEncoder encoder;
+    private CourseRepository courseRepository;
 
     @GetMapping("/error")
     public String error(){return "user/error";}
@@ -70,28 +73,11 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String role = String.valueOf(usercc.getRoles());
         role.substring(1, role.length()-1);
-        if (role.equals("USER")){
-            model.addObject("user", role);
-        }else if (role.equals("ADMIN")){
-            model.addObject("admin", role);
-        }else if (role.equals("HR")){
-            model.addObject("hr", role);
-        }else if (role.equals("MANAGER")){
-            model.addObject("manager", role);
-        }else if (role.equals("CHIF INSTRUCTOR")){
-            model.addObject("CHIF_INSTRUCTOR", role);
-        }else if (role.equals("INSTRUCTOR")){
-            model.addObject("INSTRUCTOR", role);
-        }else if (role.equals("Assistant INSTRUCTOR")){
-            model.addObject("Assistant_INSTRUCTOR", role);
-        }else if (role.equals("Teaching Assistant")){
-            model.addObject("Teaching_Assistant", role);
-        }else if (role.equals("STUFF")){
-            model.addObject("STUFF", role);
-        }else if (role.equals("EMPLOYEE")){
-            model.addObject("EMPLOYEE", role);
-        }
-        model.setViewName("home");
+        model.setViewName("/home");
+        List<Course> first_four_from_last = courseRepository.recently_added_first_four_course();
+        List<Course> second_4_from_last = courseRepository.recently_added_second_four_course();
+        model.addObject("recently_4", first_four_from_last);
+        model.addObject("second_4", second_4_from_last);
         return model;
     }
 
