@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -38,9 +35,6 @@ public class TopicController_For_ADMIN {
     private ISectionService sectionService;
 
     @Autowired
-    private SectionRepository sectionRepository;
-
-    @Autowired
     private TopicRepository topicRepository;
 
     @Autowired
@@ -55,11 +49,15 @@ public class TopicController_For_ADMIN {
     }
 
     @PostMapping("/addTopic_for_section")
-    public String addTopicForSection(@Valid Topic topic, BindingResult bindingResult, Model model) {
+    public String saveNewTopic(@Valid Topic topic, BindingResult bindingResult, Model model) {
         String youtubeLinkRegex = "^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$";
+
         if (!topic.getVideo_path().matches(youtubeLinkRegex)) {
-            bindingResult.rejectValue("video_path", "error.topic", "Invalid youtube link!!");
+            bindingResult.rejectValue("video_path", "error.topic",
+                    "Invalid youtube link!!");
         }
+
+        model.addAttribute("sectionId", topic.getSection().getSection_id());
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "Something Went Wrong");
@@ -78,7 +76,7 @@ public class TopicController_For_ADMIN {
         ModelAndView model = new ModelAndView();
         Section findSection = sectionService.findSectionByID(id);
         Course findCourseForSection = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(id);  //topicService.getAllTopic();
+        List<Topic> topicList = topicRepository.findAllTopicBySectionId(id);  //topicService.getAllTopic();
         model.addObject("course", findCourseForSection);
         model.addObject("section", findSection);
         model.addObject("topicList", topicList);
@@ -96,23 +94,41 @@ public class TopicController_For_ADMIN {
     @GetMapping("/update/{id}")
     public String updateTopic(@PathVariable("id") Long id, Model model) {
         Topic topic = topicService.findTopicByID(id);
-        model.addAttribute("topic", topic);
         Long sectionId = topic.getSection().getSection_id();
+
+        model.addAttribute("topic", topic);
         model.addAttribute("sectionId", sectionId);
 
-        return "admin/topicForm";
-
+        return "admin/updateTopic";
     }
 
-    // /admin/topic/all_topic/{section_id}
+    @PostMapping("/update")
+    public String saveUpdateTopic(@Valid Topic topic, BindingResult bindingResult, Model model) {
+        String youtubeLinkRegex = "^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$";
 
+        if (!topic.getVideo_path().matches(youtubeLinkRegex)) {
+            bindingResult.rejectValue("video_path", "error.topic",
+                    "Invalid youtube link!!");
+        }
+
+        model.addAttribute("sectionId", topic.getSection().getSection_id());
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("error", "Something went wrong!!");
+            return "admin/updateTopic";
+        }
+
+        topicService.saveTopic(topic);
+        model.addAttribute("msg", "Update Topic successful!");
+        return "admin/updateTopic";
+    }
 
     @GetMapping("/all_topic/{section_id}")
     public ModelAndView allTopic(@PathVariable("section_id") Long id) {
         ModelAndView model = new ModelAndView("admin/all_topic");
         Section findSection = sectionService.findSectionByID(id);
         Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
+        List<Topic> topicList = topicRepository.findAllTopicBySectionId(findSection.getSection_id());
 
         model.addObject("course", findCourse);
         model.addObject("section", findSection);
@@ -127,15 +143,17 @@ public class TopicController_For_ADMIN {
     @GetMapping("/single_topic/{id}")
     public ModelAndView singleTopic(@PathVariable("id") Long id) {
         ModelAndView model = new ModelAndView("admin/single_topic");
-        Topic findTopic = topicService.findTopicByID(id);
-        List<Comments> commentsList = commentRepository.findAll_by_desc(id);
-        Section findSection = sectionService.findSectionByID(findTopic.getSection().getSection_id());
-        Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
-        model.addObject("course1", findCourse);
-        model.addObject("section1", findSection);
+        Topic topic = topicService.findTopicByID(id);
+        Section section = sectionService.findSectionByID(topic.getSection().getSection_id());
+        Course course = courseService.findCourseById(section.getCourse().getCourse_id());
+
+        List<Topic> topicList = topicRepository.findAllTopicBySectionId(section.getSection_id());
+        List<Comments> commentsList = commentRepository.findAllByDesc(id);
+
+        model.addObject("course1", course);
+        model.addObject("section1", section);
         model.addObject("topicList1", topicList);
-        model.addObject("topic_single", findTopic);
+        model.addObject("topic_single", topic);
         model.addObject("commentList", commentsList);
         return model;
     }

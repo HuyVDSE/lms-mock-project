@@ -10,6 +10,7 @@ import com.app.service.CourseImageService;
 import com.app.service.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -129,13 +130,12 @@ public class CourseController_For_ADMIN {
     }
 
     @GetMapping("/single_course_with_all_section/{course_id}")
-    public ModelAndView single_course_wit_all_section(@PathVariable("course_id") Long id) {
-        ModelAndView model = new ModelAndView("admin/single_course_with_all_sec");
+    public String single_course_wit_all_section(@PathVariable("course_id") Long id, Model model) {
         Course courseFound = courseService.findCourseById(id);
         List<Section> allSectionByCourseId = sectionRepository.loadSectionByCourseId(courseFound.getCourse_id());
-        model.addObject("course", courseFound);
-        model.addObject("all_sec", allSectionByCourseId);
-        return model;
+        model.addAttribute("course", courseFound);
+        model.addAttribute("all_sec", allSectionByCourseId);
+        return "admin/single_course_with_all_sec";
     }
 
     // last_10_final

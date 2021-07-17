@@ -34,9 +34,7 @@ public class Course {
     @Column(name = "active")
     private boolean active;
 
-    @OneToMany(mappedBy = "course",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> section = new ArrayList<>();
 
     @OneToMany(mappedBy = "course")

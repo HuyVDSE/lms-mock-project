@@ -29,8 +29,6 @@ public class Topic {
     @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
     private Collection<Comments> comments;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "section_id")
     private Section section;

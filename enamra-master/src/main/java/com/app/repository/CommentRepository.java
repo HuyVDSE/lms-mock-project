@@ -14,5 +14,5 @@ public interface CommentRepository extends JpaRepository<Comments,Long> {
 
 
     @Query(value = "select * from comments where comments.topic_id=? order by comment_id desc  limit 60", nativeQuery = true)
-    List<Comments> findAll_by_desc(Long id);
+    List<Comments> findAllByDesc(Long id);
 }

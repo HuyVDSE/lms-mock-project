@@ -56,7 +56,7 @@ public class CourseController {
         ModelAndView model = new ModelAndView("page/full_topic");
         Section findSection = sectionService.findSectionByID(id);
         Course findCourse = courseService.findCourseById(findSection.getCourse().getCourse_id());
-        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(findSection.getSection_id());
+        List<Topic> topicList = topicRepository.findAllTopicBySectionId(findSection.getSection_id());
 
         model.addObject("course1", findCourse);
         model.addObject("section1", findSection);

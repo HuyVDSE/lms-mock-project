@@ -11,5 +11,5 @@ import java.util.List;
 public interface TopicRepository extends JpaRepository<Topic,Long> {
 
     @Query(value = "select * from topic t where t.section_id=? ", nativeQuery = true)
-    List<Topic> all_topic_BY_Section_ID(Long id);
+    List<Topic> findAllTopicBySectionId(Long id);
 }

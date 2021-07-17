@@ -7,6 +7,8 @@
 </head>
 <body>
 <div class="container-fluid">
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
 
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -82,7 +84,7 @@
         </div>
     </div>
 
-
+    <div th:replace="/fragments/header :: footer-Copyright"></div>
 </div>
 
 <div th:replace="/fragments/header :: all-js"></div>

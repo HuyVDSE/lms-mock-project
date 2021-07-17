@@ -46,8 +46,8 @@ public class TopicController {
         Section section = sectionService.findSectionByID(topic.getSection().getSection_id());
         Course course = courseService.findCourseById(section.getCourse().getCourse_id());
 
-        List<Comments> commentsList = commentRepository.findAll_by_desc(id);
-        List<Topic> topicList = topicRepository.all_topic_BY_Section_ID(section.getSection_id());
+        List<Comments> commentsList = commentRepository.findAllByDesc(id);
+        List<Topic> topicList = topicRepository.findAllTopicBySectionId(section.getSection_id());
 
         model.addAttribute("course", course);
         model.addAttribute("section", section);

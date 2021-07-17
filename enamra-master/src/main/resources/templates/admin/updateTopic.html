@@ -14,9 +14,9 @@
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
             <form class="text-center border border-light p-5" method="POST"
-                  th:action="@{/admin/topic/addTopic_for_section}" th:object="${topic}">
+                  th:action="@{/admin/topic/update}" th:object="${topic}">
 
-                <p class="h4 mb-4">Create Topic For Section
+                <p class="h4 mb-4">Update Topic
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
                 <div class="alert alert-danger" role="alert" th:if="${error}" th:utext="${error}"></div>
 

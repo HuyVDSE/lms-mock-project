@@ -103,10 +103,6 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a th:href="@{/admin/home}"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a th:href="@{/admin/course}">Course</a></li>
-                    <li class="breadcrumb-item"><a href="#">Section</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item"><a href="#">Course</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Section</li>
                 </ol>
             </nav>
@@ -122,8 +118,9 @@
                 <li class="list-group-item">
                     <a class="nav-link" th:href="@{/admin/course/create}" th:target="_blank">Create Course</a>
                 </li>
-                <li class="list-group-item"> <a class="nav-link" th:href="@{/admin/course/last_10_course}"
-                                                th:target="_blank">See Latest 10 created Course without section</a>
+                <li class="list-group-item">
+                    <a class="nav-link" th:href="@{/admin/course/last_10_course}"
+                       th:target="_blank">Edit Course</a>
                 </li>
                 <li class="list-group-item">XXX</li>
                 <li class="list-group-item">XXX</li>
@@ -133,11 +130,12 @@
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a class="nav-link" th:href="@{/admin/course/course_with_section_last_10}" th:target="_blank"> 10 course with section</a>
+                    <a class="nav-link" th:href="@{/admin/course/course_with_section_last_10}"
+                       th:target="_blank">Course with section</a>
                 </li>
                 <li class="list-group-item">
-                    <a class="nav-link" th:href="@{/admin/course/last_10_final}" th:target="_blank">Last 10
-                    </a>
+                    <a class="nav-link" th:href="@{/admin/course/last_10_final}"
+                       th:target="_blank">View Course</a>
                 </li>
                 <li class="list-group-item">XXX</li>
                 <li class="list-group-item">XXX</li>
