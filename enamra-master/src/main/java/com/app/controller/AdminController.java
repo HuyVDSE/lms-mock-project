@@ -55,6 +55,13 @@ public class AdminController {
 
     }
 
+    @GetMapping("/create_question")
+    public ModelAndView test() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin/create_question");
+        return model;
+
+    }
 
     @PostMapping("/signup")
     public ModelAndView signup(@Valid User user, BindingResult bindingResult) {
