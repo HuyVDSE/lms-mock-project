@@ -150,13 +150,14 @@ public class AdminController {
 
     @PostMapping("create_by_file")
     public ModelAndView createByFile(MultipartFile file) throws IOException {
+        ModelAndView model = new ModelAndView("admin/create_question");
         byte[] bytes = file.getBytes();
         String name = file.getOriginalFilename();
         Path path = Paths.get("./src/main/resources/static/upload_files/" + name);
         try {
             Files.write(path, bytes);
         } catch (FileSystemException ex) {
-            ex.printStackTrace();
+            model.addObject("msg", "Can not load file!");
         }
         List<Quiz> listQuizs = readQuizsFromExcelFile(path.toString());
         for (Quiz quiz: listQuizs) {
@@ -169,7 +170,10 @@ public class AdminController {
         for (Answer answer: listAnss) {
             answerService.saveAnswer(answer);
         }
-        ModelAndView model = new ModelAndView("admin/create_question");
+        try {
+            Files.deleteIfExists(path);
+        } catch(FileSystemException ex) {
+        }
         model.addObject("msg", "Create question successfully!");
         return model;
     }
