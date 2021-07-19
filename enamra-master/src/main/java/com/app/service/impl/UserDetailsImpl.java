@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
+
     private User user;
 
     public UserDetailsImpl(User user) {
