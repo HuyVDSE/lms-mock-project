@@ -16,7 +16,7 @@
             <form class="text-center border border-light p-5" method="POST" th:action="@{/admin/sec/update_sec}"
                   th:object="${section}">
 
-                <p class="h4 mb-4">Create Section/Chapter For Course <!--<p th:text="${course.course_name}"></p>-->
+                <p class="h4 mb-4">Update Section/Chapter For Course <!--<p th:text="${course.course_name}"></p>-->
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
                 <div class="alert alert-success" role="alert" th:if="${msg}">
                     <a class="nav-link" href="/admin/course">go course page</a>

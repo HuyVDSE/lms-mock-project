@@ -33,12 +33,14 @@
         </div>
         <div class="col-md-9 col-sm-9">
             <div class="topic-video">
-                <video id="video1" controls autoplay="false" width="100%" height="450px" >
-                    <source th:src="@{__${topic_single.video_path}__}" type="video/mp4">
-                    your browser does not support this type of video
-                </video>
+                <iframe allow="fullscreen;" width="100%" height="450" th:src="@{__${topic_single.video_path}__}">
+                    Video link not working!!
+                </iframe>
             </div>
-
+            <div class="col-md-9 col-sm-9">
+                <p>About the topic</p>
+                <p th:text="${topic_single.topic_description}"></p>
+            </div>
             <br>
             <hr>
             <div class="comments-button">
