@@ -4,243 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- upload frontend">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterDir="false" />
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- create question by excel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enamra.iml" beforeDir="false" afterPath="$PROJECT_DIR$/enamra.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/EnamraApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/EnamraApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/config/ResourceWebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/config/ResourceWebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CourseController_For_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CourseController_For_ADMIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/SectionController_FOR_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/SectionController_FOR_ADMIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/TopicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/TopicController_For_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/TopicController_For_ADMIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/User_FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/User_FilesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/Admin_Dash_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/Admin_Dash_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/Auth_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/Auth_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/hr/HR_HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/hr/HR_HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/manager/ManagerHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/manager/ManagerHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/manager/Manager_Auth_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/manager/Manager_Auth_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/user/AcademicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/user/AcademicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/user/GeneralController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/user/GeneralController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/user/ProfessionalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/user/ProfessionalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/exception/InvalidFileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/exception/InvalidFileException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/google/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/google/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/google/GooglePojo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/google/GooglePojo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/google/GoogleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/google/GoogleUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Blog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Pager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Pager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Profile_pic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Profile_pic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Topic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/User_files.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/User_files.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Visibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Visibility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/BlogRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/BlogRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/ManagerRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/ManagerRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/Profile_pic_Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/Profile_pic_Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/SectionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/SectionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/TopicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/TopicRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/UserFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/UserFileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/CourseImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/CourseImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/ICommentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/ICommentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/ICourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/ICourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/ISectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/ISectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/ITopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/ITopicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/ManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/ManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/Profile_pic_service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/Profile_pic_service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/SendMailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/SendMailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/User_File_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/User_File_Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CommentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CommentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseImageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseImageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/ManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/ManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/SectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/SectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/SendMailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/SendMailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/TopicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/fontawesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/fontawesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/fontawesome/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/fontawesome/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/fontawesome/all.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/fontawesome/all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/jquery-3.2.1.slim.min(1).js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/jquery-3.2.1.slim.min(1).js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/jquery-3.2.1.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/jquery-3.2.1.slim.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/popper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/SectionForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/SectionForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/UpdateSection.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/UpdateSection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/all_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/all_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/courseForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/courseForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/coursePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/coursePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/course_list_last_10.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/course_list_last_10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/course_with_section.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/course_with_section.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/full_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/full_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/last_10_final.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/last_10_final.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/single_course_with_all_sec.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/single_course_with_all_sec.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/single_section_with_all_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/single_section_with_all_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/single_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/topicForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/topicForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/updateTopic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/updateTopic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/update_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/update_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/admin_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/hr_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/hr_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/manager_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/manager_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_cc/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/hr.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/hr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/pagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/pagination.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/profile_general_section.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/profile_general_section.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/section.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/section.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hr/hr_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hr/hr_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/cc.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/cc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/chief_instructor_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/chief_instructor_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/instructor_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/instructor_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/manager_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/manager_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/blogForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/blogForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/course_full.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/course_full.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/file_upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/file_upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/full_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/full_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/single_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/single_post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/academic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/academic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/commentForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/commentForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/forgot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/pro_pic_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/pro_pic_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/reset.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/reset_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/reset_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/user_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/user_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/verify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/view_img.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/view_img.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/EnamraApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/EnamraApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/controller/AdminControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/controller/AdminControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/controller/BlogControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/controller/BlogControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/controller/SectionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/controller/SectionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/controller/User_FilesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/app/controller/User_FilesControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/CourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/CourseController_For_ADMIN.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/CourseController_For_ADMIN.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/SectionController_FOR_ADMIN.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/SectionController_FOR_ADMIN.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/TopicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/TopicController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/TopicController_For_ADMIN.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/TopicController_For_ADMIN.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Section.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Section.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Topic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/CommentRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/TopicRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/TopicRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/fontawesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/fontawesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/fontawesome/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/fontawesome/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/fontawesome/all.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/fontawesome/all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jquery-3.2.1.slim.min(1).js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jquery-3.2.1.slim.min(1).js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jquery-3.2.1.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jquery-3.2.1.slim.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/popper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/SectionForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/SectionForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/UpdateSection.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/UpdateSection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/all_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/all_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/courseForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/courseForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/coursePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/coursePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/course_list_last_10.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/course_list_last_10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/course_with_section.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/course_with_section.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/full_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/full_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/last_10_final.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/last_10_final.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/single_course_with_all_sec.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/single_course_with_all_sec.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/single_section_with_all_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/single_section_with_all_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/single_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/topicForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/topicForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/update_course.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/update_course.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin_cc/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin_cc/admin_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin_cc/hr_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin_cc/hr_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin_cc/manager_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin_cc/manager_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin_cc/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin_cc/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/hr.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/hr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/pagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/pagination.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/profile_general_section.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/profile_general_section.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/section.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/section.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/hr/hr_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hr/hr_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/cc.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/cc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/chief_instructor_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/chief_instructor_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/instructor_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/instructor_signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/blogForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/blogForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/course_full.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/course_full.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/file_upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/file_upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/full_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/full_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/post_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/single_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/single_post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/academic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/academic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/commentForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/commentForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/forgot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/pro_pic_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/pro_pic_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/reset.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/reset_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/reset_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/user_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/user_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/verify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/view_img.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/view_img.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626679247467</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- create question by excel">
+      <created>1626689126841</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626689126841</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,6 +87,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- upload frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="- upload frontend" />
+    <MESSAGE value="- create question by excel" />
+    <option name="LAST_COMMIT_MESSAGE" value="- create question by excel" />
   </component>
 </project>

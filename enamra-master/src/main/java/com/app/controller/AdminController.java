@@ -149,7 +149,7 @@ public class AdminController {
     }
 
     @PostMapping("create_by_file")
-    public String createByFile(Model model, MultipartFile file) throws IOException {
+    public ModelAndView createByFile(MultipartFile file) throws IOException {
         byte[] bytes = file.getBytes();
         String name = file.getOriginalFilename();
         Path path = Paths.get("./src/main/resources/static/upload_files/" + name);
@@ -160,13 +160,18 @@ public class AdminController {
         }
         List<Quiz> listQuizs = readQuizsFromExcelFile(path.toString());
         for (Quiz quiz: listQuizs) {
-            quizService.saveQuiz(quiz);
+            boolean check = quizService.findByQuestion(quiz.getQuestion());
+            if(!check) {
+                quizService.saveQuiz(quiz);
+            }
         }
         List<Answer> listAnss = readAnsersFromExcelFile(path.toString());
         for (Answer answer: listAnss) {
             answerService.saveAnswer(answer);
         }
-        return "admin/create_question";
+        ModelAndView model = new ModelAndView("admin/create_question");
+        model.addObject("msg", "Create question successfully!");
+        return model;
     }
 
     public List<Quiz> readQuizsFromExcelFile(String excelFilePath) throws IOException {
