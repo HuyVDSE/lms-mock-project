@@ -4,10 +4,7 @@ package com.app.controller;
 import com.app.model.Answer;
 import com.app.model.Question;
 import com.app.model.User;
-import com.app.service.AdminService;
-import com.app.service.AnswerService;
-import com.app.service.QuestionService;
-import com.app.service.UserService;
+import com.app.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -17,6 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.apache.poi.ss.usermodel.Row;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.*;
@@ -59,6 +62,9 @@ public class AdminController {
 
     @Autowired
     private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    private ServletContext servletContext;
 
     @GetMapping("/home")
     public String homeAdmin() {
@@ -295,5 +301,24 @@ public class AdminController {
         }
 
         return null;
+    }
+
+    @RequestMapping("/download_template")
+    public ResponseEntity<InputStreamResource> downloadTemplate() throws IOException {
+        String fileName = "Template_Quiz.xlsx";
+        String directory = "./src/main/resources/static/upload_files/";
+        MediaType mediaType = MediaTypeService.getMediaTypeForFileName(this.servletContext, fileName);
+
+        File file = new File(directory + fileName);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                // Content-Type
+                .contentType(mediaType)
+                // Contet-Length
+                .contentLength(file.length()) //
+                .body(resource);
     }
 }
