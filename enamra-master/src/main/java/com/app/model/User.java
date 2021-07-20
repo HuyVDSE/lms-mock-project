@@ -12,7 +12,9 @@ import java.util.*;
 
 @Entity
 @Table(name = "user")
-public class User implements UserDetails {
+@Getter
+@Setter
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,17 +46,14 @@ public class User implements UserDetails {
             inverseJoinColumns=@JoinColumn(name="role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "user")
     private List<Comments> comments;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "user")
     private List<Blog> blogspost= new ArrayList<>();
 
+    public User() {
+    }
 
     @java.beans.ConstructorProperties({"id", "email", "firstname", "lastname", "username", "password", "confirmPassword", "active", "roles"})
     public User(Long id, String email, String firstname, String lastname, String username, String password, String confirmPassword, int active, Set<Role> roles) {
@@ -69,112 +68,20 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User() {
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getFirstname() {
-        return this.firstname;
-    }
-
-    public String getLastname() {
-        return this.lastname;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for(Role role : roles) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
+        Collection<GrantedAuthority> authorities = new HashSet<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
-        return grantedAuthorities;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public String getConfirmPassword() {
-        return this.confirmPassword;
-    }
-
-    public int getActive() {
-        return this.active;
-    }
-
-    public Set<Role> getRoles() {
-        return this.roles;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        return authorities;
     }
 
     public String toString() {
-        return "User(id=" + this.getId() + ", email=" + this.getEmail() + ", firstname=" + this.getFirstname() + ", lastname=" + this.getLastname() + ", username=" +
-                this.getUsername() + ", active=" + this.getActive() +  ")";
+        return "User(id=" + this.getId() +
+                ", email=" + this.getEmail() +
+                ", firstname=" + this.getFirstname() +
+                ", lastname=" + this.getLastname() +
+                ", username=" + this.getUsername() +
+                ", active=" + this.getActive() +  ")";
     }
 }

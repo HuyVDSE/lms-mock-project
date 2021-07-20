@@ -16,9 +16,8 @@ public class Admin_Dash_Controller {
     @Autowired
     private AdminService adminService;
 
-
     @GetMapping("/admin_Dashboard")
-    public ModelAndView adminDashBoard(){
+    public ModelAndView adminDashBoard() {
         ModelAndView model = new ModelAndView("admin_cc/admin_dashboard");
         List<User> adminList = adminService.getAllAdmin();
         List<User> hrList = adminService.getAllHR();
@@ -28,9 +27,5 @@ public class Admin_Dash_Controller {
         model.addObject("managerList", ManagerList);
         return model;
     }
-
-
-
-
 
 }

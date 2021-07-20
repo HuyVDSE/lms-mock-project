@@ -48,8 +48,6 @@ public class BlogController {
         model.addObject("postList", blogList);
         model.setViewName("page/post_list");
         return model;
-
-
     }
 
 

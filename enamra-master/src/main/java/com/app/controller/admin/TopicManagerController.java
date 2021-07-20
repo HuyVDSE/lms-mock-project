@@ -1,4 +1,4 @@
-package com.app.controller;
+package com.app.controller.admin;
 
 
 import com.app.model.Comments;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/topic")
-public class TopicController_For_ADMIN {
+public class TopicManagerController {
 
     @Autowired
     private ITopicService topicService;
