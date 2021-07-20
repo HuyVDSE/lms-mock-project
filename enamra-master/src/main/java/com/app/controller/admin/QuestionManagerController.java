@@ -59,7 +59,6 @@ public class QuestionManagerController {
     @GetMapping("/create/{sectionId}")
     public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
         ModelAndView model = new ModelAndView();
-//        Section section = sectionService.findSectionByID(sectionId);
         model.setViewName("admin/create_question");
         model.addObject("sectionId", sectionId);
         model.addObject("number", 4);
@@ -115,6 +114,7 @@ public class QuestionManagerController {
 
     @PostMapping("create_by_file")
     public ModelAndView createByFile(MultipartFile file, HttpServletRequest request) throws IOException {
+        Long sectionId = Long.parseLong(request.getParameter("sectionId"));
         ModelAndView model = new ModelAndView("admin/create_question");
         byte[] bytes = file.getBytes();
         String name = file.getOriginalFilename();
@@ -124,16 +124,29 @@ public class QuestionManagerController {
         } catch (FileSystemException ex) {
             model.addObject("msg", "Can not load file!");
         }
-        List<Question> listQuestions = readQuestionsFromExcelFile(path.toString());
+        List<Question> listQuestions = readQuestionsFromExcelFile(path.toString(), sectionId);
+        List<Question> listDeleteQuestions = new ArrayList<Question>();
         for (Question question : listQuestions) {
             boolean check = questionService.findByQuestion(question.getQuestion());
             if (!check) {
                 questionService.saveQuestion(question);
+            } else {
+                listDeleteQuestions.add(question);
             }
         }
         List<Answer> listAnss = readAnswersFromExcelFile(path.toString());
+        for (Question question : listDeleteQuestions) {
+            listQuestions.remove(question);
+        }
         for (Answer answer : listAnss) {
-            answerService.saveAnswer(answer);
+            for (Question question : listQuestions) {
+                try{
+                    if (question.getQuestionID() == answer.getQuestion().getQuestionID()) {
+                        answerService.saveAnswer(answer);
+                    }
+                }catch(Exception e) {
+                }
+            }
         }
         try {
             Files.deleteIfExists(path);
@@ -145,7 +158,7 @@ public class QuestionManagerController {
         return model;
     }
 
-    public List<Question> readQuestionsFromExcelFile(String excelFilePath) throws IOException {
+    public List<Question> readQuestionsFromExcelFile(String excelFilePath, Long sectionId) throws IOException {
         List<Question> listQuestions = new ArrayList<Question>();
         FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
 
@@ -154,35 +167,36 @@ public class QuestionManagerController {
         Iterator<Row> rows = firstSheet.iterator();
 
         while (rows.hasNext()) {
-            Row row = rows.next();
-            if (row.getRowNum() == 0) {
+            try {
+                Row row = rows.next();
+                if (row.getRowNum() == 0) {
+                    continue;
+                }
+                Iterator<Cell> cells = row.cellIterator();
+                Question question = new Question();
+                while (cells.hasNext()) {
+                    Cell cell = cells.next();
+                    int columnIndex = cell.getColumnIndex();
+                    switch (columnIndex) {
+                        case 0:
+                            question.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
+                            break;
+                        case 1:
+                            question.setQuestion((String) getCellValue(cell));
+                            break;
+                        case 2:
+                            question.setStatus((String) getCellValue(cell));
+                            break;
+                    }
+                }
+                Section section = sectionService.findSectionByID(sectionId);
+                question.setSection(section);
+                long millis = System.currentTimeMillis();
+                question.setCreateDate(new java.sql.Date(millis));
+                listQuestions.add(question);
+            } catch (Exception e) {
                 continue;
             }
-            Iterator<Cell> cells = row.cellIterator();
-            Question question = new Question();
-            while (cells.hasNext()) {
-                Cell cell = cells.next();
-                int columnIndex = cell.getColumnIndex();
-
-                switch (columnIndex) {
-                    case 0:
-                        question.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
-                        break;
-                    case 1:
-                        question.setQuestion((String) getCellValue(cell));
-                        break;
-                    case 2:
-                        question.setStatus((String) getCellValue(cell));
-                        break;
-                    case 3:
-                        Section section = sectionService.findSectionByID(Long.parseLong(getCellValue(cell) + ""));
-                        question.setSection(section);
-                        break;
-                }
-            }
-            long millis = System.currentTimeMillis();
-            question.setCreateDate(new java.sql.Date(millis));
-            listQuestions.add(question);
         }
 
         workBook.close();
@@ -200,37 +214,41 @@ public class QuestionManagerController {
         Iterator<Row> rows = firstSheet.iterator();
 
         while (rows.hasNext()) {
-            Row row = rows.next();
-            if (row.getRowNum() == 0) {
-                continue;
-            }
-            Iterator<Cell> cells = row.cellIterator();
-            Answer answer = new Answer();
-            String listanswers[] = null;
-            while (cells.hasNext()) {
-                Cell cell = cells.next();
-                int columnIndex = cell.getColumnIndex();
-                switch (columnIndex) {
-                    case 0:
-                        int questionId = Integer.parseInt((getCellValue(cell) + ""));
-                        Question question = questionService.findById(questionId);
-                        answer.setQuestion(question);
-                        break;
-                    case 4:
-                        String answers = (String) getCellValue(cell);
-                        listanswers = answers.split(",");
-                        break;
-                    case 5:
-                        answer.setStatus((boolean) getCellValue(cell));
-                        break;
+            try {
+                Row row = rows.next();
+                if (row.getRowNum() == 0) {
+                    continue;
                 }
-            }
-            for (String ans : listanswers) {
-                Answer x = new Answer();
-                x.setQuestion(answer.getQuestion());
-                x.setAnswer(ans);
-                x.setStatus(answer.isStatus());
-                listAnswers.add(x);
+                Iterator<Cell> cells = row.cellIterator();
+                Answer answer = new Answer();
+                String listanswers[] = null;
+                while (cells.hasNext()) {
+                    Cell cell = cells.next();
+                    int columnIndex = cell.getColumnIndex();
+                    switch (columnIndex) {
+                        case 0:
+                            int questionId = Integer.parseInt((getCellValue(cell) + ""));
+                            Question question = questionService.findById(questionId);
+                            answer.setQuestion(question);
+                            break;
+                        case 3:
+                            String answers = (String) getCellValue(cell);
+                            listanswers = answers.split(",");
+                            break;
+                        case 4:
+                            answer.setStatus((boolean) getCellValue(cell));
+                            break;
+                    }
+                }
+                for (String ans : listanswers) {
+                    Answer x = new Answer();
+                    x.setQuestion(answer.getQuestion());
+                    x.setAnswer(ans);
+                    x.setStatus(answer.isStatus());
+                    listAnswers.add(x);
+                }
+            } catch (Exception e) {
+                continue;
             }
         }
         workBook.close();
@@ -240,7 +258,6 @@ public class QuestionManagerController {
 
     private Workbook getWorkbook(FileInputStream inputStream, String excelFilePath) throws IOException {
         Workbook workbook = null;
-
         if (excelFilePath.endsWith("xlsx")) {
             workbook = new XSSFWorkbook(inputStream);
         } else if (excelFilePath.endsWith("xls")) {
@@ -248,7 +265,6 @@ public class QuestionManagerController {
         } else {
             throw new IllegalArgumentException("The specified file is not Excel file");
         }
-
         return workbook;
     }
 
@@ -263,7 +279,6 @@ public class QuestionManagerController {
             case Cell.CELL_TYPE_NUMERIC:
                 return cell.getNumericCellValue();
         }
-
         return null;
     }
 

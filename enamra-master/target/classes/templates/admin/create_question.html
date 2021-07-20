@@ -72,10 +72,10 @@
                 <!-- Create Question button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Question</button>
             </form>
-            <form method="POST" action="create_by_file"
-                  enctype="multipart/form-data">
+            <form method="POST" th:action="@{/admin/question/create_by_file}" enctype="multipart/form-data">
                 <!-- Attach File Button -->
                 <input id="file" name="file" type="file" class="form-control mb-4" accept=".xls,.xlsx"/>
+                <input type="hidden" th:name="sectionId" th:value="${sectionId}">
                 <i>You can download <a th:href="@{/admin/question/download_template}">template</a> of file excel.</i>
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Question</button>
             </form>
