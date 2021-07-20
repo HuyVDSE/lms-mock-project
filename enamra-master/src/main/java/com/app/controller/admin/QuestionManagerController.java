@@ -109,7 +109,7 @@ public class QuestionManagerController {
         model.setViewName("admin/create_question");
         model.addObject("msg", "Create question successfully!");
         model.addObject("number", 4);
-        model.addObject("sections", sectionService.getAllSection());
+        model.addObject("sectionId", request.getParameter("sectionId"));
         return model;
     }
 
