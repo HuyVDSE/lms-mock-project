@@ -10,6 +10,8 @@ public interface QuestionRepo extends JpaRepository<Question,Integer> {
     @Query(value = "select * from question where question=?", nativeQuery = true)
     Question findByQuestion(String question);
 
-    @Query(value = "select max(questionid) as max from question", nativeQuery = true)
+    @Query(value = "SELECT NUM " +
+                   "FROM(SELECT FLOOR(RAND() * (10000)) AS 'NUM') as SUBQ " +
+                   "WHERE 'NUM' NOT IN(SELECT questionid FROM `question`)", nativeQuery = true)
     int getLastID();
 }
