@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- add download template">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/upload_files/Template_Quiz.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload_files/book_2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/AdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Answer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Answer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Section.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Section.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/upload_files/book_2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/upload_files/book_3.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +21,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="ProjectId" id="1vYirqJPMWo5mmN0Cj3msTUgHDO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -66,15 +56,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
