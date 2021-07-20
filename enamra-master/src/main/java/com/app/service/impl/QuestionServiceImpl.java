@@ -2,17 +2,17 @@ package com.app.service.impl;
 
 import com.app.model.Question;
 import com.app.repository.QuestionRepo;
-import com.app.service.QuizService;
+import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class QuizServiceImpl implements QuizService {
+public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionRepo questionRepo;
 
     @Override
-    public void saveQuiz(Question question) {
+    public void saveQuestion(Question question) {
         questionRepo.save(question);
     }
 

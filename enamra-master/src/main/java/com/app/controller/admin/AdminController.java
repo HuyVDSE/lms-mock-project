@@ -6,7 +6,7 @@ import com.app.model.Question;
 import com.app.model.User;
 import com.app.service.AdminService;
 import com.app.service.AnswerService;
-import com.app.service.QuizService;
+import com.app.service.QuestionService;
 import com.app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -49,7 +49,7 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
-    private QuizService quizService;
+    private QuestionService questionService;
 
     @Autowired
     private AnswerService answerService;
@@ -161,9 +161,9 @@ public class AdminController {
         }
         List<Question> listQuestions = readQuizsFromExcelFile(path.toString());
         for (Question question : listQuestions) {
-            boolean check = quizService.findByQuestion(question.getQuestion());
+            boolean check = questionService.findByQuestion(question.getQuestion());
             if(!check) {
-                quizService.saveQuiz(question);
+                questionService.saveQuestion(question);
             }
         }
         List<Answer> listAnss = readAnsersFromExcelFile(path.toString());
