@@ -114,7 +114,7 @@ public class QuestionManagerController {
     }
 
     @PostMapping("create_by_file")
-    public ModelAndView createByFile(MultipartFile file) throws IOException {
+    public ModelAndView createByFile(MultipartFile file, HttpServletRequest request) throws IOException {
         ModelAndView model = new ModelAndView("admin/create_question");
         byte[] bytes = file.getBytes();
         String name = file.getOriginalFilename();
@@ -141,7 +141,7 @@ public class QuestionManagerController {
         }
         model.addObject("msg", "Create question successfully!");
         model.addObject("number", 4);
-        model.addObject("sections", sectionService.getAllSection());
+        model.addObject("sectionId", request.getParameter("sectionId"));
         return model;
     }
 
