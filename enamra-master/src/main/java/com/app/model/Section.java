@@ -17,7 +17,6 @@ import java.util.List;
 @Entity(name = "section")
 public class Section {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long section_id;
@@ -28,7 +27,7 @@ public class Section {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "section_id")
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     private List<Topic> topicList= new ArrayList<>();
 
     @Override

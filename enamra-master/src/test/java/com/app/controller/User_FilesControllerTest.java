@@ -3,7 +3,7 @@ package com.app.controller;
 import com.app.EnamraApplication;
 import com.app.model.Pager;
 import com.app.model.User_files;
-import com.app.repository.User_File_Repo;
+import com.app.repository.UserFileRepository;
 import com.app.service.User_File_Service;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -15,13 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
-
-import static org.junit.Assert.*;
-
 
 
 @Slf4j
@@ -30,7 +25,7 @@ import static org.junit.Assert.*;
 public class User_FilesControllerTest {
 
     @Autowired
-    private User_File_Repo fileRepo;
+    private UserFileRepository fileRepo;
 
     @Autowired
     private User_File_Service fileService;

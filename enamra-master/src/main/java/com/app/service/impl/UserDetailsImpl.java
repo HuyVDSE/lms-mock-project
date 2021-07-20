@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
+
     private User user;
 
     public UserDetailsImpl(User user) {
@@ -54,9 +55,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+        return true;
+    }
+
+    public boolean isActive() {
         int isActive = user.getActive();
-        if (isActive == 1)
-            return true;
+        if (isActive == 1) return true;
         return false;
     }
 }

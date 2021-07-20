@@ -2,13 +2,16 @@ package com.app.controller;
 
 import com.app.google.GooglePojo;
 import com.app.google.GoogleUtils;
+import com.app.model.Course;
 import com.app.model.User;
+import com.app.repository.CourseRepository;
 import com.app.service.SendMailService;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,8 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.security.Principal;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -30,11 +32,12 @@ public class AuthController {
 
     @Autowired
     private GoogleUtils googleUtils;
-
     @Autowired
     private UserService userService;
     @Autowired
     private SendMailService sendMailService;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @GetMapping("/error")
     public String error(){return "user/error";}
@@ -53,45 +56,30 @@ public class AuthController {
 
     @RequestMapping("/signin-google")
     public ModelAndView signinEmail(HttpServletRequest request) throws IOException {
+        ModelAndView model = new ModelAndView();
         String code = request.getParameter("code");
         String accessToken = googleUtils.getToken(code);
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+        User usercc = userService.findUserByEmail(googlePojo.getEmail());
+        if(usercc == null) {
+            model.setViewName("/user/login");
+            return model;
+        }
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetail, null,
-                    userDetail.getAuthorities());
+                    usercc.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        User usercc = userService.findUserByEmail(googlePojo.getEmail());
         String role = String.valueOf(usercc.getRoles());
         role.substring(1, role.length()-1);
-        ModelAndView model = new ModelAndView();
-        if (role.equals("USER")){
-            model.addObject("user", role);
-        }else if (role.equals("ADMIN")){
-            model.addObject("admin", role);
-        }else if (role.equals("HR")){
-            model.addObject("hr", role);
-        }else if (role.equals("MANAGER")){
-            model.addObject("manager", role);
-        }else if (role.equals("CHIF INSTRUCTOR")){
-            model.addObject("CHIF_INSTRUCTOR", role);
-        }else if (role.equals("INSTRUCTOR")){
-            model.addObject("INSTRUCTOR", role);
-        }else if (role.equals("Assistant INSTRUCTOR")){
-            model.addObject("Assistant_INSTRUCTOR", role);
-        }else if (role.equals("Teaching Assistant")){
-            model.addObject("Teaching_Assistant", role);
-        }else if (role.equals("STUFF")){
-            model.addObject("STUFF", role);
-        }else if (role.equals("EMPLOYEE")){
-            model.addObject("EMPLOYEE", role);
-        }
-        model.setViewName("home");
+        model.setViewName("/home");
+        List<Course> first_four_from_last = courseRepository.recently_added_first_four_course();
+        List<Course> second_4_from_last = courseRepository.recently_added_second_four_course();
+        model.addObject("recently_4", first_four_from_last);
+        model.addObject("second_4", second_4_from_last);
         return model;
     }
-
-
 
     @GetMapping("/user/signup")
     public ModelAndView signupPage(){
@@ -105,15 +93,15 @@ public class AuthController {
     @PostMapping("/user/signup")
     public ModelAndView signup(@Valid User user, BindingResult bindingResult){
         ModelAndView model = new ModelAndView();
-        if(user.getFirstname() == "") {
+        if(user.getFirstname().equals("")) {
             bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
-        } else if(user.getLastname() == "") {
+        } else if(user.getLastname().equals("")) {
             bindingResult.rejectValue("lastname", "error.user", "Last name must not empty!");
-        } else if(user.getUsername() == "") {
+        } else if(user.getUsername().equals("")) {
             bindingResult.rejectValue("username", "error.user", "Username must not empty!");
-        } else if(user.getEmail() == "") {
+        } else if(user.getEmail().equals("")) {
             bindingResult.rejectValue("email", "error.user", "Email must not empty!");
-        } else if(user.getPassword() == "") {
+        } else if(user.getPassword().equals("")) {
             bindingResult.rejectValue("password", "error.user", "Password must not empty!");
         } else {
             User userExist = userService.findUserByEmail(user.getEmail());
@@ -258,5 +246,4 @@ public class AuthController {
         }
         return "/user/reset";
     }
-
 }

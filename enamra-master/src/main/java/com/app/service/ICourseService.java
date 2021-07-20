@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ICourseService {
 
-    List<Course> findallCourse();
+    List<Course> findAllCourse();
 
     Course findCourseById(Long id);
 
@@ -15,7 +15,7 @@ public interface ICourseService {
 
     void deleteCourse(Long id);
 
-    List<Course> getLast_10_course();
+    List<Course> getLast10Course();
 
 
 

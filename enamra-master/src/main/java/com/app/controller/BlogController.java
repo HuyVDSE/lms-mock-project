@@ -39,29 +39,20 @@ public class BlogController {
     private TopicService topicService;
 
 
-
-
-
     //  /blog/post_list/__${course_full.course_id
     @GetMapping("/post_list/{course_id}")
-    public ModelAndView postList(@PathVariable("course_id") Long id){
+    public ModelAndView postList(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView();
 
         List<Blog> blogList = blogRepo.findPostByCourseId(id);
         model.addObject("postList", blogList);
         model.setViewName("page/post_list");
         return model;
-
-
     }
 
 
-
-
-    // /single_post/__${post.post_id
-
     @GetMapping("/single_post/{post_id}")
-    public ModelAndView singlePostPage(@PathVariable("post_id") Long id){
+    public ModelAndView singlePostPage(@PathVariable("post_id") Long id) {
         ModelAndView model = new ModelAndView();
         Blog blog = blogRepo.findById(id).get();
         model.addObject("post", blog);
@@ -69,35 +60,32 @@ public class BlogController {
         return model;
     }
 
-
-
-    ///postForm/__${course.course_id /blog/post/create
     @GetMapping("/postForm/{course_id}")
-    public ModelAndView blogForm(@PathVariable("course_id") Long id){
+    public ModelAndView blogForm(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView();
         Course findCourse = courseService.findCourseById(id);
         Blog blogPost = new Blog();
 
         blogPost.setCourse(findCourse);
-        model.addObject("blogPost",blogPost );
+        model.addObject("blogPost", blogPost);
         model.addObject("courseCC", findCourse);
         model.setViewName("page/blogForm");
         return model;
     }
 
     @PostMapping("/post/create")
-    public ModelAndView createPost(@Valid @ModelAttribute("blogPost") Blog blogPost, BindingResult bindingResult, Principal principal){
+    public ModelAndView createPost(@Valid @ModelAttribute("blogPost") Blog blogPost, BindingResult bindingResult, Principal principal) {
         ModelAndView model = new ModelAndView();
         Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
 
-        if (bindingResult.hasErrors()){
-            model.addObject("error","something Went Wrong.............");
+        if (bindingResult.hasErrors()) {
+            model.addObject("error", "something Went Wrong.............");
             model.setViewName("page/blogForm");
-        }else {
-           blogPost.setUser(optionalUser.get());
+        } else {
+            blogPost.setUser(optionalUser.get());
             blogRepo.save(blogPost);
-            model.addObject("msg","post created successfully......");
+            model.addObject("msg", "post created successfully......");
             model.setViewName("page/blogForm");
         }
         return model;
@@ -110,55 +98,29 @@ public class BlogController {
 // /blog/file_upload
 
     @GetMapping("/file_upload")
-    public ModelAndView fileUpload(){
-        ModelAndView model =new ModelAndView();
+    public ModelAndView fileUpload() {
+        ModelAndView model = new ModelAndView();
         model.addObject("user_file", new User_files());
         model.setViewName("page/file_upload");
         return model;
     }
 
 
-
     @PostMapping("/file_upload")
-    public ModelAndView uploadFile(@Valid @ModelAttribute User_files  user_file,  BindingResult bindingResult,
-                                   Principal principal,MultipartFile file){
+    public ModelAndView uploadFile(@Valid @ModelAttribute User_files user_file, BindingResult bindingResult,
+                                   Principal principal, MultipartFile file) {
         Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
-        ModelAndView model =new ModelAndView();
-        if (bindingResult.hasErrors()){
+        ModelAndView model = new ModelAndView();
+        if (bindingResult.hasErrors()) {
 
-        }else { user_file.setUser(optionalUser.get());
-            fileService.saveFile(user_file,file);
+        } else {
+            user_file.setUser(optionalUser.get());
+            fileService.saveFile(user_file, file);
         }
 
         model.setViewName("redirect:/profile");
         return model;
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

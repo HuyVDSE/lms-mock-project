@@ -3,7 +3,7 @@ package com.app.controller;
 
 import com.app.model.User;
 import com.app.model.User_files;
-import com.app.repository.User_File_Repo;
+import com.app.repository.UserFileRepository;
 import com.app.service.UserService;
 import com.app.service.User_File_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class User_FilesController {
     private User_File_Service fileService;
 
     @Autowired
-    private User_File_Repo user_file_repo;
+    private UserFileRepository user_file_repository;
 
     @Autowired
     private UserService userService;
@@ -42,7 +42,7 @@ public class User_FilesController {
         User user = userService.findUserById(optionalUser.get().getId());
 
         ModelAndView model = new ModelAndView("user/view_img");
-        List<User_files> file_img = user_file_repo.last60Records(user.getId());
+        List<User_files> file_img = user_file_repository.last60Records(user.getId());
         model.addObject("img_Lists", file_img);
         return model;
     }

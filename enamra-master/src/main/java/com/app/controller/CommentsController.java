@@ -34,7 +34,7 @@ public class CommentsController {
 
 
     @GetMapping("/{id}")
-    public ModelAndView commentPage(@PathVariable("id") Long id, Principal principal){
+    public ModelAndView commentPage(@PathVariable("id") Long id, Principal principal) {
         ModelAndView model = new ModelAndView("user/commentForm");
         Comments comments = new Comments();
         Topic findtopic = topicService.findTopicByID(id);
@@ -48,19 +48,19 @@ public class CommentsController {
 
 
     @PostMapping("/create")
-    public ModelAndView createComment(@Valid Comments comments, BindingResult bindingResult, Principal principal){
+    public ModelAndView createComment(@Valid Comments comments, BindingResult bindingResult, Principal principal) {
         ModelAndView model = new ModelAndView();
-       Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
 
-       if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.setViewName("user/commentForm");
-        }else {
-           comments.setUser(optionalUser.get());
-           comments.setTopic(comments.getTopic());
-          commentsService.saveComment(comments);
-               model.setViewName("redirect:/g/topic/single_topic/"+ comments.getTopic().getId());
-         //  model.setViewName("redirect:/");
+        } else {
+            comments.setUser(optionalUser.get());
+            comments.setTopic(comments.getTopic());
+            commentsService.saveComment(comments);
+            model.setViewName("redirect:/g/topic/single_topic/" + comments.getTopic().getId());
+            //  model.setViewName("redirect:/");
         }
 
 
@@ -68,7 +68,4 @@ public class CommentsController {
     }
 
 
-
-
-
- }
+}

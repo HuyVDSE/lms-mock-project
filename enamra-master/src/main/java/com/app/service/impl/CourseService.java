@@ -1,43 +1,47 @@
 package com.app.service.impl;
 
 import com.app.model.Course;
-import com.app.repository.CourseRepo;
+import com.app.repository.CourseRepository;
+import com.app.service.CourseImageService;
 import com.app.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
 public class CourseService implements ICourseService {
 
     @Autowired
-    private CourseRepo courseRepo;
+    private CourseRepository courseRepository;
 
+    @Autowired
+    private CourseImageService courseImageService;
 
     @Override
-    public List<Course> findallCourse() {
-        return courseRepo.findAll();
+    public List<Course> findAllCourse() {
+        return courseRepository.findAll();
     }
 
     @Override
     public Course findCourseById(Long id) {
-        return courseRepo.findById(id).get();
+        return courseRepository.findById(id).get();
     }
 
     @Override
     public void saveCourse(Course course) {
-        courseRepo.save(course);
+        course.setActive(true);
+        courseRepository.save(course);
     }
 
     @Override
-    public void deleteCourse(Long id) {
-        courseRepo.deleteById(id);
+    public void deleteCourse(Long courseId) {
+        courseRepository.deleteById(courseId);
     }
 
-
     @Override
-    public List<Course> getLast_10_course() {
-        return courseRepo.getLast_10_course();
+    public List<Course> getLast10Course() {
+        return courseRepository.getLast_10_course();
     }
 }

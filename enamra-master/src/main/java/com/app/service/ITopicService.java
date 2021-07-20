@@ -11,11 +11,8 @@ public interface ITopicService {
 
     Topic findTopicByID(Long id);
 
-    void saveTopic(Topic topic, MultipartFile file);
+    void saveTopic(Topic topic);
 
     void deleteTopicByID(Long id);
-
-
-
 
 }

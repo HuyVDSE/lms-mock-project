@@ -103,10 +103,6 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a th:href="@{/admin/home}"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a th:href="@{/admin/course}">Course</a></li>
-                    <li class="breadcrumb-item"><a href="#">Section</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item"><a href="#">Course</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Section</li>
                 </ol>
             </nav>
@@ -122,8 +118,9 @@
                 <li class="list-group-item">
                     <a class="nav-link" th:href="@{/admin/course/create}" th:target="_blank">Create Course</a>
                 </li>
-                <li class="list-group-item"> <a class="nav-link" th:href="@{/admin/course/last_10_course}"
-                                                th:target="_blank">See Latest 10 created Course without section</a>
+                <li class="list-group-item">
+                    <a class="nav-link" th:href="@{/admin/course/last_10_course}"
+                       th:target="_blank">Edit Course</a>
                 </li>
                 <li class="list-group-item">XXX</li>
                 <li class="list-group-item">XXX</li>
@@ -133,11 +130,12 @@
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a class="nav-link" th:href="@{/admin/course/course_with_section_last_10}" th:target="_blank"> 10 course with section</a>
+                    <a class="nav-link" th:href="@{/admin/course/course_with_section_last_10}"
+                       th:target="_blank">Course with section</a>
                 </li>
                 <li class="list-group-item">
-                    <a class="nav-link" th:href="@{/admin/course/last_10_final}" th:target="_blank">Last 10
-                    </a>
+                    <a class="nav-link" th:href="@{/admin/course/last_10_final}"
+                       th:target="_blank">View Course</a>
                 </li>
                 <li class="list-group-item">XXX</li>
                 <li class="list-group-item">XXX</li>
@@ -176,21 +174,24 @@
                 <th scope="row">#ID</th>
                 <th scope="row">Course Name</th>
                 <th scope="row"> Blog</th>
-                <th scope="row">Chapter</th>
+                <th scope="row">Add Section</th>
                 <th scope="row">Update Course</th>
                 <th scope="row">Delete Course</th>
                 </thead>
                 <tbody>
-                <tr th:each="list : ${courseLists}">
-                    <td th:text="${list.course_id}"></td>
-                    <td th:text="${list.course_name}"></td>
-                    <td><a th:href="@{/admin/course/blog/__${list.course_id}__}">blog</a> </td>
-                    <td><a th:href="@{/admin/sec/addSec_for_course}">Add Section</a> </td>
+                <tr th:each="course : ${courseLists}">
+                    <td th:text="${course.course_id}"></td>
+                    <td th:text="${course.course_name}"></td>
+                    <td><a th:href="@{/admin/course/blog/__${course.course_id}__}">blog</a></td>
+                    <td><a th:href="@{/admin/sec/addSec_for_course/__${course.course_id}__}">Add Section</a></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/admin/course/update_course/__${list.course_id}__}"  role="button" >Update</a>
+                        <a class="btn btn-primary" th:href="@{/admin/course/update_course/__${course.course_id}__}"
+                           role="button">Update</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/admin/course/delete_course/__${list.course_id}__}" role="button" >Delete</a>
+                        <a class="btn btn-primary" th:href="@{/admin/course/delete_course/__${course.course_id}__}"
+                           onclick="return confirm('Do you want to delete this Course?')"
+                           role="button">Delete</a>
                     </td>
                 </tr>
                 </tbody>
