@@ -5,6 +5,7 @@ import com.app.model.Answer;
 import com.app.model.Question;
 import com.app.model.Section;
 import com.app.model.User;
+import com.app.repository.QuestionRepo;
 import com.app.service.*;
 import com.app.service.impl.SectionService;
 import lombok.extern.slf4j.Slf4j;
@@ -90,6 +91,56 @@ public class AdminController {
     public ModelAndView test() {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
+        model.addObject("number", 4);
+        model.addObject("sections", sectionService.getAllSection());
+        return model;
+    }
+
+    @PostMapping("/create_new_question")
+    public ModelAndView createNewQuestion(HttpServletRequest request) {
+        int id = questionService.getLastID() + 1;
+        String question = request.getParameter("question");
+        String[] answer = request.getParameterValues("answer");
+        int correct = Integer.parseInt(request.getParameter("correctAns"));
+        Long section = Long.parseLong(request.getParameter("section"));
+        long millis = System.currentTimeMillis();
+
+        Question ques = new Question();
+        ques.setQuestionID(id);
+        ques.setQuestion(question);
+        ques.setCreateDate(new java.sql.Date(millis));
+        ques.setStatus("Active");
+        ques.setSection(sectionService.findSectionByID(section));
+        questionService.saveQuestion(ques);
+
+        for (int i = 0; i < answer.length; i++) {
+            Answer ans = new Answer();
+            ans.setAnswer(answer[i]);
+            if (i + 1 == correct) {
+                ans.setStatus(true);
+            } else {
+                ans.setStatus(false);
+            }
+            Question quess = questionService.findById(id);
+            ans.setQuestion(quess);
+            answerService.saveAnswer(ans);
+        }
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin/create_question");
+        model.addObject("msg", "Create question successfully!");
+        model.addObject("number", 4);
+        model.addObject("sections", sectionService.getAllSection());
+        return model;
+    }
+
+    @GetMapping("/change_number")
+    public ModelAndView changerNumber(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView();
+        int number = Integer.parseInt(request.getParameter("NumofQues"));
+        model.setViewName("admin/create_question");
+        model.addObject("number", number);
+        model.addObject("sections", sectionService.getAllSection());
         return model;
     }
 
@@ -173,19 +224,21 @@ public class AdminController {
         List<Question> listQuestions = readQuestionsFromExcelFile(path.toString());
         for (Question question : listQuestions) {
             boolean check = questionService.findByQuestion(question.getQuestion());
-            if(!check) {
+            if (!check) {
                 questionService.saveQuestion(question);
             }
         }
         List<Answer> listAnss = readAnswersFromExcelFile(path.toString());
-        for (Answer answer: listAnss) {
+        for (Answer answer : listAnss) {
             answerService.saveAnswer(answer);
         }
         try {
             Files.deleteIfExists(path);
-        } catch(FileSystemException ex) {
+        } catch (FileSystemException ex) {
         }
         model.addObject("msg", "Create question successfully!");
+        model.addObject("number", 4);
+        model.addObject("sections", sectionService.getAllSection());
         return model;
     }
 
@@ -199,7 +252,7 @@ public class AdminController {
 
         while (rows.hasNext()) {
             Row row = rows.next();
-            if (row.getRowNum()==0){
+            if (row.getRowNum() == 0) {
                 continue;
             }
             Iterator<Cell> cells = row.cellIterator();
@@ -210,7 +263,7 @@ public class AdminController {
 
                 switch (columnIndex) {
                     case 0:
-                        question.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
+                        question.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
                         break;
                     case 1:
                         question.setQuestion((String) getCellValue(cell));
@@ -224,7 +277,7 @@ public class AdminController {
                         break;
                 }
             }
-            long millis=System.currentTimeMillis();
+            long millis = System.currentTimeMillis();
             question.setCreateDate(new java.sql.Date(millis));
             listQuestions.add(question);
         }
@@ -245,18 +298,18 @@ public class AdminController {
 
         while (rows.hasNext()) {
             Row row = rows.next();
-            if (row.getRowNum()==0){
+            if (row.getRowNum() == 0) {
                 continue;
             }
             Iterator<Cell> cells = row.cellIterator();
             Answer answer = new Answer();
-            String listanswers[]=null;
+            String listanswers[] = null;
             while (cells.hasNext()) {
                 Cell cell = cells.next();
                 int columnIndex = cell.getColumnIndex();
                 switch (columnIndex) {
                     case 0:
-                        int questionId = Integer.parseInt((getCellValue(cell)+""));
+                        int questionId = Integer.parseInt((getCellValue(cell) + ""));
                         Question question = questionService.findById(questionId);
                         answer.setQuestion(question);
                         break;
@@ -265,11 +318,11 @@ public class AdminController {
                         listanswers = answers.split(",");
                         break;
                     case 5:
-                        answer.setStatus((boolean) getCellValue(cell) );
+                        answer.setStatus((boolean) getCellValue(cell));
                         break;
                 }
             }
-            for (String ans: listanswers) {
+            for (String ans : listanswers) {
                 Answer x = new Answer();
                 x.setQuestion(answer.getQuestion());
                 x.setAnswer(ans);
@@ -329,4 +382,12 @@ public class AdminController {
                 .contentLength(file.length()) //
                 .body(resource);
     }
+
+//    @RequestMapping("/change_number")
+//    public ModelAndView changeNumber(HttpServletRequest request) throws IOException {
+//        ModelAndView model = new ModelAndView("admin/create_question");
+//        int number = Integer.parseInt(request.getParameter("NumofQues"));
+//        System.out.println(number);
+//        return model;
+//    }
 }
