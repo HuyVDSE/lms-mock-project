@@ -6,6 +6,8 @@ import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
@@ -27,5 +29,14 @@ public class QuestionServiceImpl implements QuestionService {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public Question findById(Integer questionId) {
+        Optional<Question> optional = questionRepo.findById(questionId);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
     }
 }

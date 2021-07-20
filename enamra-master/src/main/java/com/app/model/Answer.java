@@ -17,7 +17,10 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answerID;
-    private int questionID;
     private String answer;
     private boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
 }

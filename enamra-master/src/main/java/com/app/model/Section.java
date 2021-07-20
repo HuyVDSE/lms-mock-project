@@ -30,6 +30,8 @@ public class Section {
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     private List<Topic> topicList= new ArrayList<>();
 
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    private List<Question> questionList;
     @Override
     public String toString() {
         return "Section{" +

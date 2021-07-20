@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -20,5 +21,11 @@ public class Question {
     private String question;
     private Date createDate;
     private String status;
-    private String subjectID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id")
+    private Section section;
+
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answerList;
 }

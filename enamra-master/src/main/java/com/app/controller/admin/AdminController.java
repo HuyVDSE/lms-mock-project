@@ -1,10 +1,12 @@
-package com.app.controller;
+package com.app.controller.admin;
 
 
 import com.app.model.Answer;
 import com.app.model.Question;
+import com.app.model.Section;
 import com.app.model.User;
 import com.app.service.*;
+import com.app.service.impl.SectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -65,6 +67,9 @@ public class AdminController {
 
     @Autowired
     private ServletContext servletContext;
+
+    @Autowired
+    private SectionService sectionService;
 
     @GetMapping("/home")
     public String homeAdmin() {
@@ -165,14 +170,14 @@ public class AdminController {
         } catch (FileSystemException ex) {
             model.addObject("msg", "Can not load file!");
         }
-        List<Question> listQuestions = readQuizsFromExcelFile(path.toString());
+        List<Question> listQuestions = readQuestionsFromExcelFile(path.toString());
         for (Question question : listQuestions) {
             boolean check = questionService.findByQuestion(question.getQuestion());
             if(!check) {
                 questionService.saveQuestion(question);
             }
         }
-        List<Answer> listAnss = readAnsersFromExcelFile(path.toString());
+        List<Answer> listAnss = readAnswersFromExcelFile(path.toString());
         for (Answer answer: listAnss) {
             answerService.saveAnswer(answer);
         }
@@ -184,7 +189,7 @@ public class AdminController {
         return model;
     }
 
-    public List<Question> readQuizsFromExcelFile(String excelFilePath) throws IOException {
+    public List<Question> readQuestionsFromExcelFile(String excelFilePath) throws IOException {
         List<Question> listQuestions = new ArrayList<Question>();
         FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
 
@@ -214,7 +219,8 @@ public class AdminController {
                         question.setStatus((String) getCellValue(cell));
                         break;
                     case 3:
-                        question.setSubjectID((String) getCellValue(cell));
+                        Section section = sectionService.findSectionByID(Long.parseLong(getCellValue(cell) + ""));
+                        question.setSection(section);
                         break;
                 }
             }
@@ -229,8 +235,8 @@ public class AdminController {
         return listQuestions;
     }
 
-    public List<Answer> readAnsersFromExcelFile(String excelFilePath) throws IOException {
-        List<Answer> listAnss = new ArrayList<Answer>();
+    public List<Answer> readAnswersFromExcelFile(String excelFilePath) throws IOException {
+        List<Answer> listAnswers = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
 
         Workbook workBook = getWorkbook(inputStream, excelFilePath);
@@ -250,7 +256,9 @@ public class AdminController {
                 int columnIndex = cell.getColumnIndex();
                 switch (columnIndex) {
                     case 0:
-                        answer.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
+                        int questionId = Integer.parseInt((getCellValue(cell)+""));
+                        Question question = questionService.findById(questionId);
+                        answer.setQuestion(question);
                         break;
                     case 4:
                         String answers = (String) getCellValue(cell);
@@ -263,15 +271,15 @@ public class AdminController {
             }
             for (String ans: listanswers) {
                 Answer x = new Answer();
-                x.setQuestionID(answer.getQuestionID());
+                x.setQuestion(answer.getQuestion());
                 x.setAnswer(ans);
                 x.setStatus(answer.isStatus());
-                listAnss.add(x);
+                listAnswers.add(x);
             }
         }
         workBook.close();
         inputStream.close();
-        return listAnss;
+        return listAnswers;
     }
 
     private Workbook getWorkbook(FileInputStream inputStream, String excelFilePath) throws IOException {
