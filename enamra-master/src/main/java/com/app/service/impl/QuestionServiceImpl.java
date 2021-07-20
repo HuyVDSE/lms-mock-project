@@ -6,6 +6,7 @@ import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public int getLastID() {
         return questionRepo.getLastID();
+    }
+
+    @Override
+    public List<Question> getQuestionsBySectionId(Long sectionId) {
+        return questionRepo.findBySectionId(sectionId);
     }
 }

@@ -60,6 +60,8 @@ public class QuestionManagerController {
     public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
+        List<Question> questionList = questionService.getQuestionsBySectionId(sectionId);
+        model.addObject("questionList", questionList);
         model.addObject("sectionId", sectionId);
         model.addObject("number", 4);
         return model;
@@ -109,6 +111,7 @@ public class QuestionManagerController {
         model.addObject("msg", "Create question successfully!");
         model.addObject("number", 4);
         model.addObject("sectionId", request.getParameter("sectionId"));
+        model.addObject("questionList", questionService.getQuestionsBySectionId(section));
         return model;
     }
 

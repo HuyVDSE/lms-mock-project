@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- add download template">
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +35,27 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Inspector" value="true" />
+        <entry key="JPA Palette" value="true" />
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
     <option name="myId2Visible">
       <map>
-        <entry key="JPA Structure" value="false" />
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
+        <entry key="JPA Structure" value="true" />
       </map>
     </option>
   </component>
@@ -46,6 +76,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/upload_files" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -135,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626754467790</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="- fix conflict">
+      <created>1626793573348</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1626793573348</updated>
+    </task>
+    <task id="LOCAL-00009" summary="- fix conflict">
+      <created>1626793597929</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1626793597929</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +208,7 @@
     <MESSAGE value="- delete file excel when create question success" />
     <MESSAGE value="- update Class name" />
     <MESSAGE value="- add download template" />
-    <option name="LAST_COMMIT_MESSAGE" value="- add download template" />
+    <MESSAGE value="- fix conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix conflict" />
   </component>
 </project>
