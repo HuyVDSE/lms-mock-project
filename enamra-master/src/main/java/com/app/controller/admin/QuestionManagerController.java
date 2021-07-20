@@ -76,7 +76,12 @@ public class QuestionManagerController {
 
     @PostMapping("/create_new_question")
     public ModelAndView createNewQuestion(HttpServletRequest request) {
-        int id = questionService.getLastID() + 1;
+        int id = 0;
+        if(questionService.getLastID() < 0) {
+            id += 1;
+        } else {
+            id = questionService.getLastID() + 1;
+        }
         String question = request.getParameter("question");
         String[] answer = request.getParameterValues("answer");
         int correct = Integer.parseInt(request.getParameter("correctAns"));
