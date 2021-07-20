@@ -39,4 +39,9 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return null;
     }
+
+    @Override
+    public int getLastID() {
+        return questionRepo.getLastID();
+    }
 }

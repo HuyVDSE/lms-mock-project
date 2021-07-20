@@ -37,53 +37,52 @@
 
         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
             <!-- Default form register -->
-            <form class="text-center border border-light p-5" method="POST" th:action="@{/admin/create_new_question}">
-                <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-                <div th:if="${msg}" class="alert alert-info"><a th:href="@{/}">Go to Home page</a></div>
-                <p class="h4 mb-4">Create new question</p>
+            <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
+            <div th:if="${msg}" class="alert alert-info"><a th:href="@{/}">Go to Home page</a></div>
+            <form th:action="@{/admin/change_number}">
+                <p style="text-align: center; padding: 3rem" class="h4 mb-4">Create new question</p>
                 <div class="form-row mb-4">
                     <label>Number of Question:</label>
                     <!-- Number of Question -->
-                    <select name="NumofQues" class="form-control"></select>
-                    <button class="myButton" type="button">Change</button>
+                    <select name="NumofQues" class="form-control">
+                        <option th:if="${number != null}"><p th:text="${number}"></p></option>
+                        <option th:each="i : ${#numbers.sequence( 2, 5)}" th:if="${number != null && i != number}">
+                            <p th:text="${i}"></p>
+                        </option>
+                    </select>
+                    <button class="myButton" type="submit">Change</button>
                 </div>
+            </form>
+            <form method="POST" th:action="@{/admin/create_new_question}">
                 <!--Question Create-->
-                <input type="text" class="form-control mb-4" placeholder="Question">
+                <input name="question" type="text" class="form-control mb-4" placeholder="Question" required>
 
-                <!--Answer 1 -->
-                <input type="text" class="form-control mb-4" placeholder="Question 1">
-                <small>
-                    <span>Errors!!!</span>
-                </small>
-                <!--Question 2-->
-                <input type="text" class="form-control mb-4" placeholder="Question 2">
-                <small class="form-text text-muted mb-4">
-                    <span>Errors!!!</span>
-                </small>
-                <!--Question 3-->
-                <input type="text" class="form-control mb-4" placeholder="Question 3">
-                <small class="form-text text-muted mb-4">
-                    <span>Errors!!!</span>
-                </small>
-                <!--Question 4-->
-                <input type="text" class="form-control mb-4" placeholder="Question 4">
-                <small class="form-text text-muted mb-4">
-                    <span>Errors!!!</span>
-                </small>
+                <div th:each="i : ${#numbers.sequence( 1, number)}">
+                    <input name="answer" type="text" class="form-control mb-4" th:placeholder="Answer" required>
+                    <small>
+                        <span>Errors!!!</span>
+                    </small>
+                </div>
                 <!--Correct Answer-->
                 <label>Correct Answer:</label>
-                <select name="correctAns" class="form-control mb-4"></select>
-
+                <select name="correctAns" class="form-control mb-4">
+                    <option th:each="i : ${#numbers.sequence( 1, number)}">
+                        <p th:text="${i}"></p>
+                    </option>
+                </select>
 
                 <!--Category Create-->
-                <label>Category:</label>
-                <select name="categoryCreate" class="form-control mb-4"></select>
-
+                <label>Section:</label>
+                <select name="section" class="form-control mb-4">
+                    <option th:each="section : ${sections}" th:value="${section.getSection_id()}">
+                        <p th:text="${section.getName()}"></p>
+                    </option>
+                </select>
 
                 <!-- Create Question button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Question</button>
             </form>
-            <form class="text-center border border-light p-5" method="POST" action="create_by_file"
+            <form method="POST" action="create_by_file"
                   enctype="multipart/form-data">
                 <!-- Attach File Button -->
                 <input id="file" name="file" type="file" class="form-control mb-4" accept=".xls,.xlsx"/>
