@@ -81,7 +81,7 @@ public class QuestionManagerController {
         String question = request.getParameter("question");
         String[] answer = request.getParameterValues("answer");
         int correct = Integer.parseInt(request.getParameter("correctAns"));
-        Long section = Long.parseLong(request.getParameter("section"));
+        Long section = Long.parseLong(request.getParameter("sectionId"));
         long millis = System.currentTimeMillis();
 
         Question ques = new Question();
