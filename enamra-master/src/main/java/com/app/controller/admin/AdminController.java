@@ -1,4 +1,4 @@
-package com.app.controller;
+package com.app.controller.admin;
 
 
 import com.app.model.Answer;
@@ -11,6 +11,7 @@ import com.app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -21,13 +22,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.apache.poi.ss.usermodel.Row;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,9 +71,8 @@ public class AdminController {
         return "admin/home";
     }
 
-
     @GetMapping("/signup")
-    public ModelAndView createadminPage() {
+    public ModelAndView createAdminPage() {
         ModelAndView model = new ModelAndView();
         model.addObject("user", new User());
         model.setViewName("admin/signup");
@@ -100,7 +105,6 @@ public class AdminController {
         return model;
 
     }
-
 
     @GetMapping("/list")
     public ModelAndView adminList() {
@@ -160,19 +164,19 @@ public class AdminController {
             model.addObject("msg", "Can not load file!");
         }
         List<Quiz> listQuizs = readQuizsFromExcelFile(path.toString());
-        for (Quiz quiz: listQuizs) {
+        for (Quiz quiz : listQuizs) {
             boolean check = quizService.findByQuestion(quiz.getQuestion());
-            if(!check) {
+            if (!check) {
                 quizService.saveQuiz(quiz);
             }
         }
-        List<Answer> listAnss = readAnsersFromExcelFile(path.toString());
-        for (Answer answer: listAnss) {
+        List<Answer> listAnss = readAnswersFromExcelFile(path.toString());
+        for (Answer answer : listAnss) {
             answerService.saveAnswer(answer);
         }
         try {
             Files.deleteIfExists(path);
-        } catch(FileSystemException ex) {
+        } catch (FileSystemException ex) {
         }
         model.addObject("msg", "Create question successfully!");
         return model;
@@ -196,7 +200,7 @@ public class AdminController {
 
                 switch (columnIndex) {
                     case 0:
-                        quiz.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
+                        quiz.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
                         break;
                     case 1:
                         quiz.setQuestion((String) getCellValue(cell));
@@ -209,7 +213,7 @@ public class AdminController {
                         break;
                 }
             }
-            long millis=System.currentTimeMillis();
+            long millis = System.currentTimeMillis();
             quiz.setCreateDate(new java.sql.Date(millis));
             listQuizs.add(quiz);
         }
@@ -220,7 +224,7 @@ public class AdminController {
         return listQuizs;
     }
 
-    public List<Answer> readAnsersFromExcelFile(String excelFilePath) throws IOException {
+    public List<Answer> readAnswersFromExcelFile(String excelFilePath) throws IOException {
         List<Answer> listAnss = new ArrayList<Answer>();
         FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
 
@@ -232,24 +236,24 @@ public class AdminController {
             Row row = rows.next();
             Iterator<Cell> cells = row.cellIterator();
             Answer answer = new Answer();
-            String listanswers[]=null;
+            String listanswers[] = null;
             while (cells.hasNext()) {
                 Cell cell = cells.next();
                 int columnIndex = cell.getColumnIndex();
                 switch (columnIndex) {
                     case 0:
-                        answer.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
+                        answer.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
                         break;
                     case 4:
                         String answers = (String) getCellValue(cell);
                         listanswers = answers.split(",");
                         break;
                     case 5:
-                        answer.setStatus((boolean) getCellValue(cell) );
+                        answer.setStatus((boolean) getCellValue(cell));
                         break;
                 }
             }
-            for (String ans: listanswers) {
+            for (String ans : listanswers) {
                 Answer x = new Answer();
                 x.setQuestionID(answer.getQuestionID());
                 x.setAnswer(ans);

@@ -93,15 +93,15 @@ public class AuthController {
     @PostMapping("/user/signup")
     public ModelAndView signup(@Valid User user, BindingResult bindingResult){
         ModelAndView model = new ModelAndView();
-        if(user.getFirstname() == "") {
+        if(user.getFirstname().equals("")) {
             bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
-        } else if(user.getLastname() == "") {
+        } else if(user.getLastname().equals("")) {
             bindingResult.rejectValue("lastname", "error.user", "Last name must not empty!");
-        } else if(user.getUsername() == "") {
+        } else if(user.getUsername().equals("")) {
             bindingResult.rejectValue("username", "error.user", "Username must not empty!");
-        } else if(user.getEmail() == "") {
+        } else if(user.getEmail().equals("")) {
             bindingResult.rejectValue("email", "error.user", "Email must not empty!");
-        } else if(user.getPassword() == "") {
+        } else if(user.getPassword().equals("")) {
             bindingResult.rejectValue("password", "error.user", "Password must not empty!");
         } else {
             User userExist = userService.findUserByEmail(user.getEmail());

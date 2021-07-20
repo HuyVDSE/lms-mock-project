@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- update create question by excel">
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuizServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CourseController_For_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/CourseController_For_ADMIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/SectionController_FOR_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/SectionController_FOR_ADMIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/TopicController_For_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/TopicController_For_ADMIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/UserDetailsImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/impl/UserDetailsImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +55,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -96,9 +103,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626700448986</updated>
-      <workItem from="1626700463295" duration="287000" />
+      <workItem from="1626700463295" duration="927000" />
+      <workItem from="1626743251689" duration="2193000" />
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- update UserDetails class and remove some code in User class">
+      <created>1626701077629</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626701077629</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +135,7 @@
     <MESSAGE value="- upload frontend" />
     <MESSAGE value="- create question by excel" />
     <MESSAGE value="- update create question by excel" />
-    <option name="LAST_COMMIT_MESSAGE" value="- update create question by excel" />
+    <MESSAGE value="- update UserDetails class and remove some code in User class" />
+    <option name="LAST_COMMIT_MESSAGE" value="- update UserDetails class and remove some code in User class" />
   </component>
 </project>

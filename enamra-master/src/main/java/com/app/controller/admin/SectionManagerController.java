@@ -1,4 +1,4 @@
-package com.app.controller;
+package com.app.controller.admin;
 
 
 import com.app.model.Course;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin/sec")
-public class SectionController_FOR_ADMIN {
+public class SectionManagerController {
 
     @Autowired
     private SectionService sectionService;

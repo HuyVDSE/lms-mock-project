@@ -1,4 +1,4 @@
-package com.app.controller;
+package com.app.controller.admin;
 
 
 import com.app.model.Course;
@@ -21,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/course")
-public class CourseController_For_ADMIN {
+public class CourseManagerController {
 
     @Autowired
     private CourseService courseService;

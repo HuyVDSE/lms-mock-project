@@ -25,44 +25,42 @@ public class Auth_Controller {
     private UserService userService;
 
 
-
     @GetMapping("/create/admin")
-    public ModelAndView createAdmin(){
+    public ModelAndView createAdmin() {
         ModelAndView model = new ModelAndView("admin_cc/signup");
         model.addObject("user", new User());
         return model;
     }
 
 
- @PostMapping("/create/admin")
-    public ModelAndView CreateAdmin(@Valid User user, BindingResult bindingResult){
+    @PostMapping("/create/admin")
+    public ModelAndView CreateAdmin(@Valid User user, BindingResult bindingResult) {
 
-     ModelAndView model = new ModelAndView();
+        ModelAndView model = new ModelAndView();
 
-     User userExist = userService.findUserByEmail(user.getEmail());
-     if (userExist != null){
-         bindingResult.rejectValue("email", "error.user", "This email already exists!");
-     }
-     if (!user.getPassword().equals(user.getConfirmPassword())){
-         bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
-     }
+        User userExist = userService.findUserByEmail(user.getEmail());
+        if (userExist != null) {
+            bindingResult.rejectValue("email", "error.user", "This email already exists!");
+        }
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
+        }
 
-     if (bindingResult.hasErrors()) {
-         model.setViewName("admin_cc/signup");
-     } else {
-         adminService.saveAdmin(user);
-         model.addObject("msg", "User has been registered successfully!");
-         model.addObject("user", new User());
-         model.setViewName("admin_cc/signup");
-     }
-     return model;
+        if (bindingResult.hasErrors()) {
+            model.setViewName("admin_cc/signup");
+        } else {
+            adminService.saveAdmin(user);
+            model.addObject("msg", "User has been registered successfully!");
+            model.addObject("user", new User());
+            model.setViewName("admin_cc/signup");
+        }
+        return model;
 
     }
 
 
-
     @GetMapping("/create/hr")
-    public ModelAndView createHR(){
+    public ModelAndView createHR() {
         ModelAndView model = new ModelAndView("admin_cc/hr_signup");
         model.addObject("user", new User());
         return model;
@@ -70,14 +68,14 @@ public class Auth_Controller {
 
 
     @PostMapping("/create/hr")
-    public ModelAndView CreateHR(@Valid User user, BindingResult bindingResult){
+    public ModelAndView CreateHR(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
 
         User userExist = userService.findUserByEmail(user.getEmail());
-        if (userExist != null){
+        if (userExist != null) {
             bindingResult.rejectValue("email", "error.user", "This email already exists!");
         }
-        if (!user.getPassword().equals(user.getConfirmPassword())){
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
             bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
         }
 
@@ -93,23 +91,24 @@ public class Auth_Controller {
     }
 
 
-
-
     @GetMapping("/create/manager")
-    public ModelAndView createMANAGER(){
+    public ModelAndView createMANAGER() {
         ModelAndView model = new ModelAndView("admin_cc/manager_signup");
         model.addObject("user", new User());
         return model;
     }
 
     @PostMapping("/create/manager")
-    public ModelAndView CreateMANAGER(@Valid User user, BindingResult bindingResult){
+    public ModelAndView CreateMANAGER(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
 
         User userExist = userService.findUserByEmail(user.getEmail());
-        if (userExist != null){ bindingResult.rejectValue("email", "error.user", "This email already exists!"); }
-        if (!user.getPassword().equals(user.getConfirmPassword())){
-            bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!"); }
+        if (userExist != null) {
+            bindingResult.rejectValue("email", "error.user", "This email already exists!");
+        }
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            bindingResult.rejectValue("password", "error.user", "Password didnt match!!!!");
+        }
 
         if (bindingResult.hasErrors()) {
             model.setViewName("admin_cc/manager_signup");
@@ -124,24 +123,22 @@ public class Auth_Controller {
 
 
     @GetMapping("/del/admin/{id}")
-    public ModelAndView deleteAdmin(@PathVariable("id")Long id){
+    public ModelAndView deleteAdmin(@PathVariable("id") Long id) {
         adminService.deleteAdminByID(id);
         return new ModelAndView("redirect:/admin_Dashboard");
     }
 
     @GetMapping("/del/hr/{id}")
-    public ModelAndView deleteHR(@PathVariable("id") Long id){
+    public ModelAndView deleteHR(@PathVariable("id") Long id) {
         adminService.deleteHR_ByID(id);
         return new ModelAndView("redirect:/admin_Dashboard");
     }
 
     @GetMapping("/del/manager/{id}")
-    public ModelAndView deleteManger(@PathVariable("id") Long id){
+    public ModelAndView deleteManger(@PathVariable("id") Long id) {
         adminService.deleteManagerByID(id);
         return new ModelAndView("redirect:/admin_Dashboard");
     }
-
-
 
 
 }
