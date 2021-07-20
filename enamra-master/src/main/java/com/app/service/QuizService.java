@@ -1,9 +1,8 @@
 package com.app.service;
 
-import com.app.model.Quiz;
-import com.app.model.User;
+import com.app.model.Question;
 
 public interface QuizService {
-    void saveQuiz(Quiz quiz);
+    void saveQuiz(Question question);
     boolean findByQuestion(String question);
 }

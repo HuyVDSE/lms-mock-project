@@ -1,7 +1,7 @@
 package com.app.service.impl;
 
-import com.app.model.Quiz;
-import com.app.repository.QuizRepo;
+import com.app.model.Question;
+import com.app.repository.QuestionRepo;
 import com.app.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuizServiceImpl implements QuizService {
     @Autowired
-    private QuizRepo quizRepo;
+    private QuestionRepo questionRepo;
 
     @Override
-    public void saveQuiz(Quiz quiz) {
-        quizRepo.save(quiz);
+    public void saveQuiz(Question question) {
+        questionRepo.save(question);
     }
 
     @Override
     public boolean findByQuestion(String question) {
-        Quiz quiz = quizRepo.findByQuestion(question);
+        Question quiz = questionRepo.findByQuestion(question);
         try{
             if(quiz.getQuestion() != null) {
                 return true;

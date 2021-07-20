@@ -13,10 +13,9 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "Quiz")
-public class Quiz {
+@Table(name = "Question")
+public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int questionID;
     private String question;
     private Date createDate;

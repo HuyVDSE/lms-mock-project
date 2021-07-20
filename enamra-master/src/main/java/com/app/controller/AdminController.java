@@ -2,7 +2,7 @@ package com.app.controller;
 
 
 import com.app.model.Answer;
-import com.app.model.Quiz;
+import com.app.model.Question;
 import com.app.model.User;
 import com.app.service.AdminService;
 import com.app.service.AnswerService;
@@ -159,11 +159,11 @@ public class AdminController {
         } catch (FileSystemException ex) {
             model.addObject("msg", "Can not load file!");
         }
-        List<Quiz> listQuizs = readQuizsFromExcelFile(path.toString());
-        for (Quiz quiz: listQuizs) {
-            boolean check = quizService.findByQuestion(quiz.getQuestion());
+        List<Question> listQuestions = readQuizsFromExcelFile(path.toString());
+        for (Question question : listQuestions) {
+            boolean check = quizService.findByQuestion(question.getQuestion());
             if(!check) {
-                quizService.saveQuiz(quiz);
+                quizService.saveQuiz(question);
             }
         }
         List<Answer> listAnss = readAnsersFromExcelFile(path.toString());
@@ -178,8 +178,8 @@ public class AdminController {
         return model;
     }
 
-    public List<Quiz> readQuizsFromExcelFile(String excelFilePath) throws IOException {
-        List<Quiz> listQuizs = new ArrayList<Quiz>();
+    public List<Question> readQuizsFromExcelFile(String excelFilePath) throws IOException {
+        List<Question> listQuestions = new ArrayList<Question>();
         FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
 
         Workbook workBook = getWorkbook(inputStream, excelFilePath);
@@ -188,36 +188,39 @@ public class AdminController {
 
         while (rows.hasNext()) {
             Row row = rows.next();
+            if (row.getRowNum()==0){
+                continue;
+            }
             Iterator<Cell> cells = row.cellIterator();
-            Quiz quiz = new Quiz();
+            Question question = new Question();
             while (cells.hasNext()) {
                 Cell cell = cells.next();
                 int columnIndex = cell.getColumnIndex();
 
                 switch (columnIndex) {
                     case 0:
-                        quiz.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
+                        question.setQuestionID(Integer.parseInt((getCellValue(cell)+"")));
                         break;
                     case 1:
-                        quiz.setQuestion((String) getCellValue(cell));
+                        question.setQuestion((String) getCellValue(cell));
                         break;
                     case 2:
-                        quiz.setStatus((String) getCellValue(cell));
+                        question.setStatus((String) getCellValue(cell));
                         break;
                     case 3:
-                        quiz.setSubjectID((String) getCellValue(cell));
+                        question.setSubjectID((String) getCellValue(cell));
                         break;
                 }
             }
             long millis=System.currentTimeMillis();
-            quiz.setCreateDate(new java.sql.Date(millis));
-            listQuizs.add(quiz);
+            question.setCreateDate(new java.sql.Date(millis));
+            listQuestions.add(question);
         }
 
         workBook.close();
         inputStream.close();
 
-        return listQuizs;
+        return listQuestions;
     }
 
     public List<Answer> readAnsersFromExcelFile(String excelFilePath) throws IOException {
@@ -230,6 +233,9 @@ public class AdminController {
 
         while (rows.hasNext()) {
             Row row = rows.next();
+            if (row.getRowNum()==0){
+                continue;
+            }
             Iterator<Cell> cells = row.cellIterator();
             Answer answer = new Answer();
             String listanswers[]=null;
