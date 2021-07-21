@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface AnswerService {
     void saveAnswer(Answer answer);
-
     List<Answer> getAnswersByQuestionId(int questionId);
 }

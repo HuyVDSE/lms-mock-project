@@ -19,6 +19,4 @@ public interface QuestionRepo extends JpaRepository<Question,Integer> {
 
     @Query(value = "SELECT q FROM Question q WHERE q.section.section_id = ?1")
     List<Question> findBySectionId(Long sectionId);
-
-
 }

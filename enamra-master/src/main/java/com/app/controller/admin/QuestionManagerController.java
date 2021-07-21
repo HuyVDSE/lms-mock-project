@@ -3,7 +3,6 @@ package com.app.controller.admin;
 import com.app.model.Answer;
 import com.app.model.Question;
 import com.app.model.Section;
-import com.app.repository.QuestionRepo;
 import com.app.service.AnswerService;
 import com.app.service.MediaTypeService;
 import com.app.service.QuestionService;
@@ -51,7 +50,6 @@ public class QuestionManagerController {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final ServletContext servletContext;
-    private final QuestionRepo questionRepo;
 
     @GetMapping("/create/{sectionId}")
     public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
@@ -74,7 +72,7 @@ public class QuestionManagerController {
     }
 
     @PostMapping("/create_new_question")
-    public ModelAndView createNewQuestion(HttpServletRequest request) {
+    public String createNewQuestion(HttpServletRequest request, Model model) {
         int id = 0;
         if (questionService.getLastID() < 0) {
             id += 1;
@@ -93,7 +91,6 @@ public class QuestionManagerController {
         ques.setCreateDate(new java.sql.Date(millis));
         ques.setStatus("Active");
         ques.setSection(sectionService.findSectionByID(section));
-        questionService.saveQuestion(ques);
 
         for (int i = 0; i < answer.length; i++) {
             Answer ans = new Answer();
@@ -103,18 +100,15 @@ public class QuestionManagerController {
             } else {
                 ans.setStatus(false);
             }
-            Question quess = questionService.findById(id);
-            ans.setQuestion(quess);
-            answerService.saveAnswer(ans);
+            ques.addAnswer(ans);
         }
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("admin/create_question");
-        model.addObject("msg", "Create question successfully!");
-        model.addObject("number", 4);
-        model.addObject("sectionId", request.getParameter("sectionId"));
-        model.addObject("questionList", questionService.getQuestionsBySectionId(section));
-        return model;
+        questionService.saveQuestion(ques);
+
+        model.addAttribute("msg", "Create question successfully!");
+        model.addAttribute("number", 4);
+        model.addAttribute("questionList", questionService.getQuestionsBySectionId(section));
+        return "admin/create_question";
     }
 
     @PostMapping("/update")
@@ -141,7 +135,6 @@ public class QuestionManagerController {
             } else ans.setStatus(false);
             answerService.saveAnswer(ans);
         }
-
 
         return "redirect:/admin/question/create/" + sectionId;
     }

@@ -27,7 +27,7 @@ public class Question {
     @JoinColumn(name = "section_id")
     private Section section;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answerList;
 
     public void addAnswer(Answer answer) {
@@ -35,5 +35,6 @@ public class Question {
             answerList = new ArrayList<>();
         }
         answerList.add(answer);
+        answer.setQuestion(this);
     }
 }

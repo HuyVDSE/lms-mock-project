@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EnamraApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(EnamraApplication.class, args);
     }
 
