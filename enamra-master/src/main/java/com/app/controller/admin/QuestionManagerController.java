@@ -258,7 +258,8 @@ public class QuestionManagerController {
                 }
                 Iterator<Cell> cells = row.cellIterator();
                 Answer answer = new Answer();
-                String listanswers[] = null;
+                //String listanswers[] = null;
+                boolean flag=true;
                 while (cells.hasNext()) {
                     Cell cell = cells.next();
                     int columnIndex = cell.getColumnIndex();
@@ -268,22 +269,31 @@ public class QuestionManagerController {
                             Question question = questionService.findById(questionId);
                             answer.setQuestion(question);
                             break;
+                        case 1:
+                            String questCon = (String) getCellValue(cell);
+
+                            if (questCon.equals("")||questCon==null){
+                                flag = false;
+                            }
+                            break;
+
                         case 3:
-                            String answers = (String) getCellValue(cell);
-                            listanswers = answers.split(",");
+//                            String answers = (String) getCellValue(cell);
+//                            listanswers = answers.split(",");
+                            answer.setAnswer((String) getCellValue(cell));
                             break;
                         case 4:
                             answer.setStatus((boolean) getCellValue(cell));
                             break;
                     }
                 }
-                for (String ans : listanswers) {
-                    Answer x = new Answer();
-                    x.setQuestion(answer.getQuestion());
-                    x.setAnswer(ans);
-                    x.setStatus(answer.isStatus());
-                    listAnswers.add(x);
-                }
+//                for (String ans : listanswers) {
+//                    Answer x = new Answer();
+//                    x.setQuestion(answer.getQuestion());
+//                    x.setAnswer(ans);
+//                    x.setStatus(answer.isStatus());
+//                }
+                if (flag) listAnswers.add(answer);
             } catch (Exception e) {
                 continue;
             }
