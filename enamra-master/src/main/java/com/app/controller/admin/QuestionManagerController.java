@@ -7,18 +7,19 @@ import com.app.service.AnswerService;
 import com.app.service.MediaTypeService;
 import com.app.service.QuestionService;
 import com.app.service.impl.SectionService;
+import lombok.AllArgsConstructor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,19 +43,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/question")
+@AllArgsConstructor
 public class QuestionManagerController {
 
-    @Autowired
-    private SectionService sectionService;
-
-    @Autowired
-    private QuestionService questionService;
-
-    @Autowired
-    private AnswerService answerService;
-
-    @Autowired
-    private ServletContext servletContext;
+    private final SectionService sectionService;
+    private final QuestionService questionService;
+    private final AnswerService answerService;
+    private final ServletContext servletContext;
 
     @GetMapping("/create/{sectionId}")
     public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
@@ -121,6 +116,7 @@ public class QuestionManagerController {
     }
 
     @PostMapping("/update")
+    @Transactional
     public String updateQuestion(HttpServletRequest request) {
         Long sectionId = Long.parseLong(request.getParameter("sectionId"));
         int questionId = Integer.parseInt(request.getParameter("questionId"));
@@ -132,14 +128,16 @@ public class QuestionManagerController {
         Question ques = questionService.findById(questionId);
         ques.setQuestion(questionContent);
         ques.setStatus(questionStatus);
+        questionService.saveQuestion(ques);
 
-        for (int i = 0; i < answerArr.length; i++) {
-            Answer ans = new Answer();
+        List<Answer> answerList = answerService.getAnswersByQuestionId(questionId);
+        for (int i = 0; i < answerList.size(); i++) {
+            Answer ans = answerList.get(i);
             ans.setAnswer(answerArr[i]);
-            if (++i == correctAnswer) {
+            if (i + 1 == correctAnswer) {
                 ans.setStatus(true);
             } else ans.setStatus(false);
-            ques.addAnswer(ans);
+            answerService.saveAnswer(ans);
         }
 
 
