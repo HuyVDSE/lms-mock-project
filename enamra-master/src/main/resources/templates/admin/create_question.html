@@ -42,11 +42,11 @@
             <p style="text-align: center; padding: 3rem" class="h4 mb-4">Question management</p>
 
             <button style="margin-bottom: 5%;" class="myButton" onclick="myFunction()">Create new question</button>
+            <button style="margin-bottom: 5%;" class="myButton" onclick="myFunction2()">Import question</button>
             <script type="text/javascript">
                 function myFunction() {
                     var x = document.getElementById("change_number");
                     var y = document.getElementById("create_question");
-                    var z = document.getElementById("create_by_file");
                     if (x.style.display === "none") {
                         x.style.display = "block";
                     } else {
@@ -57,6 +57,14 @@
                     } else {
                         y.style.display = "none";
                     }
+                    if (z.style.display === "none") {
+                        z.style.display = "block";
+                    } else {
+                        z.style.display = "none";
+                    }
+                }
+                function myFunction2() {
+                    var z = document.getElementById("create_by_file");
                     if (z.style.display === "none") {
                         z.style.display = "block";
                     } else {
@@ -102,7 +110,7 @@
                 <input id="file" name="file" type="file" class="form-control mb-4" accept=".xls,.xlsx" required/>
                 <input type="hidden" th:name="sectionId" th:value="${sectionId}">
                 <i>You can download <a th:href="@{/admin/question/download_template}">template</a> of file excel.</i>
-                <button class="btn btn-info my-4 btn-block" type="submit">Create Question</button>
+                <button class="btn btn-info my-4 btn-block" type="submit">Import Question</button>
             </form>
 
             <!-- Create Question Table -->
