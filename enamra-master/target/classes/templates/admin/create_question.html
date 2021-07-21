@@ -100,16 +100,16 @@
                         <input type="hidden" th:name="questionId" th:value="${question.questionID}"/>
                         <td th:text="${questionStat.count}"></td>
                         <td>
-                            <textarea style="border:none;" name="questionContent" th:text="${question.question}" rows="5" />
+                            <textarea style="border:none;" name="questionContent" th:text="${question.question}" rows="5" required/>
                         </td>
                         <td>
                             <div th:each="answer, answerStat : ${question.answerList}">
                                 <span th:text="${answerStat.count}"></span>.
-                                <input th:name="Answer + ${answerStat.count}" th:value="${answer.answer}" />
+                                <input th:name="answer + ${answer.question.questionID}" th:value="${answer.answer}" required/>
                             </div>
                         </td>
                         <td>
-                            <select name="correctAnswer">
+                            <select name="answer">
                                 <option th:each="answer, answerStat : ${question.answerList}"
                                         th:value="${answerStat.count}"
                                         th:selected="${answer.status == true}"

@@ -6,6 +6,8 @@ import com.app.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AnswerServiceImpl implements AnswerService {
     @Autowired
@@ -15,4 +17,11 @@ public class AnswerServiceImpl implements AnswerService {
     public void saveAnswer(Answer answer) {
         answerRepo.save(answer);
     }
+
+    @Override
+    public List<Answer> getAnswersByQuestionId(int questionId) {
+        return answerRepo.findAnswersByQuestion(questionId);
+    }
+
+
 }
