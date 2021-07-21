@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -52,13 +53,17 @@ public class QuestionManagerController {
     private final ServletContext servletContext;
 
     @GetMapping("/create/{sectionId}")
-    public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
+    public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId, HttpServletRequest request) {
+        String msg = request.getParameter("msg");
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
         List<Question> questionList = questionService.getQuestionsBySectionId(sectionId);
         model.addObject("questionList", questionList);
         model.addObject("sectionId", sectionId);
         model.addObject("number", 4);
+        if(msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
         return model;
     }
 
@@ -68,11 +73,12 @@ public class QuestionManagerController {
         int number = Integer.parseInt(request.getParameter("NumofQues"));
         model.addAttribute("sectionId", sectionId);
         model.addAttribute("number", number);
+        model.addAttribute("questionList", questionService.getQuestionsBySectionId(sectionId));
         return "admin/create_question";
     }
 
     @PostMapping("/create_new_question")
-    public String createNewQuestion(HttpServletRequest request, Model model) {
+    public String createNewQuestion(HttpServletRequest request, RedirectAttributes redirectAttrs) {
         int id = 0;
         if (questionService.getLastID() < 0) {
             id += 1;
@@ -105,10 +111,8 @@ public class QuestionManagerController {
 
         questionService.saveQuestion(ques);
 
-        model.addAttribute("msg", "Create question successfully!");
-        model.addAttribute("number", 4);
-        model.addAttribute("questionList", questionService.getQuestionsBySectionId(section));
-        return "admin/create_question";
+        redirectAttrs.addAttribute("msg", "Create question successfully!");
+        return "redirect:/admin/question/create/" + section;
     }
 
     @PostMapping("/update")
@@ -150,16 +154,15 @@ public class QuestionManagerController {
     }
 
     @PostMapping("create_by_file")
-    public ModelAndView createByFile(MultipartFile file, HttpServletRequest request) throws IOException {
+    public String createByFile(MultipartFile file, HttpServletRequest request, RedirectAttributes redirectAttrs) throws IOException {
         Long sectionId = Long.parseLong(request.getParameter("sectionId"));
-        ModelAndView model = new ModelAndView("admin/create_question");
         byte[] bytes = file.getBytes();
         String name = file.getOriginalFilename();
         Path path = Paths.get("./src/main/resources/static/upload_files/" + name);
         try {
             Files.write(path, bytes);
         } catch (FileSystemException ex) {
-            model.addObject("msg", "Can not load file!");
+            redirectAttrs.addAttribute("msg", "Can not load file!");
         }
         List<Question> listQuestions = readQuestionsFromExcelFile(path.toString(), sectionId);
         List<Question> listDeleteQuestions = new ArrayList<Question>();
@@ -189,10 +192,8 @@ public class QuestionManagerController {
             Files.deleteIfExists(path);
         } catch (FileSystemException ex) {
         }
-        model.addObject("msg", "Create question successfully!");
-        model.addObject("number", 4);
-        model.addObject("sectionId", request.getParameter("sectionId"));
-        return model;
+        redirectAttrs.addAttribute("msg", "Create question successfully!");
+        return "redirect:/admin/question/create/" + sectionId;
     }
 
     public List<Question> readQuestionsFromExcelFile(String excelFilePath, Long sectionId) throws IOException {
