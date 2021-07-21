@@ -39,8 +39,33 @@
             <!-- Default form register -->
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
             <div th:if="${msg}" class="alert alert-info"><a th:href="@{/}">Go to Home page</a></div>
-            <form th:action="@{/admin/question/change_number}">
-                <p style="text-align: center; padding: 3rem" class="h4 mb-4">Create new question</p>
+            <p style="text-align: center; padding: 3rem" class="h4 mb-4">Question management</p>
+
+            <button style="margin-bottom: 5%;" class="myButton" onclick="myFunction()">Create new question</button>
+            <script type="text/javascript">
+                function myFunction() {
+                    var x = document.getElementById("change_number");
+                    var y = document.getElementById("create_question");
+                    var z = document.getElementById("create_by_file");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                    if (y.style.display === "none") {
+                        y.style.display = "block";
+                    } else {
+                        y.style.display = "none";
+                    }
+                    if (z.style.display === "none") {
+                        z.style.display = "block";
+                    } else {
+                        z.style.display = "none";
+                    }
+                }
+            </script>
+
+            <form style="display:none;" id="change_number" th:action="@{/admin/question/change_number}">
                 <div class="form-row mb-4">
                     <label>Number of Question:</label>
                     <!-- Number of Question -->
@@ -54,7 +79,7 @@
                     <button class="myButton" type="submit">Change</button>
                 </div>
             </form>
-            <form method="POST" th:action="@{/admin/question/create_new_question}">
+            <form style="display:none;" id="create_question" method="POST" th:action="@{/admin/question/create_new_question}">
                 <!--Question Create-->
                 <input name="question" type="text" class="form-control mb-4" placeholder="Question" required>
 
@@ -72,7 +97,7 @@
                 <!-- Create Question button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Question</button>
             </form>
-            <form method="POST" th:action="@{/admin/question/create_by_file}" enctype="multipart/form-data">
+            <form style="display:none;" id="create_by_file" method="POST" th:action="@{/admin/question/create_by_file}" enctype="multipart/form-data">
                 <!-- Attach File Button -->
                 <input id="file" name="file" type="file" class="form-control mb-4" accept=".xls,.xlsx" required/>
                 <input type="hidden" th:name="sectionId" th:value="${sectionId}">
