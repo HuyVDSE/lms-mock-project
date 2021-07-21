@@ -43,7 +43,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public int getLastID() {
-        return questionRepo.getLastID();
+        try {
+            return questionRepo.getLastID();
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     @Override

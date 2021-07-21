@@ -78,7 +78,12 @@ public class QuestionManagerController {
 
     @PostMapping("/create_new_question")
     public ModelAndView createNewQuestion(HttpServletRequest request) {
-        int id = questionService.getLastID() + 1;
+        int id = 0;
+        if (questionService.getLastID() < 0) {
+            id += 1;
+        } else {
+            id = questionService.getLastID() + 1;
+        }
         String question = request.getParameter("question");
         String[] answer = request.getParameterValues("answer");
         int correct = Integer.parseInt(request.getParameter("correctAns"));
@@ -143,11 +148,11 @@ public class QuestionManagerController {
         }
         for (Answer answer : listAnss) {
             for (Question question : listQuestions) {
-                try{
+                try {
                     if (question.getQuestionID() == answer.getQuestion().getQuestionID()) {
                         answerService.saveAnswer(answer);
                     }
-                }catch(Exception e) {
+                } catch (Exception e) {
                 }
             }
         }
@@ -177,6 +182,7 @@ public class QuestionManagerController {
                 }
                 Iterator<Cell> cells = row.cellIterator();
                 Question question = new Question();
+                boolean flag = true;
                 while (cells.hasNext()) {
                     Cell cell = cells.next();
                     int columnIndex = cell.getColumnIndex();
@@ -185,6 +191,10 @@ public class QuestionManagerController {
                             question.setQuestionID(Integer.parseInt((getCellValue(cell) + "")));
                             break;
                         case 1:
+                            String test = (String) getCellValue(cell);
+                            if (test.equals("") || test == null) {
+                                flag = false;
+                            }
                             question.setQuestion((String) getCellValue(cell));
                             break;
                         case 2:
@@ -196,7 +206,7 @@ public class QuestionManagerController {
                 question.setSection(section);
                 long millis = System.currentTimeMillis();
                 question.setCreateDate(new java.sql.Date(millis));
-                listQuestions.add(question);
+                if (flag) listQuestions.add(question);
             } catch (Exception e) {
                 continue;
             }
