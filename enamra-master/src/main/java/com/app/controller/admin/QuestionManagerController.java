@@ -120,6 +120,32 @@ public class QuestionManagerController {
         return model;
     }
 
+    @PostMapping("/update")
+    public String updateQuestion(HttpServletRequest request) {
+        Long sectionId = Long.parseLong(request.getParameter("sectionId"));
+        int questionId = Integer.parseInt(request.getParameter("questionId"));
+        String questionContent = request.getParameter("questionContent");
+        String[] answerArr = request.getParameterValues("answer" + questionId);
+        int correctAnswer = Integer.parseInt(request.getParameter("answer"));
+        String questionStatus = request.getParameter("questionStatus");
+
+        Question ques = questionService.findById(questionId);
+        ques.setQuestion(questionContent);
+        ques.setStatus(questionStatus);
+
+        for (int i = 0; i < answerArr.length; i++) {
+            Answer ans = new Answer();
+            ans.setAnswer(answerArr[i]);
+            if (++i == correctAnswer) {
+                ans.setStatus(true);
+            } else ans.setStatus(false);
+            ques.addAnswer(ans);
+        }
+
+
+        return "redirect:/admin/question/create/" + sectionId;
+    }
+
     @PostMapping("create_by_file")
     public ModelAndView createByFile(MultipartFile file, HttpServletRequest request) throws IOException {
         Long sectionId = Long.parseLong(request.getParameter("sectionId"));

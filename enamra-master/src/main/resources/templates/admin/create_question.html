@@ -105,11 +105,11 @@
                         <td>
                             <div th:each="answer, answerStat : ${question.answerList}">
                                 <span th:text="${answerStat.count}"></span>.
-                                <input th:name="Answer + ${answerStat.count}" th:value="${answer.answer}" />
+                                <input th:name="Answer + ${answer.answerID}" th:value="${answer.answer}" />
                             </div>
                         </td>
                         <td>
-                            <select name="correctAnswer">
+                            <select name="answer">
                                 <option th:each="answer, answerStat : ${question.answerList}"
                                         th:value="${answerStat.count}"
                                         th:selected="${answer.status == true}"

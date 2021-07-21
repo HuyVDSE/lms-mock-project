@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,4 +29,11 @@ public class Question {
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answerList;
+
+    public void addAnswer(Answer answer) {
+        if (answerList == null) {
+            answerList = new ArrayList<>();
+        }
+        answerList.add(answer);
+    }
 }
