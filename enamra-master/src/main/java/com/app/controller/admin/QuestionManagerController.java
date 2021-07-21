@@ -3,6 +3,7 @@ package com.app.controller.admin;
 import com.app.model.Answer;
 import com.app.model.Question;
 import com.app.model.Section;
+import com.app.repository.QuestionRepo;
 import com.app.service.AnswerService;
 import com.app.service.MediaTypeService;
 import com.app.service.QuestionService;
@@ -50,6 +51,7 @@ public class QuestionManagerController {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final ServletContext servletContext;
+    private final QuestionRepo questionRepo;
 
     @GetMapping("/create/{sectionId}")
     public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId) {
@@ -141,6 +143,16 @@ public class QuestionManagerController {
         }
 
 
+        return "redirect:/admin/question/create/" + sectionId;
+    }
+
+    @GetMapping ("/deleteQuestion/{questionId}/{sectionId}")
+    public String deleteQuestion(HttpServletRequest request, @PathVariable("questionId") int questionId,
+                                 @PathVariable("sectionId") Long sectionId){
+
+        questionService.deleteQuestion(questionId);
+
+        request.setAttribute("msg", "Delete question successfully!");
         return "redirect:/admin/question/create/" + sectionId;
     }
 

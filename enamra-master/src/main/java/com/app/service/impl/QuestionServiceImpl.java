@@ -51,6 +51,13 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public void deleteQuestion(int questionId) {
+        Question question = questionRepo.getOne(questionId);
+        question.setStatus("Inactive");
+        questionRepo.save(question);
+    }
+
+    @Override
     public List<Question> getQuestionsBySectionId(Long sectionId) {
         return questionRepo.findBySectionId(sectionId);
     }

@@ -9,6 +9,7 @@ public interface QuestionService {
     boolean findByQuestion(String question);
     Question findById(Integer questionId);
     int getLastID();
+    void deleteQuestion(int questionId);
 
     List<Question> getQuestionsBySectionId(Long sectionId);
 }
