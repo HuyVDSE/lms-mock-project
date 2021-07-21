@@ -61,11 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**","/js/**").permitAll()
 
                 .antMatchers("/home","/v/**", "/g/topic/**","/g/**","/blog/**").fullyAuthenticated()
-
+                .antMatchers("/admin/course/last_10_course", "/admin/course/create").hasAnyAuthority("ADMIN")
+                .antMatchers("/manager/**","/manager_dashboard", "/admin/course/**", "/admin/question/**",
+                        "/admin/topic/**", "/admin/sec/**", "/admin/home").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/admin_Dashboard","/admin","/admin/**").hasAnyAuthority("ADMIN")
                 //   .anyRequest().authenticated()
-                .antMatchers("/hr/**").hasAnyAuthority("ADMIN","HR")// "/hr_Dashboard"
-                .antMatchers("/manager/**","/manager_dashboard").hasAnyAuthority("ADMIN","MANAGER")
                 .antMatchers("/comment/create","/comment/**","/blog/file_upload").hasAnyRole("USER","ADMIN")
                 .anyRequest().authenticated()
                 .antMatchers("/your_Dashboard","/user","/user/**").hasAuthority("USER")
