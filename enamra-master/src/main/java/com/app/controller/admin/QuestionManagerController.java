@@ -55,10 +55,6 @@ public class QuestionManagerController {
                                    HttpServletRequest request,
                                    Model model) {
         String msg = request.getParameter("msg");
-//        ModelAndView model = new ModelAndView();
-//        model.setViewName("admin/create_question");
-//        List<Question> questionList = questionService.getQuestionsBySectionId(sectionId);
-//        model.addObject("questionList", questionList);
         model.addAttribute("sectionId", sectionId);
         model.addAttribute("number", 4);
         if(msg != null && !msg.equals("")) {
