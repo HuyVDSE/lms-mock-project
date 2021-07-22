@@ -6,19 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +67,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/upload_files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -90,17 +82,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EnamraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="enamra" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.EnamraApplication" />
@@ -147,6 +128,7 @@
       <updated>1626745631367</updated>
       <workItem from="1626745639272" duration="14095000" />
       <workItem from="1626770034855" duration="5237000" />
+      <workItem from="1626918223997" duration="715000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>
