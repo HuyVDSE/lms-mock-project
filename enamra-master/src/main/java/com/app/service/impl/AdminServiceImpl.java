@@ -71,7 +71,6 @@ public class AdminServiceImpl implements AdminService {
     public List<User> getAllManager() {
         return adminRepo.findAllManagerByRoles();
     }
-
     @Override
     public List<User> getAllAdmin() {
         return adminRepo.findAllAdminByRoles() ;

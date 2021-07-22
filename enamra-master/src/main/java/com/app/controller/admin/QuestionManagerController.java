@@ -373,4 +373,21 @@ public class QuestionManagerController {
                 .contentLength(file.length()) //
                 .body(resource);
     }
+
+    @GetMapping("/search_question_by_content/{sectionId}")
+    public ModelAndView SearchQuestion(@PathVariable("sectionId") Long sectionId, HttpServletRequest request) {
+        String msg = request.getParameter("msg");
+        String question_content = request.getParameter("txtSearch");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin/create_question");
+        List<Question> questionList = questionService.searchQuestion(sectionId,question_content);
+        model.addObject("questionList", questionList);
+        model.addObject("sectionId", sectionId);
+        model.addObject("number", 4);
+        model.addObject("txtSearch", question_content);
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+        return model;
+    }
 }

@@ -43,7 +43,7 @@ public class WelcomeController {
         role.substring(1,role.length()-1);
 
 
-        if (role.equals("USER")){
+        if (role.equals("STUDENT")){
             model.addObject("user", role);
         }else if (role.equals("ADMIN")){
             model.addObject("admin", role);

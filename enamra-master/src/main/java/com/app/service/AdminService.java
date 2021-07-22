@@ -16,7 +16,6 @@ public interface AdminService {
     List<User> getAllAdmin();  // testing ok
     List<User> getAllHR();
     List<User> getAllManager();
-
     void deleteAdminByID(Long id);
     void deleteManagerByID(Long id);
     void deleteHR_ByID(Long id);

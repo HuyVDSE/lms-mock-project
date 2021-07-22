@@ -70,4 +70,9 @@ public class QuestionServiceImpl implements QuestionService {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return questionRepo.findAllBySectionId(pageable, sectionId);
     }
+
+    @Override
+    public List<Question> searchQuestion(Long sectionId, String searchContent) {
+        return questionRepo.searchQuestion(sectionId,searchContent);
+    }
 }
