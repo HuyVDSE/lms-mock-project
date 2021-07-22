@@ -45,7 +45,7 @@ public class GoogleUtils {
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("USER"));
+		authorities.add(new SimpleGrantedAuthority("STUDENT"));
 		UserDetails userDetail = new User(googlePojo.getEmail(),
 				"", enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		return userDetail;

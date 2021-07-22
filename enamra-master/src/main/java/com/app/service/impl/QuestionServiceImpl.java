@@ -66,9 +66,9 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId) {
+    public Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId, String search_content) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-        return questionRepo.findAllBySectionId(pageable, sectionId);
+        return questionRepo.findAllBySectionId(pageable, sectionId, search_content);
     }
 
     @Override

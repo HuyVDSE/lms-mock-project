@@ -13,5 +13,5 @@ public interface QuestionService {
     void deleteQuestion(int questionId);
     List<Question> searchQuestion(Long sectionId, String searchContent);
     List<Question> getQuestionsBySectionId(Long sectionId);
-    Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId);
+    Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId, String search_content);
 }

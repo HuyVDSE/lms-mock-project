@@ -61,18 +61,18 @@ public class QuestionManagerController {
             model.addAttribute("msg", msg);
         }
 
-        return findPaginated(1, sectionId, model);
+        return findPaginated(1, sectionId, "", model);
     }
 
     @GetMapping("page/{pageNo}")
     public String findPaginated(@PathVariable("pageNo") int pageNo,
                                 @RequestParam("sectionId") Long sectionId,
+                                @RequestParam("txtSearch") String question_content,
                                 Model model) {
         int pageSize = 5;
-
-        Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId);
+        Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId, "");
         List<Question> listQuestions = page.getContent();
-
+        model.addAttribute("txtSearch", question_content);
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
@@ -370,20 +370,25 @@ public class QuestionManagerController {
                 .body(resource);
     }
 
-    @GetMapping("/search_question_by_content/{sectionId}")
-    public ModelAndView SearchQuestion(@PathVariable("sectionId") Long sectionId, HttpServletRequest request) {
-        String msg = request.getParameter("msg");
-        String question_content = request.getParameter("txtSearch");
+    @GetMapping("/search_question_by_content/{pageNo}")
+    public ModelAndView SearchQuestion(@RequestParam("sectionId") Long sectionId,
+                                       @RequestParam("txtSearch") String question_content,
+                                       @PathVariable("pageNo") int pageNo) {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
-        List<Question> questionList = questionService.searchQuestion(sectionId,question_content);
+        int pageSize = 5;
+        if(question_content == null) question_content = "";
+        Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId, question_content);
+        List<Question> questionList = page.getContent();
         model.addObject("questionList", questionList);
         model.addObject("sectionId", sectionId);
         model.addObject("number", 4);
         model.addObject("txtSearch", question_content);
-        if (msg != null && !msg.equals("")) {
-            model.addObject("msg", msg);
-        }
+
+        model.addObject("currentPage", pageNo);
+        model.addObject("totalPages", page.getTotalPages());
+        model.addObject("totalItems", page.getTotalElements());
+
         return model;
     }
 }

@@ -49,7 +49,7 @@ public class WelcomeController {
             model.addObject("admin", role);
         }else if (role.equals("HR")){
             model.addObject("hr", role);
-        }else if (role.equals("MANAGER")){
+        }else if (role.equals("TEACHER")){
             model.addObject("manager", role);
         }else if (role.equals("CHIF INSTRUCTOR")){
             model.addObject("CHIF_INSTRUCTOR", role);

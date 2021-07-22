@@ -37,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveAdmin(User user){
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setActive(1);
+        user.setActive(0);
         Role admin_role = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(admin_role)));
         adminRepo.save(user);
@@ -47,8 +47,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveHR(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setActive(1);
-        Role hr_role = roleRepository.findByRole("HR");
+        user.setActive(0);
+        Role hr_role = roleRepository.findByRole("STUDENT");
         user.setRoles(new HashSet<Role>(Arrays.asList(hr_role)));
         adminRepo.save(user);
     }
@@ -56,8 +56,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveManager(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setActive(1);
-        Role manager_role = roleRepository.findByRole("MANAGER");
+        user.setActive(0);
+        Role manager_role = roleRepository.findByRole("TEACHER");
         user.setRoles(new HashSet<Role>(Arrays.asList(manager_role)));
         adminRepo.save(user);
     }

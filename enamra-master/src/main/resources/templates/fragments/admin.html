@@ -43,7 +43,7 @@
 <div th:fragment="create_manager">
     <br>
     <hr>
-    <h2> Teacher and coordinator</h2>
+    <h2> Teacher</h2>
     <table class="table table-striped">
         <thead>
         <th scope="row">#ID</th>
@@ -68,7 +68,7 @@
         </tbody>
     </table>
     <br>
-    <a class="btn btn-primary" th:href="@{/admin/create/manager}" role="button">Create Manager</a>
+    <a class="btn btn-primary" th:href="@{/admin/create/manager}" role="button">Create Teacher</a>
     <br>
 </div>
 
@@ -97,7 +97,7 @@
         </tbody>
     </table>
     <br>
-    <a class="btn btn-primary" th:href="@{/admin/create/hr}" role="button">Create HR</a>
+    <a class="btn btn-primary" th:href="@{/admin/create/hr}" role="button">Create Student</a>
     <br>
 </div>
 
@@ -142,7 +142,7 @@
 
                 </div>
                 <div class="tab-pane fade" id="role" role="tabpanel" aria-labelledby="role-tab">
-                    <h2>Student Resource Executive</h2>
+                    <h2>Student</h2>
                     <div th:replace="/fragments/admin :: create_and_manage_HR"></div>
                     <div th:replace="/fragments/admin :: create_manager"></div>
                     <div th:replace="/fragments/admin :: create_admin"></div>
