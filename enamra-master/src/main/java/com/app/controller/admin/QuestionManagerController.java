@@ -57,7 +57,7 @@ public class QuestionManagerController {
         String msg = request.getParameter("msg");
         model.addAttribute("sectionId", sectionId);
         model.addAttribute("number", 4);
-        if(msg != null && !msg.equals("")) {
+        if (msg != null && !msg.equals("")) {
             model.addAttribute("msg", msg);
         }
 
@@ -84,12 +84,23 @@ public class QuestionManagerController {
     }
 
     @GetMapping("/change_number")
-    public String changerNumber(HttpServletRequest request, Model model) {
-        Long sectionId = Long.parseLong(request.getParameter("sectionId"));
+    public String changerNumber(@RequestParam("sectionId") Long sectionId,
+                                HttpServletRequest request,
+                                Model model) {
         int number = Integer.parseInt(request.getParameter("NumofQues"));
+        String question_content = "";
+        int pageNo = 1;
+        int pageSize = 5;
+        Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId, question_content);
+        List<Question> questionList = page.getContent();
+
         model.addAttribute("sectionId", sectionId);
         model.addAttribute("number", number);
         model.addAttribute("questionList", questionService.getQuestionsBySectionId(sectionId));
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
         return "admin/create_question";
     }
 
@@ -106,26 +117,27 @@ public class QuestionManagerController {
         int correct = Integer.parseInt(request.getParameter("correctAns"));
         Long section = Long.parseLong(request.getParameter("sectionId"));
         long millis = System.currentTimeMillis();
+        boolean check = questionService.findByQuestion(question);
+        if (!check) {
+            Question ques = new Question();
+            ques.setQuestionID(id);
+            ques.setQuestion(question);
+            ques.setCreateDate(new java.sql.Date(millis));
+            ques.setStatus("Active");
+            ques.setSection(sectionService.findSectionByID(section));
 
-        Question ques = new Question();
-        ques.setQuestionID(id);
-        ques.setQuestion(question);
-        ques.setCreateDate(new java.sql.Date(millis));
-        ques.setStatus("Active");
-        ques.setSection(sectionService.findSectionByID(section));
-
-        for (int i = 0; i < answer.length; i++) {
-            Answer ans = new Answer();
-            ans.setAnswer(answer[i]);
-            if (i + 1 == correct) {
-                ans.setStatus(true);
-            } else {
-                ans.setStatus(false);
+            for (int i = 0; i < answer.length; i++) {
+                Answer ans = new Answer();
+                ans.setAnswer(answer[i]);
+                if (i + 1 == correct) {
+                    ans.setStatus(true);
+                } else {
+                    ans.setStatus(false);
+                }
+                ques.addAnswer(ans);
             }
-            ques.addAnswer(ans);
+            questionService.saveQuestion(ques);
         }
-
-        questionService.saveQuestion(ques);
 
         redirectAttrs.addAttribute("msg", "Create question successfully!");
         return "redirect:/admin/question/create/" + section;
@@ -159,9 +171,9 @@ public class QuestionManagerController {
         return "redirect:/admin/question/create/" + sectionId;
     }
 
-    @GetMapping ("/deleteQuestion/{questionId}/{sectionId}")
+    @GetMapping("/deleteQuestion/{questionId}/{sectionId}")
     public String deleteQuestion(HttpServletRequest request, @PathVariable("questionId") int questionId,
-                                 @PathVariable("sectionId") Long sectionId){
+                                 @PathVariable("sectionId") Long sectionId) {
 
         questionService.deleteQuestion(questionId);
 
@@ -281,7 +293,7 @@ public class QuestionManagerController {
                 Iterator<Cell> cells = row.cellIterator();
                 Answer answer = new Answer();
                 //String listanswers[] = null;
-                boolean flag=true;
+                boolean flag = true;
                 while (cells.hasNext()) {
                     Cell cell = cells.next();
                     int columnIndex = cell.getColumnIndex();
@@ -294,7 +306,7 @@ public class QuestionManagerController {
                         case 1:
                             String questCon = (String) getCellValue(cell);
 
-                            if (questCon.equals("")||questCon==null){
+                            if (questCon.equals("") || questCon == null) {
                                 flag = false;
                             }
                             break;
@@ -377,7 +389,7 @@ public class QuestionManagerController {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
         int pageSize = 5;
-        if(question_content == null) question_content = "";
+        if (question_content == null) question_content = "";
         Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId, question_content);
         List<Question> questionList = page.getContent();
         model.addObject("questionList", questionList);

@@ -34,12 +34,12 @@
         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
             <div class="search_001">
                 <div class="input-group md-form form-sm form-2 pl-0">
-                    <input aria-label="Search"
-                           class="form-control my-0 py-1" placeholder="Search" type="text">
-                    <div class="input-group-append">
-                             <span class="input-group-text red lighten-3" id="basic-text1">
-                                 <i aria-hidden="true" class="fa fa-search text-grey"></i></span>
-                    </div>
+<!--                    <input aria-label="Search"-->
+<!--                           class="form-control my-0 py-1" placeholder="Search" type="text">-->
+<!--                    <div class="input-group-append">-->
+<!--                             <span class="input-group-text red lighten-3" id="basic-text1">-->
+<!--                                 <i aria-hidden="true" class="fa fa-search text-grey"></i></span>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -124,7 +124,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
-                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'USER')}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/your_Dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
@@ -136,7 +136,7 @@
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/hr/hr_Dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
-                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'MANAGER')}">
+                        <li class="nav-item right" th:if ="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                             <a class="nav-link navbar-nav justify-content-end btn btn-outline-success"
                                th:href="@{/manager_dashboard}" tabindex="-1" aria-disabled="true" style="margin-right: 10px;">Dashboard</a>
                         </li>
@@ -547,17 +547,17 @@
 
             <!-- Grid column -->
             <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 text-md-right">
-                <h6 class="mb-0">Get connected with us on social networks!</h6>
+<!--                <h6 class="mb-0">Get connected with us on social networks!</h6>-->
             </div>
             <!-- Grid column  align-items-center -->
 
-            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 text-center text-md-left">
-                <a class="fb-ic"><i class="fab fa-facebook-f white-text mr-4"> </i></a>
-                <a class="tw-ic"><i class="fab fa-twitter white-text mr-4"> </i></a>
-                <a class="gplus-ic"><i class="fab fa-google-plus-g white-text mr-4"> </i></a>
-                <a class="li-ic"><i class="fab fa-linkedin-in white-text mr-4"> </i></a>
-                <a class="ins-ic"><i class="fab fa-instagram white-text"> </i></a>
-            </div>
+<!--            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 text-center text-md-left">-->
+<!--                <a class="fb-ic"><i class="fab fa-facebook-f white-text mr-4"> </i></a>-->
+<!--                <a class="tw-ic"><i class="fab fa-twitter white-text mr-4"> </i></a>-->
+<!--                <a class="gplus-ic"><i class="fab fa-google-plus-g white-text mr-4"> </i></a>-->
+<!--                <a class="li-ic"><i class="fab fa-linkedin-in white-text mr-4"> </i></a>-->
+<!--                <a class="ins-ic"><i class="fab fa-instagram white-text"> </i></a>-->
+<!--            </div>-->
 
         </div>
 
