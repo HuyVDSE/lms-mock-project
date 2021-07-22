@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" afterDir="false" />
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- fix conflict">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,7 @@
       <updated>1626745631367</updated>
       <workItem from="1626745639272" duration="14095000" />
       <workItem from="1626770034855" duration="5237000" />
-      <workItem from="1626918223997" duration="715000" />
+      <workItem from="1626918223997" duration="1310000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>
