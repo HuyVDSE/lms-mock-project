@@ -61,4 +61,9 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> getQuestionsBySectionId(Long sectionId) {
         return questionRepo.findBySectionId(sectionId);
     }
+
+    @Override
+    public List<Question> searchQuestion(Long sectionId, String searchContent) {
+        return questionRepo.searchQuestion(sectionId,searchContent);
+    }
 }
