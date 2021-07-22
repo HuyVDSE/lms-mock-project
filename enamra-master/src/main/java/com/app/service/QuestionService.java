@@ -12,4 +12,5 @@ public interface QuestionService {
     void deleteQuestion(int questionId);
 
     List<Question> getQuestionsBySectionId(Long sectionId);
+    List<Question> searchQuestion(Long sectionId, String searchContent);
 }
