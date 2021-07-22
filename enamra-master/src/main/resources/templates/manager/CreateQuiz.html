@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css-and-meta"/>
+    <style>
+        .myButton {
+            background-color: #17a2b8;
+            border-radius: 6px;
+            border: none;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px -1px 0px #5b6178;
+        }
+
+        .myButton:hover {
+            background-color: #17a2b8;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
+
+        <div style="padding-bottom: 10%" class="col-xl-10 col-sm-6 col-md-6 col-lg-10">
+            <div class="alert alert-info"><a>Go to ....</a></div>
+            <p style="text-align: center; padding: 3rem" class="h4 mb-4">Create Quiz</p>
+
+            <button style="margin-bottom: 5%;" class="myButton" onclick="myFunction()">Create Quiz</button>
+            <script type="text/javascript">
+                function myFunction() {
+                    var x = document.getElementById("create_quiz");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+            <form style="display:none;" id="create_quiz" method="POST" th:action="@{/manager/quiz/create_new_quiz}"
+                  th:object="${quiz}">
+                <div class="form-row">
+                    <!-- Quiz Name -->
+                    <label>Quiz name:</label>
+                    <input type="text" class="form-control mb-4"><br><br>
+                    <!-- Number of Question -->
+                    <label>Number of question:</label>
+                    <select name="NumofQues" class="form-control">
+                        <option th:each="i : ${#numbers.sequence( 10, 100)}">
+                            <p th:text="${i}"></p>
+                        </option>
+                    </select>
+                    <!-- Quiz Time -->
+                    <label>Time of Quiz:</label>
+                    <input type="text" class="form-control mb-4"><br><br>
+                    <!-- Set Start Time -->
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: column">
+                            Start date:
+                            <input type="date" id="start" name="trip-start" class="form-control mb-4"
+                                   min="2021-01-01" max="2025-12-31">
+                            <script type="text/javascript">
+                                document.getElementById("start").valueAsDate = new Date();
+                            </script>
+                            Start time:
+                            <input id="appt-start-time" type="time" name="appt-time" class="form-control mb-4"
+                                   min="00:00" max="23:59" required pattern="[0-12]{2}:[0-12]{2}">
+                            <span class="validity"></span>
+                        </div>
+                        <!-- Set End Time -->
+                        <div style="display: flex; flex-direction: column">
+                            End date:
+                            <input type="date" id="end" name="trip-start" class="form-control mb-4"
+                                   min="2021-01-01" max="2025-12-31">
+                            <script type="text/javascript">
+                                document.getElementById("end").valueAsDate = new Date();
+                            </script>
+                            End time:
+                            <input id="appt-end-time" type="time" name="appt-time" class="form-control mb-4"
+                                   min="00:00" max="23:59" required pattern="[0-24]{2}:[0-24]{2}">
+                            <span class="validity"></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="myButton" type="submit">Submit</button>
+                <br><br>
+                <!-- Table -->
+                <table border="1" class="table">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th>Choose</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <!-- Create Quiz Form -->
+                        <form>
+                            <!-- <input type="hidden" th:name="sectionId" th:value="${sectionId}">
+                            <input type="hidden" th:name="questionId" th:value="${question.questionID}"/> -->
+                            <td style="width:1%"></td>
+                            <td>
+                            <textarea style="border:none;width:100%;" name="questionContent" rows="5">
+                            </textarea>
+                            </td>
+                            <td>
+                                <div>
+                                    <span> </span>.
+                                    <input style="width:93%;border:none"/>
+                                </div>
+                            </td>
+                            <td style="width:1%">
+                                <input type="checkbox">
+                            </td>
+                        </form>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </form>
+            <button class="myButton" type="button">Previous</button>
+            <button class="myButton" type="button">Next Page</button>
+
+
+        </div>
+        <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
+    </div>
+
+
+</div>
+<div th:replace="/fragments/header :: all-js"></div>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public static BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -46,34 +46,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/files/**", "/academic/**","/professional/**","/general/**",
-                        "**/img/**","**/img/logo.png","**/img/favicon.ico",
-                        "/error","/user/logout",
-                        "/signin-google", "/user/signup","/user/login", "/user/settings/**", "/user/verify",
-                        "/","/entry", "/user/login?error=true", "/user/forgot", "/user/reset_password", "/user/request_reset",
+                .antMatchers("/files/**", "/academic/**", "/professional/**", "/general/**",
+                        "**/img/**", "**/img/logo.png", "**/img/favicon.ico",
+                        "/error", "/user/logout",
+                        "/signin-google", "/user/signup", "/user/login", "/user/settings/**", "/user/verify",
+                        "/", "/entry", "/user/login?error=true", "/user/forgot", "/user/reset_password", "/user/request_reset",
                         "/media/files/blog/img/**", "/user/reset/",
-                        "**/webjars/**","/webjars/**","/resources/static/**").permitAll()
+                        "**/webjars/**", "/webjars/**", "/resources/static/**").permitAll()
 
 
-                .antMatchers("/resources/**","/resources/static/upload_files",
-                        "/resources/static/upload_files/**","/resources/static/img/**",
+                .antMatchers("/resources/**", "/resources/static/upload_files",
+                        "/resources/static/upload_files/**", "/resources/static/img/**",
                         "/resources/static/user_files/**", "/img/**", "/fonts/**",
-                        "/css/**","/js/**").permitAll()
+                        "/css/**", "/js/**").permitAll()
 
-                .antMatchers("/home","/v/**", "/g/topic/**","/g/**","/blog/**")
-                    .fullyAuthenticated()
+                .antMatchers("/home", "/v/**", "/g/topic/**", "/g/**", "/blog/**")
+                .fullyAuthenticated()
+                .antMatchers("/manager/quiz/**")
+                .hasAnyAuthority("TEACHER")
                 .antMatchers("/admin/course/last_10_course", "/admin/course/create")
-                    .hasAnyAuthority("ADMIN")
-                .antMatchers("/manager/**","/manager_dashboard", "/admin/course/**",
+                .hasAnyAuthority("ADMIN")
+                .antMatchers("/manager/**", "/manager_dashboard", "/admin/course/**",
                         "/admin/question/**", "/admin/topic/**", "/admin/sec/**", "/admin/home")
-                    .hasAnyAuthority("ADMIN","TEACHER")
-                .antMatchers("/admin_Dashboard","/admin","/admin/**")
-                    .hasAnyAuthority("ADMIN")
-                .antMatchers("/comment/create","/comment/**","/blog/file_upload")
-                    .hasAnyRole("STUDENT","ADMIN")
+                .hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/admin_Dashboard", "/admin", "/admin/**")
+                .hasAnyAuthority("ADMIN")
+                .antMatchers("/comment/create", "/comment/**", "/blog/file_upload")
+                .hasAnyRole("STUDENT", "ADMIN")
                 .anyRequest().authenticated()
-                .antMatchers("/your_Dashboard","/user","/user/**")
-                    .hasAuthority("STUDENT")
+                .antMatchers("/your_Dashboard", "/user", "/user/**")
+                .hasAuthority("STUDENT")
                 .and()
                 .csrf().disable()
                 .formLogin().loginPage("/user/login").failureForwardUrl("/user/settings/checkVerify")
