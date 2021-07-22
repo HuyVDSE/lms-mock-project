@@ -118,9 +118,17 @@ public class AdminController {
 
         if (user.getFirstname().equals("")) {
             bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
-        } else if (user.getLastname().equals("")) {
+        }else if(!(user.getFirstname().matches("[a-zA-Z]+"))){
+            bindingResult.rejectValue("firstname", "error.user", "First name must not empty!");
+        }
+        else if (user.getLastname().equals("")) {
             bindingResult.rejectValue("lastname", "error.user", "Last name must not empty!");
-        } else if (oldPassword == null || !encoder.matches(oldPassword, userUpdate.getPassword())) {
+
+        } else if(!(user.getFirstname().matches("[a-zA-Z]+"))){
+            bindingResult.rejectValue("lastname", "error.user", "Last name must not empty!");
+        }
+
+        else if (oldPassword == null || !encoder.matches(oldPassword, userUpdate.getPassword())) {
             model.addAttribute("passworderror", "Current password didn't match!!!!");
         } else if (user.getPassword().equals("")) {
             bindingResult.rejectValue("password", "error.user", "Password must not empty!");
