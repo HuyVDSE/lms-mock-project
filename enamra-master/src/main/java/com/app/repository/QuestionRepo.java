@@ -1,6 +1,8 @@
 package com.app.repository;
 
 import com.app.model.Question;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,4 +21,7 @@ public interface QuestionRepo extends JpaRepository<Question,Integer> {
 
     @Query(value = "SELECT q FROM Question q WHERE q.section.section_id = ?1")
     List<Question> findBySectionId(Long sectionId);
+
+    @Query(value = "SELECT q FROM Question q WHERE q.section.section_id = ?1")
+    Page<Question> findAllBySectionId(Pageable pageable, Long sectionId);
 }

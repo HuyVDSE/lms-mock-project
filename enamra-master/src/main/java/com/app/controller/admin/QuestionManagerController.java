@@ -15,16 +15,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,18 +51,40 @@ public class QuestionManagerController {
     private final ServletContext servletContext;
 
     @GetMapping("/create/{sectionId}")
-    public ModelAndView loadQuestionPage(@PathVariable("sectionId") Long sectionId, HttpServletRequest request) {
+    public String loadQuestionPage(@PathVariable("sectionId") Long sectionId,
+                                   HttpServletRequest request,
+                                   Model model) {
         String msg = request.getParameter("msg");
-        ModelAndView model = new ModelAndView();
-        model.setViewName("admin/create_question");
-        List<Question> questionList = questionService.getQuestionsBySectionId(sectionId);
-        model.addObject("questionList", questionList);
-        model.addObject("sectionId", sectionId);
-        model.addObject("number", 4);
+//        ModelAndView model = new ModelAndView();
+//        model.setViewName("admin/create_question");
+//        List<Question> questionList = questionService.getQuestionsBySectionId(sectionId);
+//        model.addObject("questionList", questionList);
+        model.addAttribute("sectionId", sectionId);
+        model.addAttribute("number", 4);
         if(msg != null && !msg.equals("")) {
-            model.addObject("msg", msg);
+            model.addAttribute("msg", msg);
         }
-        return model;
+
+        return findPaginated(1, sectionId, model);
+    }
+
+    @GetMapping("page/{pageNo}")
+    public String findPaginated(@PathVariable("pageNo") int pageNo,
+                                @RequestParam("sectionId") Long sectionId,
+                                Model model) {
+        int pageSize = 5;
+
+        Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId);
+        List<Question> listQuestions = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("questionList", listQuestions);
+        model.addAttribute("number", 4);
+        model.addAttribute("sectionId", sectionId);
+
+        return "admin/create_question";
     }
 
     @GetMapping("/change_number")

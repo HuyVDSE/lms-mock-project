@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.model.Question;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ public interface QuestionService {
     Question findById(Integer questionId);
     int getLastID();
     void deleteQuestion(int questionId);
-
     List<Question> getQuestionsBySectionId(Long sectionId);
+    Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId);
 }

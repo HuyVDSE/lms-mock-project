@@ -4,6 +4,9 @@ import com.app.model.Question;
 import com.app.repository.QuestionRepo;
 import com.app.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,5 +63,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> getQuestionsBySectionId(Long sectionId) {
         return questionRepo.findBySectionId(sectionId);
+    }
+
+    @Override
+    public Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return questionRepo.findAllBySectionId(pageable, sectionId);
     }
 }

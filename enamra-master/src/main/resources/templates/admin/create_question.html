@@ -175,15 +175,31 @@
                 </tbody>
             </table>
 
-
-            <button class="myButton" type="button">Previous</button>
-            <button class="myButton" type="button">Next Page</button>
-
-
+            <!--Paging-->
+            <div th:if = "${totalPages > 1}">
+                <div class = "row col-sm-10">
+                    <div class = "col-sm-2">
+                        Total Questions: [[${totalItems}]]
+                    </div>
+                    <div class = "col-sm-2">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/admin/question/page/' + ${i}+ '?sectionId=' + ${sectionId}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+                    </div>
+                    <div class = "col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/question/page/' + ${currentPage + 1}+ '?sectionId=' + ${sectionId}}">Next</a>
+                        <span th:unless="${currentPage < totalPages}">Next</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/question/page/' + ${totalPages} + '?sectionId=' + ${sectionId}}">Last</a>
+                        <span th:unless="${currentPage < totalPages}">Last</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
     </div>
-
 
 </div>
 <div th:replace="/fragments/header :: all-js"></div>
