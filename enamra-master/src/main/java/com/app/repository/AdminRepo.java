@@ -22,7 +22,7 @@ public interface AdminRepo extends JpaRepository<User,Long> {
 
 
     @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=4 ", nativeQuery = true)
+            "inner join role r on(ur.role_id=r.role_id) where r.role_id=2 ", nativeQuery = true)
     List<User> findAllHR_By_Roles();
 
 
