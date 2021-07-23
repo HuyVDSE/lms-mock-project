@@ -389,7 +389,9 @@ public class QuestionManagerController {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin/create_question");
         int pageSize = 5;
-        if (question_content == null) question_content = "";
+        if (question_content == null || question_content.equals("null"))  {
+            question_content = "";
+        }
         Page<Question> page = questionService.findPaginatedBySection(pageNo, pageSize, sectionId, question_content);
         List<Question> questionList = page.getContent();
         model.addObject("questionList", questionList);
