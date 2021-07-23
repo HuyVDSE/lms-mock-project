@@ -30,6 +30,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answerList;
 
+    @OneToMany(mappedBy = "question")
+    private List<QuestionForQuiz> questionForQuizList;
+
     public void addAnswer(Answer answer) {
         if (answerList == null) {
             answerList = new ArrayList<>();

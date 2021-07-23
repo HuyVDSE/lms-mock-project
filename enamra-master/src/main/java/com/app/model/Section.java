@@ -32,6 +32,19 @@ public class Section {
 
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     private List<Question> questionList;
+
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    private List<Quiz> quizList;
+
+    public void addQuiz(Quiz quiz) {
+        if (quizList == null) {
+            quizList = new ArrayList<>();
+        }
+
+        quizList.add(quiz);
+        quiz.setSection(this);
+    }
+
     @Override
     public String toString() {
         return "Section{" +

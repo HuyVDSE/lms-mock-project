@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -22,10 +23,15 @@ public class Quiz {
     private Time totalTime;
     private Date startDate;
     private Date endDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
     private Section section;
+
+    @OneToMany(mappedBy = "quiz")
+    private List<QuestionForQuiz> questionForQuizList;
 }

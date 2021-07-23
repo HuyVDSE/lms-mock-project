@@ -52,6 +52,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Blog> blogspost= new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Quiz> listQuiz;
+
     public User() {
     }
 
@@ -68,6 +71,15 @@ public class User {
         this.roles = roles;
     }
 
+    public void addQuiz(Quiz quiz) {
+        if (listQuiz == null) {
+            listQuiz = new ArrayList<>();
+        }
+
+        listQuiz.add(quiz);
+        quiz.setUser(this);
+    }
+    
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<>();
         for (Role role : roles) {
