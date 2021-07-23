@@ -75,4 +75,14 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> searchQuestion(Long sectionId, String searchContent) {
         return questionRepo.searchQuestion(sectionId,searchContent);
     }
+
+    @Override
+    public List<Question> getRanDomQuestion(Long sectionId, Integer NumOfQues) {
+        return questionRepo.getRandomQuestion(sectionId,NumOfQues);
+    }
+
+    @Override
+    public List<Question> getQuestionsBySectionIdActive(Long sectionId) {
+        return questionRepo.findBySectionIdActive(sectionId);
+    }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,11 +19,12 @@ import java.util.List;
 @Table(name = "Quiz")
 public class Quiz {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int quizId;
     private String name;
-    private Time totalTime;
-    private Date startDate;
-    private Date endDate;
+    private int totalTime;
+    private Timestamp startDate;
+    private Timestamp endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

@@ -14,4 +14,6 @@ public interface QuestionService {
     List<Question> searchQuestion(Long sectionId, String searchContent);
     List<Question> getQuestionsBySectionId(Long sectionId);
     Page<Question> findPaginatedBySection(int pageNo, int pageSize, Long sectionId, String search_content);
+    List<Question> getRanDomQuestion(Long sectionId, Integer NumOfQues);
+    List<Question> getQuestionsBySectionIdActive(Long sectionId);
 }

@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Table(name = "question_for_quiz")
 public class QuestionForQuiz {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")

@@ -27,4 +27,10 @@ public interface QuestionRepo extends JpaRepository<Question,Integer> {
 
     @Query(value = "SELECT q FROM Question q WHERE q.section.section_id = ?1 and q.question like %?2%")
     List<Question> searchQuestion(Long sectionId, String search_content);
+
+    @Query(value = "SELECT * FROM Question q WHERE  section_id = ?1 and status Like 'Active' ORDER BY RAND() LIMIT ?2",nativeQuery = true)
+    List<Question> getRandomQuestion(Long sectionId, Integer NumOfRandom);
+
+    @Query(value = "SELECT q FROM Question q WHERE q.section.section_id = ?1 and q.status like 'Active'")
+    List<Question> findBySectionIdActive(Long sectionId);
 }

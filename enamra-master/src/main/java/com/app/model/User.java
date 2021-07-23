@@ -88,12 +88,16 @@ public class User {
         return authorities;
     }
 
+//    public String toString() {
+//        return "User(id=" + this.getId() +
+//                ", email=" + this.getEmail() +
+//                ", firstname=" + this.getFirstname() +
+//                ", lastname=" + this.getLastname() +
+//                ", username=" + this.getUsername() +
+//                ", active=" + this.getActive() +  ")";
+//    }
+
     public String toString() {
-        return "User(id=" + this.getId() +
-                ", email=" + this.getEmail() +
-                ", firstname=" + this.getFirstname() +
-                ", lastname=" + this.getLastname() +
-                ", username=" + this.getUsername() +
-                ", active=" + this.getActive() +  ")";
+        return this.getFirstname() + " " + this.getLastname();
     }
 }
