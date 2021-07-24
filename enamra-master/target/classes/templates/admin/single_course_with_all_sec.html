@@ -24,10 +24,10 @@
                 <th scope="row">Topic Action</th>
                 <th scope="row">Section Action</th>
                 <th scope="row">Question Action</th>
-                <th scope="row">Quiz Action</th>
+                <th scope="row" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Quiz Action</th>
                 </thead>
                 <tbody>
-                <tr th:each="section : ${all_sec}">
+                <tr th:each="section : ${all_sec}">6
                     <td th:text="${section.section_id}"></td>
                     <td th:text="${section.name}"></td>
                     <td>
@@ -50,7 +50,7 @@
                             View Question
                         </a>
                     </td>
-                    <td>
+                    <td th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                         <a th:href="@{/manager/quiz/create_quiz/__${section.section_id}__}">
                             View All Quiz
                         </a>

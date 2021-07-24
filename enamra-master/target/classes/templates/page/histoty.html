@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css-and-meta"/>
+    <style>
+        .myButton {
+            background-color: #17a2b8;
+            border-radius: 6px;
+            border: none;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px -1px 0px #5b6178;
+        }
+
+        .myButton:hover {
+            background-color: #17a2b8;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/section :: admin_menu"></div>
+    <br>
+    <div class="alert alert-secondary" role="alert">Quiz History</div>
+    <br>
+
+
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+            <h3>Section Name:
+                
+            </h3>
+            <table class="table table-striped">
+
+                <thead>
+                <!-- General View  -->
+                <th>ID</th>
+                <th>Quiz Name</th> <!-- Student view Only -->    
+                <th>Gmail</th> <!-- Teacher Only -->
+                <th>Finish Time</th>
+                <th>Mark</th>
+                <th>View Detail</th>                            
+                </thead>
+
+                <tbody>
+                <tr>  
+                    <!-- General View  -->
+                    <td style="width:1%">ID</td>                  
+                    <td style="width:1%">Quiz Name</td>  <!-- Student view Only -->
+                    <td style="width:1%">Gmail</td> <!-- Teacher View -->
+                    <td style="width:1%">Finish Time</td>
+                    <td style="width:1%">Mark</td>
+                    <td style="width:1%">View Detail</td>                                
+                                                         
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/fragments/header :: all-js"></div>
+</body>
+</html>
