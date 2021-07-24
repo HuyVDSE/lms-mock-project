@@ -33,7 +33,7 @@
 <div class="container-fluid">
 
     <div th:replace="/fragments/header :: banner"></div>
-    <div th:replace="/fragments/section :: admin_menu"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
     <br>
     <div class="alert alert-secondary" role="alert">QuizManager</div>
     <br>
@@ -55,15 +55,16 @@
                 <th>End Time</th>
                 <!-- Time & Date -->
                 <th>Quiz Time</th>
-                <th>Delete</th>
-                <th>View Mark</th>
-                <th>Create By</th>
-                <th>Update</th>
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Delete</th>
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">View Mark</th>
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Create By</th>
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Update</th>
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}">Do quiz</th>
                 </thead>
 
 
                 <tbody>
-                <tr th:each="quiz : ${quizList}">
+                <tr th:each="quiz, quizStart : ${quizList}">
                     <td th:text="${quiz.getQuizId()}"></td>
                     <td th:text="${quiz.getName()}"></td>
                     <td th:text="${quiz.getStartDate()}">
@@ -73,21 +74,39 @@
                     <td th:text="${quiz.getTotalTime()}">
                     </td>
 
-                    <td style="width:1%">
+                    <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                         <a target="_blank" th:href="@{/manager/quiz/delete_quiz/}">Delete</a>
                     </td>
-                    <td >View
+                    <td th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">View
                     </td>
-                    <td th:text="${quiz.getUser()}">
+                    <td th:text="${quiz.getUser()}"
+                        th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                     </td>
-                    <td style="width:1%">
+                    <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                         <a target="_blank" th:href="@{/manager/quiz/update_quiz/}">Update</a>
                     </td>
+                    <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}">
+                        <form th:action="@{/user/quiz/do_quiz/__${quiz.getQuizId()}__}">
+                            <input th:id="${quizStart.count}" class="myButton" type="submit" name="Create Quiz"
+                                   value="Do Quiz"/>
+                        </form>
+                    </td>
+
+                    <script th:inline="javascript">
+                        var now = new Date().getTime();
+                        var timeStart = new Date([[${quiz.getStartDate()}]]).getTime();
+                        var timeEnd = new Date([[${quiz.getEndDate()}]]).getTime();
+                        if (now < timeStart || now > timeEnd) {
+                            document.getElementById([[${quizStart.count}]]).disabled = true;
+                            document.getElementById([[${quizStart.count}]]).style.backgroundColor = '#abb8c3';
+                        }
+                    </script>
                 </tr>
                 </tbody>
             </table>
             <!-- Create Quiz Button -->
-            <form method="GET" th:action="@{/manager/quiz/create_new_quiz/__${sectionId}__}">
+            <form method="GET" th:action="@{/manager/quiz/create_new_quiz/__${sectionId}__}"
+                  th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                 <input class="myButton" type="submit" name="Create Quiz" value="Create Quiz"/>
                 <input type="hidden" th:name="sectionId" th:value="${sectionId}">
             </form>

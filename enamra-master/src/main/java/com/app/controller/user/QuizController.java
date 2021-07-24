@@ -1,11 +1,9 @@
 package com.app.controller.user;
 
 import com.app.model.*;
-import com.app.service.QuestionService;
 import com.app.service.QuizService;
 import com.app.service.ResultService;
 import com.app.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -103,6 +99,19 @@ public class QuizController {
         model.setViewName("/home");
         session.removeAttribute("time");;
         session.removeAttribute("questionList");;
+        return model;
+    }
+
+    @GetMapping("/quiz_list/{sectionId}")
+    public ModelAndView ViewPage(HttpServletRequest request, @PathVariable("sectionId") Long sectionId) {
+        String msg = request.getParameter("msg");
+        ModelAndView model = new ModelAndView();
+        model.addObject("sectionId",sectionId);
+        model.setViewName("page/QuizManager");
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+        model.addObject("quizList",quizService.getQuizsBySectionId(sectionId));
         return model;
     }
 }

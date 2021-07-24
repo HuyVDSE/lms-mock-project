@@ -24,8 +24,8 @@ public class Profile_pic {
     @Transient
     private String img_base_name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne()
+    @JoinColumn(name = "user_id")
     private User user;
 
 

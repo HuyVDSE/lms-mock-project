@@ -58,6 +58,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Result> listResult;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile_pic profile_pic;
+
     public User() {
     }
 

@@ -46,13 +46,8 @@ public class SendMailServiceImpl implements SendMailService {
             transport.close();
         } catch (AddressException ex) {
             ex.printStackTrace();
-//            BasicConfigurator.configure();
-//            LOGGER.error("CreateRecordServlet_AddressException: " + ex.getMessage());
         } catch (MessagingException ex) {
             ex.printStackTrace();
-//            BasicConfigurator.configure();
-//            LOGGER.error("CreateRecordServlet_MessagingException: " + ex.getMessage());
         }
-//        return random;
     }
 }
