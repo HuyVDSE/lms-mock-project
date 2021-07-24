@@ -8,5 +8,5 @@ import java.util.List;
 public interface QuizService {
     List<Quiz> getQuizsBySectionId(Long sectionId);
     void saveQuiz(Quiz quiz);
-    int getLastID();
+    Quiz getQuizByQuizId(int quizId);
 }

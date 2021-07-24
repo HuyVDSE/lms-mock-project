@@ -13,11 +13,10 @@ import java.util.List;
 
 @Repository("quizRepo")
 public interface QuizRepo extends JpaRepository<Quiz, Integer> {
+
     @Query(value = "SELECT q FROM Quiz q WHERE q.section.section_id = ?1")
     List<Quiz> findAllBySectionId(Long sectionId);
-    @Query(value = "SELECT NUM " +
-            "FROM(SELECT FLOOR(RAND() * (10000)) AS 'NUM') as SUBQ " +
-            "WHERE 'NUM' NOT IN(SELECT quiz_id FROM `quiz`)", nativeQuery = true)
-    int getLastID();
+
+    Quiz findQuizByQuizId(int quizId);
 
 }

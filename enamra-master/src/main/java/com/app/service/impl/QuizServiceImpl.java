@@ -24,12 +24,10 @@ public class QuizServiceImpl implements QuizService {
     public void saveQuiz(Quiz quiz) {
         quizRepo.save(quiz);
     }
+
     @Override
-    public int getLastID() {
-        try {
-            return quizRepo.getLastID();
-        } catch (Exception e) {
-            return -1;
-        }
+    public Quiz getQuizByQuizId(int quizId) {
+        return quizRepo.findQuizByQuizId(quizId);
     }
+
 }

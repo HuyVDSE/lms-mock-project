@@ -68,7 +68,10 @@
         </script>
     </div>
     <div style="max-width: 70%; margin: auto">
-        <form>
+        <form th:method="POST" th:action="@{/user/quiz/submit}">
+            <input type="hidden" name="size_question" th:value="${quiz_size}">
+            <input type="hidden" name="user_email" th:value="${#authentication.getName()}">
+            <input type="hidden" name="quiz_id" th:value="${quizId}">
             <div th:each="question, questionStat : ${questionList}">
                 <div th:id="${questionStat.count}" th:class="question"
                      style="border: 2px solid #17a2b8; margin-bottom: 1rem;">
@@ -78,15 +81,51 @@
                     </div>
                     <div style="margin-left: 1rem; margin-bottom: 1rem;"
                          th:each="answer, answerStat : ${question.answerList}">
-                        <input type="radio" th:name="${questionStat.count}">
+                        <input type="radio" th:name="'answer' + ${questionStat.count}" th:value="${answer.answer}">
                         <input disabled style="width:93%;border:none" th:name="answer + ${answer.question.questionID}"
                                th:value="${answer.answer}"/>
                     </div>
                 </div>
             </div>
             <div style="display: flex; flex-direction: row-reverse; margin-bottom: 10%">
-                <button class="myButton" type="submit">Finish</button>
+                <button class="myButton" type="submit" >Finish</button>
             </div>
+            <script type="text/javascript">
+                var answer = new String();
+
+                function getAnswer() {
+                    var radio = document.querySelectorAll('input[type=radio]');
+
+                    var check = false;
+                    for (var i = 0; i < 3; i++) {
+                        if (radio[i].checked) {
+                            answer = radio[i].value;
+                            check = true;
+                        } else {
+                            check = false;
+                        }
+                    }
+                    if(check == false) {
+                        answer = "Not answer";
+                    }
+
+                    for (var i = 4; i < radio.length; i + 4) {
+                        var check = false;
+                        for (var j = i; j < i + 3; j++) {
+                            if (radio[j].checked) {
+                                answer = answer + "@@" + radio[j].value;
+                                check = true;
+                            } else {
+                                check = false;
+                            }
+                        }
+                        if(check == false) {
+                            answer = answer + "@@Not answer";
+                        }
+                    }
+                    alert(answer);
+                }
+            </script>
         </form>
     </div>
 
@@ -107,17 +146,9 @@
             }
         }, 1000);
 
-
-        // Update the count down every 1 second
         var x = setInterval(function () {
-
-            // Get today's date and time
             var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
             var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -125,12 +156,8 @@
             if (hours == 0 && minutes == 0 && seconds <= 20) {
                 check = true;
             }
-
-            // Output the result in an element with id="demo"
             document.getElementById("demo").innerHTML = "Time: " + hours + "h : "
                 + minutes + "m : " + seconds + "s ";
-
-            // If the count down is over, write some text
             if (distance < 0) {
                 clearInterval(x);
                 clearInterval(y);

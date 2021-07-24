@@ -55,6 +55,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Quiz> listQuiz;
 
+    @OneToMany(mappedBy = "user")
+    private List<Result> listResult;
+
     public User() {
     }
 
