@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div style="display: flex; flex-direction: row-reverse; margin-bottom: 10%">
-                <button class="myButton" type="submit" >Finish</button>
+                <button id="submit" class="myButton" type="submit" >Finish</button>
             </div>
             <script type="text/javascript">
                 var answer = new String();
@@ -164,6 +164,7 @@
                 document.getElementById("demo").style.backgroundColor = 'red';
                 document.getElementById("demo").innerHTML = "TIMEOUT!!!";
                 document.getElementById("title").innerHTML = "Finish";
+                document.getElementById("submit").click();
             }
         }, 0);
     </script>

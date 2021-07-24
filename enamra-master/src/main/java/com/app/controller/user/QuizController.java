@@ -80,7 +80,6 @@ public class QuizController {
     @PostMapping("/submit")
     public ModelAndView Submit(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        List<Question> questionList = (List<Question>) session.getAttribute("questionList");
         User user = userService.findUserByEmail(request.getParameter("user_email"));
         Quiz quiz = quizService.getQuizByQuizId(Integer.parseInt(request.getParameter("quiz_id")));
         int size = Integer.parseInt(request.getParameter("size_question"));
@@ -101,10 +100,9 @@ public class QuizController {
         }
 
         ModelAndView model = new ModelAndView();
-//        model.addObject("questionList", questionService.getQuestionsBySectionId(sectionId));
-//        model.addObject("finish_time", total_time);
-        model.setViewName("user/do_quiz");
-        session.invalidate();;
+        model.setViewName("/home");
+        session.removeAttribute("time");;
+        session.removeAttribute("questionList");;
         return model;
     }
 }
