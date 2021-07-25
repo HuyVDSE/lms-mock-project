@@ -62,7 +62,9 @@
                                 <div sec:authentication="name">User info</div>
                             </a>
                             <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Points</a>
+                                <a th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}"
+                                   class="dropdown-item"
+                                   th:href="@{/user/history}">History</a>
                                 <a class="dropdown-item nav-link" th:href="@{/profile}" style="padding-left: 15%;">Profile</a>
                                 <a class="dropdown-item" href="#">Settings</a>
 

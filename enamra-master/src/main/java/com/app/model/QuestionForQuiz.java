@@ -23,4 +23,6 @@ public class QuestionForQuiz {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
+    @OneToOne(mappedBy = "questionForQuiz", cascade = CascadeType.ALL)
+    private Result resultList;
 }

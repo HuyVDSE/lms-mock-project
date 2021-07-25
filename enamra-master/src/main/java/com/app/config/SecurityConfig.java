@@ -62,7 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/home", "/v/**", "/g/topic/**", "/g/**", "/blog/**")
                 .fullyAuthenticated()
-                .antMatchers("/manager/quiz/**")
+
+                .antMatchers("/user/quiz/**", "/user/history")
+                .hasAnyAuthority("STUDENT")
+                .antMatchers("/manager/quiz/**", "/manager/history")
                 .hasAnyAuthority("TEACHER")
                 .antMatchers("/admin/course/last_10_course", "/admin/course/create")
                 .hasAnyAuthority("ADMIN")

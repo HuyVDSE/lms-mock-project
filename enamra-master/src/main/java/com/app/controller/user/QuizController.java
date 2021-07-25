@@ -1,9 +1,8 @@
 package com.app.controller.user;
 
 import com.app.model.*;
-import com.app.service.QuizService;
-import com.app.service.ResultService;
-import com.app.service.UserService;
+import com.app.repository.MarkRepo;
+import com.app.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +24,18 @@ public class QuizController {
 
     @Autowired
     private ResultService resultService;
+
     @Autowired
     private QuizService quizService;
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MarkService markService;
+
+    @Autowired
+    private QuestionForQuizService questionForQuizService;
 
     @GetMapping("/do_quiz/{quizId}")
     public ModelAndView DoQuiz(@PathVariable("quizId") int quizId,
@@ -78,7 +85,9 @@ public class QuizController {
         HttpSession session = request.getSession();
         User user = userService.findUserByEmail(request.getParameter("user_email"));
         Quiz quiz = quizService.getQuizByQuizId(Integer.parseInt(request.getParameter("quiz_id")));
+        List<QuestionForQuiz> questionForQuizList = questionForQuizService.getAllByQuizId(quiz.getQuizId());
         int size = Integer.parseInt(request.getParameter("size_question"));
+        List<Question> questionList = (List<Question>) session.getAttribute("questionList");
         String answer[] = new String[size];
         for (int i = 1; i <= size; i++) {
             if(request.getParameter("answer" + i) != null) {
@@ -87,11 +96,30 @@ public class QuizController {
                 answer[i - 1] = "Not answer";
             }
         }
+        float mark = 0;
+        float max = 10;
+        for (Question question : questionList) {
+            for(int i = 0; i < size; i++) {
+                for(Answer answerInList : question.getAnswerList()) {
+                    if(answerInList.getAnswer().equals(answer[i]) && answerInList.isStatus() == true) {
+                        mark = mark + max/size;
+                    }
+                }
+            }
+        }
+
+        Mark totalMark = new Mark();
+        totalMark.setQuiz(quiz);
+        totalMark.setUser(user);
+        totalMark.setMark(Math.round(mark*100.0)/100.0);
+        markService.save(totalMark);
+
         for (int i = 0; i < size; i++) {
             Result result = new Result();
-            result.setQuiz(quiz);
+            result.setQuestionForQuiz(questionForQuizList.get(i));
             result.setUser(user);
             result.setAnswer(answer[i]);
+            result.setMark(totalMark);
             resultService.saveResult(result);
         }
 

@@ -22,9 +22,13 @@ public class Result {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private QuestionForQuiz questionForQuiz;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "quiz_id")
-    private Quiz quiz;
+    @JoinColumn(name = "mark_id")
+    private Mark mark;
 
     private String answer;
 }

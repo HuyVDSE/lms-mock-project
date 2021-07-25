@@ -34,9 +34,9 @@ public class Quiz {
     @JoinColumn(name = "section_id")
     private Section section;
 
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<QuestionForQuiz> questionForQuizList;
 
-    @OneToMany(mappedBy = "quiz")
-    private List<Result> resultList;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<Mark> markList;
 }

@@ -17,6 +17,9 @@ public interface QuizRepo extends JpaRepository<Quiz, Integer> {
     @Query(value = "SELECT q FROM Quiz q WHERE q.section.section_id = ?1")
     List<Quiz> findAllBySectionId(Long sectionId);
 
+    @Query(value = "SELECT q FROM Quiz q WHERE q.user.id = ?1")
+    List<Quiz> findAllByByUserId(Long userId);
+
     Quiz findQuizByQuizId(int quizId);
 
 }

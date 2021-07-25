@@ -61,6 +61,8 @@ public class CourseController {
         model.addObject("course1", findCourse);
         model.addObject("section1", findSection);
         model.addObject("topicList1", topicList);
+        model.addObject("sectionId", id);
+
         return model;
     }
 

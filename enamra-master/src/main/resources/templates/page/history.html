@@ -50,21 +50,23 @@
                 <!-- General View  -->
                 <th>ID</th>
                 <th>Quiz Name</th> <!-- Student view Only -->    
-                <th>Gmail</th> <!-- Teacher Only -->
+                <th th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Gmail</th> <!-- Teacher Only -->
                 <th>Finish Time</th>
                 <th>Mark</th>
                 <th>View Detail</th>                            
                 </thead>
 
                 <tbody>
-                <tr>  
+                <tr th:each="mark, markStart : ${markList}">
                     <!-- General View  -->
-                    <td style="width:1%">ID</td>                  
-                    <td style="width:1%">Quiz Name</td>  <!-- Student view Only -->
-                    <td style="width:1%">Gmail</td> <!-- Teacher View -->
-                    <td style="width:1%">Finish Time</td>
-                    <td style="width:1%">Mark</td>
-                    <td style="width:1%">View Detail</td>                                
+                    <td style="width:1%" th:text="${markStart.count}"></td>
+                    <td style="width:1%" th:text="${mark.quiz.name}"></td>  <!-- Student view Only -->
+                    <td style="width:1%"
+                        th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}"
+                        th:text="${#authentication.getName()}"></td> <!-- Teacher View -->
+                    <td style="width:1%" th:text="${mark.timeSubmitted}">Finish Time</td>
+                    <td style="width:1%" th:text="${mark.mark}">Mark</td>
+                    <td style="width:1%"><a th:href="@{/page/history/detail/__${mark.markId}__}">View detail</a></td>
                                                          
                 </tr>
                 </tbody>

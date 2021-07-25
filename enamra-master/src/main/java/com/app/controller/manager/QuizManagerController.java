@@ -102,4 +102,124 @@ public class QuizManagerController {
         System.out.println("DONE");
         return model;
     }
+
+    @GetMapping("/delete_quiz/{quizId}/{sectionId}")
+    public ModelAndView DeleteQuiz(HttpServletRequest request, @PathVariable("sectionId") Long sectionId,@PathVariable("quizId") int quizId) {
+        String msg = request.getParameter("msg");
+        ModelAndView model = new ModelAndView();
+        model.addObject("sectionId",sectionId);
+        model.setViewName("page/QuizManager");
+        Quiz quiz = quizService.getQuizById(quizId);
+
+        List<QuestionForQuiz> listQuestion = questionForQuizService.getAllByQuizId(quizId);
+        for (QuestionForQuiz dto: listQuestion){
+            questionForQuizService.deleteQuestionForQuiz(dto);
+        }
+        quizService.deleteQuiz(quiz);
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+        model.addObject("quizList",quizService.getQuizsBySectionId(sectionId));
+        return model;
+    }
+    @GetMapping("/update_quiz/{quizId}/{sectionId}")
+    public ModelAndView UpdateQuiz(HttpServletRequest request, @PathVariable("sectionId") Long sectionId,@PathVariable("quizId") int quizId) {
+        String msg = request.getParameter("msg");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("manager/QuizDetail");
+
+
+        model.addObject("sectionId",sectionId);
+        Quiz quiz = quizService.getQuizById(quizId);
+        List<QuestionForQuiz> listQuestion = quiz.getQuestionForQuizList();
+        model.addObject("quiz",quiz);
+        model.addObject("ListQuestionForQuiz",listQuestion);
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+        return model;
+    }
+    @PostMapping("/update_quiz")
+    public ModelAndView UpdateQuiz(HttpServletRequest request) throws ParseException {
+        int quizId = Integer.parseInt(request.getParameter("txtquizId"));
+        String quizName = request.getParameter("txtQuizName");
+        String timeOfQuiz = request.getParameter("TimeOfQuiz");
+        String startDate = request.getParameter("trip_start");
+        String startTime = request.getParameter("appt_time");
+        String endDate = request.getParameter("trip_end");
+        String endTime = request.getParameter("end_time");
+        Long sectionId = Long.parseLong(request.getParameter("sectionId"));
+
+        Quiz quiz = quizService.getQuizByQuizId(quizId);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        quiz.setEndDate(new java.sql.Timestamp(format.parse(endDate+" "+endTime).getTime()));
+
+        quiz.setName(quizName);
+        quiz.setStartDate(new java.sql.Timestamp(format.parse(startDate+" "+startTime).getTime()));
+
+        quiz.setTotalTime(Integer.parseInt(timeOfQuiz));
+
+        quizService.updateQuiz(quiz);
+        String msg = request.getParameter("msg");
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("msg","Update quiz successfully");
+
+//
+        List<QuestionForQuiz> listQuestion = quiz.getQuestionForQuizList();
+        if (listQuestion.size()<=1){
+            for (QuestionForQuiz dto : listQuestion){
+                questionForQuizService.deleteQuestionForQuiz(dto);
+            }
+            quizService.deleteQuiz(quiz);
+            model.setViewName("manager/QuizManager");
+        } else {
+            model.setViewName("manager/QuizDetail");
+        }
+        model.addObject("quiz",quiz);
+        model.addObject("ListQuestionForQuiz",listQuestion);
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+//
+        model.addObject("sectionId",sectionId);
+        return model;
+    }
+
+    @GetMapping("/delete_questionInQuiz/{quizId}/{sectionId}/{questionId}")
+    public ModelAndView DeleteQuestionInQuiz(HttpServletRequest request, @PathVariable("sectionId") Long sectionId,@PathVariable("quizId") int quizId,
+                                             @PathVariable("questionId") int questionId) {
+        String msg = request.getParameter("msg");
+        ModelAndView model = new ModelAndView();
+        Quiz quiz = quizService.getQuizByQuizId(quizId);
+        model.addObject("sectionId",sectionId);
+        List<QuestionForQuiz> listQuestion = quiz.getQuestionForQuizList();
+        model.addObject("quiz",quiz);
+
+        if (listQuestion.size()<=1){
+            for (QuestionForQuiz dto : listQuestion){
+                questionForQuizService.deleteQuestionForQuiz(dto);
+            }
+            quizService.deleteQuiz(quiz);
+            model.setViewName("manager/QuizManager");
+        } else {
+            questionForQuizService.deleteQuestionInQuiz(questionId,quizId);
+            quiz = quizService.getQuizByQuizId(quizId);
+            listQuestion = quiz.getQuestionForQuizList();
+            for (QuestionForQuiz x : listQuestion){
+                if (x.getQuestion().getQuestionID()==questionId){
+                    listQuestion.remove(x);
+                    break;
+                }
+            }
+            model.setViewName("manager/QuizDetail");
+        }
+        model.addObject("ListQuestionForQuiz",listQuestion);
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
+
+        return model;
+    }
 }

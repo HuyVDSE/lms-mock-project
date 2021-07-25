@@ -6,6 +6,8 @@ import com.app.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResultServiceImpl implements ResultService {
 
@@ -15,5 +17,10 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public void saveResult(Result result) {
         resultRepo.save(result);
+    }
+
+    @Override
+    public List<Result> findAllByMarkId(int markId) {
+        return resultRepo.findAllByMarkId(markId);
     }
 }

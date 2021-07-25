@@ -74,16 +74,27 @@
                     <td th:text="${quiz.getTotalTime()}">
                     </td>
 
+<!--                    <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">-->
+<!--                        <a target="_blank" th:href="@{/manager/quiz/delete_quiz/}">Delete</a>-->
+<!--                    </td>-->
                     <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
-                        <a target="_blank" th:href="@{/manager/quiz/delete_quiz/}">Delete</a>
+                        <a  th:href="@{/manager/quiz/delete_quiz/__${quiz.getQuizId()}__/__${sectionId}__}">Delete</a>
                     </td>
-                    <td th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">View
+<!--                    <td >View-->
+<!--                    </td>-->
+<!--                    <td th:text="${quiz.getUser()}">-->
+<!--                    </td>-->
+                    <td th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
+                        <a  th:href="@{/manager/history/__${quiz.getQuizId()}__}">View mark</a>
                     </td>
                     <td th:text="${quiz.getUser()}"
                         th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
                     </td>
+<!--                    <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">-->
+<!--                        <a target="_blank" th:href="@{/manager/quiz/update_quiz/}">Update</a>-->
+<!--                    </td>-->
                     <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">
-                        <a target="_blank" th:href="@{/manager/quiz/update_quiz/}">Update</a>
+                        <a th:href="@{/manager/quiz/update_quiz/__${quiz.getQuizId()}__/__${sectionId}__}">Update</a>
                     </td>
                     <td style="width:1%" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}">
                         <form th:action="@{/user/quiz/do_quiz/__${quiz.getQuizId()}__}">

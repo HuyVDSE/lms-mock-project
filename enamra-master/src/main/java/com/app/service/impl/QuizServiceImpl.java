@@ -30,4 +30,23 @@ public class QuizServiceImpl implements QuizService {
         return quizRepo.findQuizByQuizId(quizId);
     }
 
+    @Override
+    public void deleteQuiz(Quiz quiz) {
+        quizRepo.delete(quiz);
+    }
+
+    @Override
+    public Quiz getQuizById(int quizId) {
+        return quizRepo.getOne(quizId);
+    }
+
+    @Override
+    public void updateQuiz(Quiz quiz) {
+        quizRepo.save(quiz);
+    }
+
+    @Override
+    public List<Quiz> getQuizsByUserId(Long userId) {
+        return quizRepo.findAllByByUserId(userId);
+    }
 }
