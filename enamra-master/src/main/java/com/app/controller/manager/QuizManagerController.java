@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -131,6 +132,13 @@ public class QuizManagerController {
 
         model.addObject("sectionId",sectionId);
         Quiz quiz = quizService.getQuizById(quizId);
+        String[] start = (quiz.getStartDate()+"").split(" ");
+        model.addObject("start_time",start[1]);
+        model.addObject("start_date",start[0]);
+        String[] end = (quiz.getEndDate()+"").split(" ");
+        model.addObject("end_time",end[1]);
+        model.addObject("end_date",end[0]);
+
         List<QuestionForQuiz> listQuestion = quiz.getQuestionForQuizList();
         model.addObject("quiz",quiz);
         model.addObject("ListQuestionForQuiz",listQuestion);
