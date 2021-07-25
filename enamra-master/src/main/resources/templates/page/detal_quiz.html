@@ -54,12 +54,39 @@
                 </div>
                 <div style="margin-left: 1rem; margin-bottom: 1rem;"
                      th:each="answer, answerStat : ${question.answerList}">
-                    <input type="radio" th:name="'answer' + ${questionStat.count}" th:value="${answer.answer}">
-                    <input disabled style="width:93%;border:none" th:name="answer + ${answer.question.questionID}"
-                           th:value="${answer.answer}"/>
+
+                    <div th:each="result: ${resultList}">
+                        <div th:if="${result.questionForQuiz.question.questionID==question.questionID}">
+                            <div style="width:93%;border:none;background-color: #72F693" th:if="${(result.answer==answer.answer)&&answer.status}">
+                                <input type="radio" checked="checked"
+                                       th:name="'answer' + ${questionStat.count}"
+                                       th:value="${answer.answer}">
+                                <label
+                                        th:name="answer + ${answer.question.questionID}"
+                                        th:text="${answer.answer}"/>
+                            </div>
+                            <div style="width:93%;border:none;background-color: #F67474" th:if="${(result.answer==answer.answer)&&(!answer.status)}">
+                                <input  type="radio" checked="checked"
+                                        th:name="'answer' + ${questionStat.count}"
+                                        th:value="${answer.answer}">
+                                <label
+                                        th:name="answer + ${answer.question.questionID}"
+                                        th:text="${answer.answer}"/>
+                            </div>
+                            <div th:unless="${result.answer==answer.answer}">
+                                <input type="radio" th:name="'answer' + ${questionStat.count}"
+                                       th:value="${answer.answer}">
+                                <input disabled style="width:93%;border:none"
+                                       th:name="answer + ${answer.question.questionID}"
+                                       th:value="${answer.answer}"/>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div th:each="answer : ${question.answerList}">
-                    <input disabled style="width:93%;border:none" type="text" th:if="${answer.status}" th:value="'Correct answer: ' + ${answer.answer}"/>
+                    <input disabled style="width:93%;border:none" type="text" th:if="${answer.status}"
+                           th:value="'Correct answer: ' + ${answer.answer}"/>
                 </div>
             </div>
         </div>

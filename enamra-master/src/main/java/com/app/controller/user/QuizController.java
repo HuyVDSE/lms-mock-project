@@ -122,11 +122,14 @@ public class QuizController {
             result.setMark(totalMark);
             resultService.saveResult(result);
         }
-
+        List<Result> resultList = resultService.findAllByMarkId(totalMark.getMarkId());
         ModelAndView model = new ModelAndView();
-        model.setViewName("/home");
-        session.removeAttribute("time");;
-        session.removeAttribute("questionList");;
+        session.removeAttribute("time");
+        session.removeAttribute("questionList");
+        model.addObject("mark", totalMark.getMark());
+        model.addObject("questionList", questionList);
+        model.addObject("resultList", resultList);
+        model.setViewName("page/detal_quiz");
         return model;
     }
 
