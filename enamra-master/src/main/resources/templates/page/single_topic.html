@@ -4,7 +4,24 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="/fragments/header :: header-css-and-meta"/>
+    <script src="https://kit.fontawesome.com/73c36445f4.js" crossorigin="anonymous"></script>
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+    </script>
 
+    <style>
+        #canvas_container {
+            width: 800px;
+            height: 450px;
+            overflow: auto;
+        }
+
+        #canvas_container {
+            background: #333;
+            text-align: center;
+            border: solid 3px;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -49,7 +66,7 @@
                 </iframe>
             </div>
             <div class="col-md-9 col-sm-9">
-                <p>About the topic</p>
+                <h4>About the topic</h4>
                 <p th:text="${topic_single.topic_description}"></p>
             </div>
             <br>
@@ -89,7 +106,113 @@
 
 
                     </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2222222</div>
+                    <th:block th:if="${topic_single.topic_readingPDF != 'None'}">
+                        <div style="max-width: 700px;" class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div id="my_pdf_viewer">
+                                <div style="width: 700px; height: 800px; margin: auto;" id="canvas_container">
+                                    <canvas id="pdf_renderer"></canvas>
+                                </div>
+
+                                <div style="margin-top: 1rem; display: flex; justify-content: center" class="input-group" id="navigation_controls">
+                                    <button class="w3-btn w3-white w3-border" id="go_previous">Previous</button>
+                                    <input id="current_page" value="1" >
+                                    <button class="w3-btn w3-white w3-border" id="go_next">Next</button>
+                                </div>
+
+                                <div style="margin: 0.5rem; display: flex; justify-content: center" id="zoom_controls">
+                                    <button id="zoom_in" class="bi bi-zoom-out">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                    <button id="zoom_out" class="bi bi-zoom-in">
+                                        <i class="fas fa-search-minus"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <script th:inline="javascript">
+                                var myState = {
+                                    pdf: null,
+                                    currentPage: 1,
+                                    zoom: 1
+                                }
+
+                                //console.log('/upload_files/' + [[${topic_single.topic_readingPDF}]]);
+                                pdfjsLib.getDocument('/upload_files/' + [[${topic_single.topic_readingPDF}]]).then((pdf) => {
+
+                                    myState.pdf = pdf;
+                                    render();
+
+                                }).catch(error => console.log(">>", error));
+
+                                function render() {
+                                    myState.pdf.getPage(myState.currentPage).then((page) => {
+
+                                        var canvas = document.getElementById("pdf_renderer");
+                                        var ctx = canvas.getContext('2d');
+
+                                        var viewport = page.getViewport(myState.zoom);
+
+                                        canvas.width = viewport.width;
+                                        canvas.height = viewport.height;
+
+                                        page.render({
+                                            canvasContext: ctx,
+                                            viewport: viewport
+                                        });
+                                    });
+                                }
+
+                                document.getElementById('go_previous').addEventListener('click', (e) => {
+                                    if(myState.pdf == null || myState.currentPage == 1)
+                                        return;
+                                    myState.currentPage -= 1;
+                                    document.getElementById("current_page").value = myState.currentPage;
+                                    render();
+                                });
+
+                                document.getElementById('go_next').addEventListener('click', (e) => {
+                                    if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+                                        return;
+                                    myState.currentPage += 1;
+                                    document.getElementById("current_page").value = myState.currentPage;
+                                    render();
+                                });
+
+                                document.getElementById('current_page').addEventListener('keypress', (e) => {
+                                    if(myState.pdf == null) return;
+
+                                    // Get key code
+                                    var code = (e.keyCode ? e.keyCode : e.which);
+
+                                    // If key code matches that of the Enter key
+                                    if(code == 13) {
+                                        var desiredPage =
+                                            document.getElementById('current_page').valueAsNumber;
+
+                                        if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                                            myState.currentPage = desiredPage;
+                                            document.getElementById("current_page").value = desiredPage;
+                                            render();
+                                        }
+                                    }
+                                });
+
+                                document.getElementById('zoom_in').addEventListener('click', (e) => {
+                                    if(myState.pdf == null) return;
+                                    myState.zoom += 0.5;
+                                    render();
+                                });
+
+                                document.getElementById('zoom_out').addEventListener('click', (e) => {
+                                    if(myState.pdf == null) return;
+                                    myState.zoom -= 0.5;
+                                    render();
+                                });
+                            </script>
+                        </div>
+                    </th:block>
+
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3333333333</div>
                 </div>
 

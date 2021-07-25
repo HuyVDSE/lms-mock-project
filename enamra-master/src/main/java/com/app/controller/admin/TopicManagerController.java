@@ -6,16 +6,17 @@ import com.app.model.Course;
 import com.app.model.Section;
 import com.app.model.Topic;
 import com.app.repository.CommentRepository;
-import com.app.repository.SectionRepository;
 import com.app.repository.TopicRepository;
 import com.app.service.ICourseService;
 import com.app.service.ISectionService;
 import com.app.service.ITopicService;
+import com.app.service.TopicPDFService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -40,6 +41,9 @@ public class TopicManagerController {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private TopicPDFService topicPDFService;
+
 
     @GetMapping("/addTopic_for_section/{sectionId}")
     public String addTopicPage(@PathVariable("sectionId") Long sectionId, Model model) {
@@ -49,7 +53,7 @@ public class TopicManagerController {
     }
 
     @PostMapping("/addTopic_for_section")
-    public String saveNewTopic(@Valid Topic topic, BindingResult bindingResult, Model model) {
+    public String saveNewTopic(@Valid Topic topic, MultipartFile file, BindingResult bindingResult, Model model) {
         String youtubeLinkRegex = "^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$";
 
         if (!topic.getVideo_path().matches(youtubeLinkRegex)) {
@@ -62,10 +66,17 @@ public class TopicManagerController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "Something Went Wrong");
             return "admin/topicForm";
-        }
+        } else {
+            if (file == null) {
+                topic.setTopic_readingPDF("None");
+            } else {
+                topic.setTopic_readingPDF(file.getOriginalFilename());
+                topicPDFService.savePDF(file);
+            }
 
-        topicService.saveTopic(topic);
-        model.addAttribute("msg", " Topic Created Successfully");
+            topicService.saveTopic(topic);
+            model.addAttribute("msg", " Topic Created Successfully");
+        }
         return "admin/topicForm";
     }
 
@@ -103,9 +114,10 @@ public class TopicManagerController {
     }
 
     @PostMapping("/update")
-    public String saveUpdateTopic(@Valid Topic topic, BindingResult bindingResult, Model model) {
+    public String saveUpdateTopic(@Valid Topic topic, BindingResult bindingResult, Model model, MultipartFile file) {
         String youtubeLinkRegex = "^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$";
 
+        ModelAndView modelAndView = new ModelAndView();
         if (!topic.getVideo_path().matches(youtubeLinkRegex)) {
             bindingResult.rejectValue("video_path", "error.topic",
                     "Invalid youtube link!!");
@@ -116,6 +128,16 @@ public class TopicManagerController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "Something went wrong!!");
             return "admin/updateTopic";
+        } else {
+            Topic oldTopic = topicService.findTopicByID(topic.getId());
+            String filePDF = oldTopic.getTopic_readingPDF();
+
+            if (file == null) {
+                topic.setTopic_readingPDF(filePDF);
+            } else {
+                topic.setTopic_readingPDF(file.getOriginalFilename());
+                topicPDFService.savePDF(file);
+            }
         }
 
         topicService.saveTopic(topic);

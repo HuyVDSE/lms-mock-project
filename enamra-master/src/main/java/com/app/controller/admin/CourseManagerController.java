@@ -105,7 +105,7 @@ public class CourseManagerController {
             }
 
             courseService.saveCourse(course);
-            model.addObject("msg", "Course created successfully");
+            model.addObject("msg", "Course Update successfully");
             model.setViewName("admin/update_course");
         }
         return model;

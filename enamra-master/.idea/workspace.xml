@@ -4,21 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- add download template">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/app/service/TopicPDFService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/TopicPDFServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/QuestionManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/QuestionRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/QuestionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/config/ResourceWebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/config/ResourceWebConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/CourseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/CourseManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/TopicManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/TopicManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Topic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/create_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/single_topic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/topicForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/topicForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/updateTopic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/updateTopic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/config/ResourceWebConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/config/ResourceWebConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/CourseManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/CourseManagerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/QuestionRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/TopicManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/TopicManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/model/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/model/Topic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/repository/AnswerRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/repository/AnswerRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/AnswerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/AnswerService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/QuestionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/AnswerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/impl/AnswerServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/service/impl/QuestionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/upload_files/Template_Quiz.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/single_topic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/topicForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/topicForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/updateTopic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/updateTopic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +43,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -88,19 +104,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\tring\Documents\GitHub\lms-mock-project\enamra-master\src\main\resources\templates\admin" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.app.config" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EnamraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="enamra" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.EnamraApplication" />
@@ -147,6 +155,15 @@
       <updated>1626745631367</updated>
       <workItem from="1626745639272" duration="14095000" />
       <workItem from="1626770034855" duration="5237000" />
+      <workItem from="1626942184101" duration="7059000" />
+      <workItem from="1626950317431" duration="488000" />
+      <workItem from="1626960219969" duration="565000" />
+      <workItem from="1627127151493" duration="8374000" />
+      <workItem from="1627139734510" duration="3482000" />
+      <workItem from="1627194527923" duration="94000" />
+      <workItem from="1627219086265" duration="7518000" />
+      <workItem from="1627232958606" duration="134000" />
+      <workItem from="1627235587792" duration="684000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>
@@ -183,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626793597929</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- fix attribute name of update question function">
+      <created>1626841457828</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1626841457828</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +233,18 @@
     <MESSAGE value="- update Class name" />
     <MESSAGE value="- add download template" />
     <MESSAGE value="- fix conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="- fix conflict" />
+    <MESSAGE value="- fix attribute name of update question function" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix attribute name of update question function" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/app/controller/admin/TopicManagerController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

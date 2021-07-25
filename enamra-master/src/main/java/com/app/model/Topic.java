@@ -26,6 +26,8 @@ public class Topic {
 
     private String video_path;
 
+    private String topic_readingPDF;
+
     @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
     private Collection<Comments> comments;
 
