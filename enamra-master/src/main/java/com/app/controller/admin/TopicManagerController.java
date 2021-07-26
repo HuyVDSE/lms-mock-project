@@ -67,7 +67,7 @@ public class TopicManagerController {
             model.addAttribute("error", "Something Went Wrong");
             return "admin/topicForm";
         } else {
-            if (file == null) {
+            if (file.getOriginalFilename().equals("")) {
                 topic.setTopic_readingPDF("None");
             } else {
                 topic.setTopic_readingPDF(file.getOriginalFilename());
@@ -132,7 +132,7 @@ public class TopicManagerController {
             Topic oldTopic = topicService.findTopicByID(topic.getId());
             String filePDF = oldTopic.getTopic_readingPDF();
 
-            if (file == null) {
+            if (file.getOriginalFilename().equals("")) {
                 topic.setTopic_readingPDF(filePDF);
             } else {
                 topic.setTopic_readingPDF(file.getOriginalFilename());
