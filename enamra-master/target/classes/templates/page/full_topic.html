@@ -58,7 +58,8 @@
                    class="nav-link list-group-item" th:text="${topic.topic_name}"></a>
             </ul>
             <br><br>
-            <form method="GET" th:action="@{/user/quiz/quiz_list/__${sectionId}__}">
+            <form th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}"
+                    method="GET" th:action="@{/user/quiz/quiz_list/__${sectionId}__}">
                 <input class="myButton" type="submit" name="Do Quiz" value="Do Quiz"/>
             </form>
         </div>
