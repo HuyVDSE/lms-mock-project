@@ -32,13 +32,15 @@
 <body>
 
 <div class="container-fluid">
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
     <div class="row justify-content-center">
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
 
         <div style="padding-bottom: 10%" class="col-xl-10 col-sm-6 col-md-6 col-lg-10">
             <!-- Default form register -->
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-            <div th:if="${msg}" class="alert alert-info"><a th:href="@{/}">Go to Home page</a></div>
+<!--            <div th:if="${msg}" class="alert alert-info"><a th:href="@{/}">Go to Home page</a></div>-->
             <p style="text-align: center; padding: 3rem" class="h4 mb-4">Question management</p>
 
             <button style="margin-bottom: 5%;" class="myButton" onclick="myFunction()">Create new question</button>

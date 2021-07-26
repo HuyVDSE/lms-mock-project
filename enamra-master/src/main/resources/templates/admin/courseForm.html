@@ -16,9 +16,9 @@
             <!-- Default form contact -->
             <h3 class="h4 mb-4">Create Course</h3>
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-            <div class="alert alert-success" role="alert" th:if="${msg}">
-                <a class="nav-link" href="/admin/course">go course page</a>
-            </div>
+<!--            <div class="alert alert-success" role="alert" th:if="${msg}">-->
+<!--                <a class="nav-link" href="/admin/course">go course page</a>-->
+<!--            </div>-->
             <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
             <form class="text-center border border-light p-5" method="POST"
                   th:action="@{/admin/course/create}" th:object="${course}"
