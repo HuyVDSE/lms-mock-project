@@ -158,10 +158,6 @@ public class TopicManagerController {
         return model;
     }
 
-
-    /// single_topic
-
-
     @GetMapping("/single_topic/{id}")
     public ModelAndView singleTopic(@PathVariable("id") Long id) {
         ModelAndView model = new ModelAndView("admin/single_topic");
@@ -179,6 +175,4 @@ public class TopicManagerController {
         model.addObject("commentList", commentsList);
         return model;
     }
-
-
 }
