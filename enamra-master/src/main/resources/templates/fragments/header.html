@@ -342,7 +342,7 @@
     </div>-->
     <div class="row" sec:authorize="isAuthenticated()">
         <div class="col-3" th:each="first : ${recently_4}">
-            <a target="_blank" th:href="@{/v/course/full/__${first.course_id}__}" class="nav-link">
+            <a  th:href="@{/v/course/full/__${first.course_id}__}" class="nav-link">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${first.course_name}">Course Name </h5>
@@ -361,7 +361,7 @@
     </div>
     <div class="row" >
         <div class="col-3" th:each="second : ${second_4}">
-            <a target="_blank" th:href="@{/v/course/full/__${second.course_id}__}" class="nav-link">
+            <a  th:href="@{/v/course/full/__${second.course_id}__}" class="nav-link">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${second.course_name}">Course Name </h5>
