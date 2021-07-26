@@ -12,14 +12,6 @@ public interface ManagerRepo extends JpaRepository<User,Long> {
 
 
     @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=5 ", nativeQuery = true)
-    List<User> findAll_ChiefInstructor_ByRoles();
-
-
-    @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=6 ", nativeQuery = true)
-    List<User> findAll_Instructor_ByRoles();
-
-
-
+            "inner join role r on(ur.role_id=r.role_id) where r.role='STUDENT'", nativeQuery = true)
+    List<User> findAllStudentByRoles();
 }

@@ -9,16 +9,15 @@ import java.util.List;
 public interface AdminService {
 
     void saveAdmin(User user);
-    void saveHR(User user);
-    void saveManager(User user);
+    void saveStudent(User user);
+    void saveTeacher(User user);
 
-
-    List<User> getAllAdmin();  // testing ok
-    List<User> getAllHR();
-    List<User> getAllManager();
+    List<User> getAllAdmins();  // testing ok
+    List<User> getAllStudents();
+    List<User> getAllTeachers();
     void deleteAdminByID(Long id);
-    void deleteManagerByID(Long id);
-    void deleteHR_ByID(Long id);
+    void deleteTeacherByID(Long id);
+    void deleteStudentByID(Long id);
 
 
 

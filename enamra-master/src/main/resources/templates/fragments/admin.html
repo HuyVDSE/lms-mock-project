@@ -1,5 +1,4 @@
-<html
-        xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <div th:replace="/header :: header-css-and-meta"></div>
@@ -7,7 +6,7 @@
 
 </head>
 <body>
-<div th:fragment="create_admin">
+<div th:fragment="manage_admin">
     <br>
     <hr>
     <h2> All Admin</h2>
@@ -40,7 +39,7 @@
 </div>
 
 
-<div th:fragment="create_manager">
+<div th:fragment="manage_teacher">
     <br>
     <hr>
     <h2> Teacher</h2>
@@ -72,7 +71,7 @@
     <br>
 </div>
 
-<div th:fragment="create_and_manage_HR">
+<div th:fragment="manage_student">
     <table class="table table-striped">
         <thead>
         <th scope="row">#ID</th>
@@ -143,9 +142,9 @@
                 </div>
                 <div class="tab-pane fade" id="role" role="tabpanel" aria-labelledby="role-tab">
                     <h2>Student</h2>
-                    <div th:replace="/fragments/admin :: create_and_manage_HR"></div>
-                    <div th:replace="/fragments/admin :: create_manager"></div>
-                    <div th:replace="/fragments/admin :: create_admin"></div>
+                    <div th:replace="/fragments/admin :: manage_student"></div>
+                    <div th:replace="/fragments/admin :: manage_teacher"></div>
+                    <div th:replace="/fragments/admin :: manage_admin"></div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <h2>Contact</h2>

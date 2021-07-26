@@ -12,18 +12,16 @@ import java.util.List;
 public interface AdminRepo extends JpaRepository<User,Long> {
 
     @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=1 ", nativeQuery = true)
-    List<User> findAllAdminByRoles();
+            "inner join role r on(ur.role_id=r.role_id) where r.role='ADMIN'", nativeQuery = true)
+    List<User> findAllAdmins();
 
 
     @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=3", nativeQuery = true)
-    List<User> findAllManagerByRoles();
+            "inner join role r on(ur.role_id=r.role_id) where r.role='TEACHER'", nativeQuery = true)
+    List<User> findAllTeachers();
 
 
     @Query(value = "select *  from user u inner join user_role ur on(u.id=ur.user_id) " +
-            "inner join role r on(ur.role_id=r.role_id) where r.role_id=2 ", nativeQuery = true)
-    List<User> findAllHR_By_Roles();
-
-
+            "inner join role r on(ur.role_id=r.role_id) where r.role='STUDENT'", nativeQuery = true)
+    List<User> findAllStudents();
 }

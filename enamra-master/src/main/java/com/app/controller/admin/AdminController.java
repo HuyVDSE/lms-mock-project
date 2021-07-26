@@ -1,46 +1,21 @@
 package com.app.controller.admin;
 
 
-import com.app.model.Answer;
-import com.app.model.Question;
-import com.app.model.Section;
 import com.app.model.User;
-import com.app.repository.QuestionRepo;
 import com.app.service.*;
-import com.app.service.impl.SectionService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.apache.poi.ss.usermodel.Row;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.*;
-import java.nio.file.FileSystemException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
@@ -71,9 +46,7 @@ public class AdminController {
         model.addObject("user", new User());
         model.setViewName("admin/signup");
         return model;
-
     }
-
 
     @PostMapping("/signup")
     public ModelAndView signup(@Valid User user, BindingResult bindingResult) {
@@ -98,7 +71,7 @@ public class AdminController {
     @GetMapping("/list")
     public ModelAndView adminList() {
         ModelAndView model = new ModelAndView("admin/home");
-        List<User> adminList = adminService.getAllAdmin();
+        List<User> adminList = adminService.getAllAdmins();
         model.addObject("adminLIST", adminList);
         return model;
     }

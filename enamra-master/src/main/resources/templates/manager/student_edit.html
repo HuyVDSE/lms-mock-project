@@ -12,11 +12,13 @@
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
             <!-- Default form register -->
-            <form class="text-center border border-light p-5" method="POST" th:action="@{/manager/create/instructor}" th:object="${user}">
+            <form class="text-center border border-light p-5" method="POST" th:action="@{/manager/edit/student}"
+                  th:object="${user}">
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-<!--                <div th:if="${msg}" class="alert alert-info"><a th:href="@{/manager_dashboard}">Go to Dashboard</a></div>-->
-                <p class="h4 mb-4">Instructor Sign up</p>
-
+                <div th:if="${msg}" class="alert alert-info"><a th:href="@{/manager_dashboard}">Go to Dashboard</a>
+                </div>
+                <p class="h4 mb-4">Student Update</p>
+                <input type="hidden" th:field="*{id}">
                 <div class="form-row mb-4">
                     <div class="col">
                         <!-- First name -->
@@ -29,34 +31,42 @@
                 </div>
                 <!--username-->
                 <input type="text" th:field="*{username}" class="form-control mb-4" placeholder="username">
-
                 <!-- E-mail -->
-                <input type="email" th:field="*{email}" class="form-control mb-4" placeholder="E-mail">
+                <input type="email" th:field="*{email}" class="form-control mb-4" placeholder="E-mail" readonly>
                 <small class="form-text text-muted mb-4">
                     <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}"
                           th:errors="*{email}"></span>
                 </small>
+                <!-- Current Password -->
+                <input type="password" name="oldPassword" class="form-control mb-4" placeholder="Old password">
+                <input type="hidden" th:value="${id}" name="id">
+                <small class="form-text text-muted mb-4">
+                    <input disabled="disabled" id="inputtext"
+                           style="border:none; display:none; width: 100%; text-align: center"
+                           class="text-danger align-middle" type="text" th:value="${passworderror}">
+                    <script type="text/javascript">
+                        var input = document.getElementById("inputtext");
+                        if (input.value === "") {
+                            input.style.display = "none";
+                        } else {
+                            input.style.display = "block";
+                        }
+                    </script>
+                </small>
                 <!-- Password -->
-                <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+                <input type="password" th:field="*{password}" class="form-control" placeholder="New Password">
                 <small class="form-text text-muted mb-4">
                     At least 8 characters and 1 digit
                 </small>
-
                 <!-- Confirm password  -->
-                <input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="confirm password">
+                <input type="password" th:field="*{confirmPassword}" class="form-control"
+                       placeholder="Confirm password">
                 <small class="form-text text-muted mb-4">
                     <span class="text-danger align-middle" th:if="${#fields.hasErrors('password')}"
                           th:errors="*{password}"></span>
                 </small>
-
-                <!-- Newsletter -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="Newsletter">
-                    <label class="custom-control-label" for="Newsletter">Subscribe to our newsletter</label>
-                </div>
-
                 <!-- Sign up button -->
-                <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+                <button class="btn btn-info my-4 btn-block" type="submit">Save</button>
                 <hr>
                 <!-- Terms of service -->
                 <p>By clicking
@@ -68,6 +78,9 @@
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
     </div>
 </div>
+<br>
+<div th:replace="/fragments/header :: footer-Copyright"></div>
+<br>
 <div th:replace="/fragments/header :: all-js"></div>
 </body>
 </html>

@@ -82,7 +82,7 @@ public class Auth_Controller {
         if (bindingResult.hasErrors()) {
             model.setViewName("admin_cc/hr_signup");
         } else {
-            adminService.saveHR(user);
+            adminService.saveStudent(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new User());
             model.setViewName("admin_cc/hr_signup");
@@ -113,7 +113,7 @@ public class Auth_Controller {
         if (bindingResult.hasErrors()) {
             model.setViewName("admin_cc/manager_signup");
         } else {
-            adminService.saveManager(user);
+            adminService.saveTeacher(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new User());
             model.setViewName("admin_cc/manager_signup");
@@ -130,13 +130,13 @@ public class Auth_Controller {
 
     @GetMapping("/del/hr/{id}")
     public ModelAndView deleteHR(@PathVariable("id") Long id) {
-        adminService.deleteHR_ByID(id);
+        adminService.deleteStudentByID(id);
         return new ModelAndView("redirect:/admin_Dashboard");
     }
 
     @GetMapping("/del/manager/{id}")
     public ModelAndView deleteManger(@PathVariable("id") Long id) {
-        adminService.deleteManagerByID(id);
+        adminService.deleteTeacherByID(id);
         return new ModelAndView("redirect:/admin_Dashboard");
     }
 

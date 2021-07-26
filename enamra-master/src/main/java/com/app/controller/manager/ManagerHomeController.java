@@ -16,15 +16,11 @@ public class ManagerHomeController {
     @Autowired
     private ManagerService managerService;
 
-
     @GetMapping("/manager_dashboard")
-    public ModelAndView manager_DashBoard(){
+    public ModelAndView loadDashboard(){
         ModelAndView model = new ModelAndView("manager/manager_dashboard");
-        List<User> listof_Chief_Instructor = managerService.getAllChief_Instructor();
-        List<User> listOf_Instrutor = managerService.getAllInstructor();
-        model.addObject("ci", listof_Chief_Instructor);
-        model.addObject("instructor", listOf_Instrutor);
+        List<User> students = managerService.getAllStudents();
+        model.addObject("studentList", students);
         return model;
     }
-
 }

@@ -19,12 +19,12 @@ public class Admin_Dash_Controller {
     @GetMapping("/admin_Dashboard")
     public ModelAndView adminDashBoard() {
         ModelAndView model = new ModelAndView("admin_cc/admin_dashboard");
-        List<User> adminList = adminService.getAllAdmin();
-        List<User> hrList = adminService.getAllHR();
-        List<User> ManagerList = adminService.getAllManager();
-        model.addObject("AdminList", adminList);
-        model.addObject("hrList", hrList);
-        model.addObject("managerList", ManagerList);
+        List<User> admins = adminService.getAllAdmins();
+        List<User> students = adminService.getAllStudents();
+        List<User> teachers = adminService.getAllTeachers();
+        model.addObject("AdminList", admins);
+        model.addObject("hrList", students);
+        model.addObject("managerList", teachers);
         return model;
     }
 

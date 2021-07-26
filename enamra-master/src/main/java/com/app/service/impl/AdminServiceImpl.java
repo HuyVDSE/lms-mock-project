@@ -5,7 +5,6 @@ import com.app.model.Role;
 import com.app.model.User;
 import com.app.repository.AdminRepo;
 import com.app.repository.RoleRepository;
-import com.app.repository.UserRepository;
 import com.app.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,12 +20,9 @@ import java.util.List;
 @Transactional
 public class AdminServiceImpl implements AdminService {
 
-    @Qualifier("userRepository")
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
+
     @Autowired
     private BCryptPasswordEncoder encoder;
 
@@ -35,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
     private AdminRepo adminRepo;
 
     @Override
-    public void saveAdmin(User user){
+    public void saveAdmin(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setActive(0);
         Role admin_role = roleRepository.findByRole("ADMIN");
@@ -43,46 +39,51 @@ public class AdminServiceImpl implements AdminService {
         adminRepo.save(user);
     }
 
-
     @Override
-    public void saveHR(User user) {
+    public void saveStudent(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setActive(0);
-        Role hr_role = roleRepository.findByRole("STUDENT");
-        user.setRoles(new HashSet<Role>(Arrays.asList(hr_role)));
+        Role studentRole = roleRepository.findByRole("STUDENT");
+        user.setRoles(new HashSet<Role>(Arrays.asList(studentRole)));
         adminRepo.save(user);
     }
 
     @Override
-    public void saveManager(User user) {
+    public void saveTeacher(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setActive(0);
-        Role manager_role = roleRepository.findByRole("TEACHER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(manager_role)));
+        Role teacherRole = roleRepository.findByRole("TEACHER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(teacherRole)));
         adminRepo.save(user);
     }
 
     @Override
-    public List<User> getAllHR() {
-        return adminRepo.findAllHR_By_Roles();
+    public List<User> getAllStudents() {
+        return adminRepo.findAllStudents();
     }
 
     @Override
-    public List<User> getAllManager() {
-        return adminRepo.findAllManagerByRoles();
-    }
-    @Override
-    public List<User> getAllAdmin() {
-        return adminRepo.findAllAdminByRoles() ;
+    public List<User> getAllTeachers() {
+        return adminRepo.findAllTeachers();
     }
 
+    @Override
+    public List<User> getAllAdmins() {
+        return adminRepo.findAllAdmins();
+    }
 
     @Override
-    public void deleteAdminByID(Long id) { adminRepo.deleteById(id); }
+    public void deleteAdminByID(Long id) {
+        adminRepo.deleteById(id);
+    }
 
     @Override
-    public void deleteManagerByID(Long id) {  adminRepo.deleteById(id); }
+    public void deleteTeacherByID(Long id) {
+        adminRepo.deleteById(id);
+    }
 
     @Override
-    public void deleteHR_ByID(Long id) {  adminRepo.deleteById(id);}
+    public void deleteStudentByID(Long id) {
+        adminRepo.deleteById(id);
+    }
 }
