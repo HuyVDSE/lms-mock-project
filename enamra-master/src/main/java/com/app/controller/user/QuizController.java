@@ -3,6 +3,7 @@ package com.app.controller.user;
 import com.app.model.*;
 import com.app.repository.MarkRepo;
 import com.app.service.*;
+import com.app.service.impl.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,13 +38,16 @@ public class QuizController {
     @Autowired
     private QuestionForQuizService questionForQuizService;
 
+    @Autowired
+    private SectionService sectionService;
+
     @GetMapping("/do_quiz/{quizId}")
     public ModelAndView DoQuiz(@PathVariable("quizId") int quizId,
                                HttpServletRequest request) {
         HttpSession session = request.getSession();
         Date total_time = null;
 
-        if(session.getAttribute("time") == null) {
+        if (session.getAttribute("time") == null) {
             return CreateQuiz(session, quizId);
         } else {
             total_time = (Date) session.getAttribute("time");
@@ -68,7 +72,7 @@ public class QuizController {
         session.setAttribute("time", total_time);
         ModelAndView model = new ModelAndView();
         List<Question> questionList = new ArrayList<>();
-        for (QuestionForQuiz question: quiz.getQuestionForQuizList()) {
+        for (QuestionForQuiz question : quiz.getQuestionForQuizList()) {
             questionList.add(question.getQuestion());
         }
         session.setAttribute("questionList", questionList);
@@ -90,7 +94,7 @@ public class QuizController {
         List<Question> questionList = (List<Question>) session.getAttribute("questionList");
         String answer[] = new String[size];
         for (int i = 1; i <= size; i++) {
-            if(request.getParameter("answer" + i) != null) {
+            if (request.getParameter("answer" + i) != null) {
                 answer[i - 1] = request.getParameter("answer" + i);
             } else {
                 answer[i - 1] = "Not answer";
@@ -99,10 +103,10 @@ public class QuizController {
         float mark = 0;
         float max = 10;
         for (Question question : questionList) {
-            for(int i = 0; i < size; i++) {
-                for(Answer answerInList : question.getAnswerList()) {
-                    if(answerInList.getAnswer().equals(answer[i]) && answerInList.isStatus() == true) {
-                        mark = mark + max/size;
+            for (int i = 0; i < size; i++) {
+                for (Answer answerInList : question.getAnswerList()) {
+                    if (answerInList.getAnswer().equals(answer[i]) && answerInList.isStatus() == true) {
+                        mark = mark + max / size;
                     }
                 }
             }
@@ -111,7 +115,7 @@ public class QuizController {
         Mark totalMark = new Mark();
         totalMark.setQuiz(quiz);
         totalMark.setUser(user);
-        totalMark.setMark(Math.round(mark*100.0)/100.0);
+        totalMark.setMark(Math.round(mark * 100.0) / 100.0);
         markService.save(totalMark);
 
         for (int i = 0; i < size; i++) {
@@ -137,12 +141,14 @@ public class QuizController {
     public ModelAndView ViewPage(HttpServletRequest request, @PathVariable("sectionId") Long sectionId) {
         String msg = request.getParameter("msg");
         ModelAndView model = new ModelAndView();
-        model.addObject("sectionId",sectionId);
+        Section section = sectionService.findSectionByID(sectionId);
+        model.addObject("section", section);
+        model.addObject("sectionId", sectionId);
         model.setViewName("page/QuizManager");
         if (msg != null && !msg.equals("")) {
             model.addObject("msg", msg);
         }
-        model.addObject("quizList",quizService.getQuizsBySectionId(sectionId));
+        model.addObject("quizList", quizService.getQuizsBySectionId(sectionId));
         return model;
     }
 }
