@@ -14,7 +14,7 @@
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
             <form class="text-center border border-light p-5" method="POST"
-                  th:action="@{/admin/topic/update}" th:object="${topic}">
+                  th:action="@{/admin/topic/update}" th:object="${topic}" enctype="multipart/form-data">
 
                 <p class="h4 mb-4">Update Topic
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
@@ -38,6 +38,9 @@
                             <span class="text-danger align-middle" th:if="${#fields.hasErrors('video_path')}"
                                   th:errors="*{video_path}"></span>
                 </small>
+                <div class="form--group mb-4">
+                    <input class="form-control" type="file" id="formFile" th:name="file">
+                </div>
                 <button class="btn btn-info btn-block" type="submit">Send</button>
             </form>
         </div>

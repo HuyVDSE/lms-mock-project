@@ -27,7 +27,6 @@ import java.util.List;
 @RequestMapping("/v/course")
 public class CourseController {
 
-    //  /v/course/full/{course_id}
     @Autowired
     private CourseService courseService;
     @Autowired
@@ -36,9 +35,6 @@ public class CourseController {
     private SectionService sectionService;
     @Autowired
     private TopicRepository topicRepository;
-
-    @Autowired
-    private CourseImageService courseImageService;
 
     @GetMapping("/full/{course_id}")
     public ModelAndView fullCourse(@PathVariable("course_id") Long id) {
@@ -78,5 +74,4 @@ public class CourseController {
         response.setHeader("Content-Disposition", "inline-filename\"" + imageFile.getName() + "\"");
         Files.copy(imageFile.toPath(), response.getOutputStream());
     }
-
 }
