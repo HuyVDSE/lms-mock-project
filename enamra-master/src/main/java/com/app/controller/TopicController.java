@@ -11,12 +11,17 @@ import com.app.service.impl.CourseService;
 import com.app.service.impl.SectionService;
 import com.app.service.impl.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @Controller
@@ -55,5 +60,16 @@ public class TopicController {
         model.addAttribute("topicList", topicList);
         model.addAttribute("commentsList", commentsList);
         return "page/single_topic";
+    }
+
+    @Value("${topic.file.dir}")
+    private String topicFileDir;
+
+    @GetMapping("/loadPdf/{fileName}")
+    public void loadFile(@PathVariable("fileName") String fileName, HttpServletResponse response)
+            throws IOException {
+        File pdf = new File(topicFileDir + "/" + fileName);
+        response.setHeader("Content-length", String.valueOf(pdf.length()));
+        Files.copy(pdf.toPath(), response.getOutputStream());
     }
 }
