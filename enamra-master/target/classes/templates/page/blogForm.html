@@ -7,7 +7,8 @@
 </head>
 <body>
 <div class="container-fluid">
-
+    <div th:replace="/fragments/header :: banner"></div>
+    <div th:replace="/fragments/header :: navigation_menu"></div>
     <div class="row">
         <div class="col-xl-9 col-sm-9 col-md-9 col-lg-9">
             <h1>Blog Form</h1>
@@ -19,9 +20,9 @@
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
                 <div class="alert alert-danger" role="alert" th:if="${error}" th:utext="${error}"></div>
 
-                <div class="alert alert-success" role="alert" th:if="${msg}">
-                    <a class="nav-link" href="/admin/course">go course page</a>
-                </div>
+<!--                <div class="alert alert-success" role="alert" th:if="${msg}">-->
+<!--                    <a class="nav-link" href="/admin/course">go course page</a>-->
+<!--                </div>-->
                 <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
                   <input type="text" th:field="*{course}" th:value="${courseCC}" style="display: none">
                 <input type="hidden" th:field="*{post_id}">
