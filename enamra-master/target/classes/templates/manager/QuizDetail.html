@@ -54,26 +54,30 @@
                         <div style="display: flex; flex-direction: column">
                             Start date:
                             <input type="date" id="start" name="trip_start" class="form-control mb-4"
-                                   min="2021-01-01" max="2025-12-31">
+                                   min="2021-01-01" max="2025-12-31"
+                                   th:value="${start_date}">
                             <script type="text/javascript">
                                 document.getElementById("start").valueAsDate = new Date();
                             </script>
                             Start time:
                             <input id="appt-start-time" type="time" name="appt_time" class="form-control mb-4"
-                                   min="00:00" max="23:59" required pattern="[0-12]{2}:[0-12]{2}">
+                                   min="00:00" max="23:59" required pattern="[0-12]{2}:[0-12]{2}"
+                                   th:value="${start_time}">
                             <span class="validity"></span>
                         </div>
                         <!-- Set End Time -->
                         <div style="display: flex; flex-direction: column">
                             End date:
                             <input type="date" id="end" name="trip_end" class="form-control mb-4"
-                                   min="2021-01-01" max="2025-12-31">
+                                   min="2021-01-01" max="2025-12-31"
+                                   th:value="${end_date}">
                             <script type="text/javascript">
                                 document.getElementById("end").valueAsDate = new Date();
                             </script>
                             End time:
                             <input id="appt-end-time" type="time" name="end_time" class="form-control mb-4"
-                                   min="00:00" max="23:59" required pattern="[0-24]{2}:[0-24]{2}">
+                                   min="00:00" max="23:59" required pattern="[0-24]{2}:[0-24]{2}"
+                                   th:value="${end_time}">
                             <span class="validity"></span>
                         </div>
                     </div>
@@ -115,7 +119,7 @@
                             </td>
                             <td style="width:1%">
                                 <div th:each="answer, answerStat : ${question.getQuestion().getAnswerList()}">
-                                <label th:if="${answer.status == true}" th:text="${answerStat.count}"></label>
+                                    <label th:if="${answer.status == true}" th:text="${answerStat.count}"></label>
                                 </div>
                             </td>
                             <td style="width:1%">

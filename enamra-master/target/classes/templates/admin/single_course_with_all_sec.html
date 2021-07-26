@@ -16,10 +16,11 @@
 
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
-            <h3>Course Name : <h3 th:text="${course.course_name}"></h3></h3>
+            <h3>Course Name : </h3>
+            <h3 th:text="${course.course_name}"></h3>
             <table class="table table-striped">
                 <thead>
-                <th scope="row">#Section ID</th>
+                <th scope="row">Section ID</th>
                 <th scope="row">Section Name</th>
                 <th scope="row">Topic Action</th>
                 <th scope="row">Section Action</th>
@@ -27,7 +28,7 @@
                 <th scope="row" th:if="${#strings.equals(#authentication.getAuthorities()[0], 'TEACHER')}">Quiz Action</th>
                 </thead>
                 <tbody>
-                <tr th:each="section : ${all_sec}">6
+                <tr th:each="section : ${all_sec}">
                     <td th:text="${section.section_id}"></td>
                     <td th:text="${section.name}"></td>
                     <td>

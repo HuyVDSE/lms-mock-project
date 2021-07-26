@@ -4,6 +4,7 @@ package com.app.controller.manager;
 import com.app.model.Question;
 import com.app.model.QuestionForQuiz;
 import com.app.model.Quiz;
+import com.app.model.Section;
 import com.app.service.QuestionForQuizService;
 import com.app.service.QuestionService;
 import com.app.service.QuizService;
@@ -36,6 +37,8 @@ public class QuizManagerController {
     public ModelAndView ViewPage(HttpServletRequest request, @PathVariable("sectionId") Long sectionId) {
         String msg = request.getParameter("msg");
         ModelAndView model = new ModelAndView();
+        Section section = sectionService.findSectionByID(sectionId);
+        model.addObject("section", section);
         model.addObject("sectionId",sectionId);
         model.setViewName("page/QuizManager");
         if (msg != null && !msg.equals("")) {
@@ -120,6 +123,8 @@ public class QuizManagerController {
         if (msg != null && !msg.equals("")) {
             model.addObject("msg", msg);
         }
+        Section section = sectionService.findSectionByID(sectionId);
+        model.addObject("section", section);
         model.addObject("quizList",quizService.getQuizsBySectionId(sectionId));
         return model;
     }
@@ -182,6 +187,8 @@ public class QuizManagerController {
             }
             quizService.deleteQuiz(quiz);
             model.setViewName("manager/QuizManager");
+            Section section = sectionService.findSectionByID(sectionId);
+            model.addObject("section", section);
         } else {
             model.setViewName("manager/QuizDetail");
         }
@@ -211,6 +218,8 @@ public class QuizManagerController {
             }
             quizService.deleteQuiz(quiz);
             model.setViewName("manager/QuizManager");
+            Section section = sectionService.findSectionByID(sectionId);
+            model.addObject("section", section);
         } else {
             questionForQuizService.deleteQuestionInQuiz(questionId,quizId);
             quiz = quizService.getQuizByQuizId(quizId);
