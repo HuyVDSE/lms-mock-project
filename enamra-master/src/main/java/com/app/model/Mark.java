@@ -31,6 +31,6 @@ public class Mark {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Timestamp timeSubmitted;
-    @OneToMany(mappedBy = "mark")
+    @OneToMany(mappedBy = "mark", cascade = CascadeType.ALL)
     private List<Result> listResult;
 }

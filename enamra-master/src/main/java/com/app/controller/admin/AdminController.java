@@ -111,9 +111,10 @@ public class AdminController {
             }
 
             if (bindingResult.hasErrors()) {
+                model.addAttribute("user", userUpdate);
                 return "admin/edit";
             }
-
+            user.setId(userUpdate.getId());
             userService.saveUser(user, userUpdate.getRoles());
             model.addAttribute("msg", "Update user successfully!");
             model.addAttribute("user", new User());
