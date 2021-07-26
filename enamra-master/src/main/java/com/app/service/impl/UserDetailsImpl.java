@@ -59,4 +59,8 @@ public class UserDetailsImpl implements UserDetails {
         if (isActive == 1) return true;
         return false;
     }
+
+    public String fullname() {
+        return user.getFirstname() + " " + user.getLastname();
+    }
 }

@@ -59,7 +59,7 @@
                         <li class="nav-item dropdown">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                                data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-                                <div sec:authentication="name">User info</div>
+                                <div th:text="${#authentication.getPrincipal().fullname()}">User info</div>
                             </a>
                             <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                                 <a th:if="${#strings.equals(#authentication.getAuthorities()[0], 'STUDENT')}"
