@@ -15,7 +15,7 @@ public interface QuestionForQuizRepo extends JpaRepository<QuestionForQuiz, Inte
             "WHERE 'NUM' NOT IN(SELECT id FROM `question_for_quiz`)", nativeQuery = true)
     int getLastID();
 
-    @Query(value = "SELECT q FROM QuestionForQuiz q WHERE q.quiz.quizId = ?1")
+    @Query(value = "SELECT * FROM question_for_quiz  WHERE quiz_id = ?", nativeQuery = true)
     List<QuestionForQuiz> findAllByQuizId(Integer QuizId);
 
     @Query(value = "SELECT q FROM QuestionForQuiz q WHERE q.question.questionID = ?1 and q.quiz.quizId=?2")

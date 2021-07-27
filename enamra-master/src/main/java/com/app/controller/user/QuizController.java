@@ -6,10 +6,7 @@ import com.app.service.*;
 import com.app.service.impl.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +49,6 @@ public class QuizController {
         } else {
             total_time = (Date) session.getAttribute("time");
         }
-
         ModelAndView model = new ModelAndView();
         List<Question> questionList = (List<Question>) session.getAttribute("questionList");
         model.addObject("questionList", questionList);
@@ -75,6 +71,8 @@ public class QuizController {
         for (QuestionForQuiz question : quiz.getQuestionForQuizList()) {
             questionList.add(question.getQuestion());
         }
+        String selectList[] = new String[questionList.size()];
+        session.setAttribute("selectList", selectList);
         session.setAttribute("questionList", questionList);
         model.addObject("questionList", questionList);
         model.addObject("quizId", quizId);
@@ -130,6 +128,7 @@ public class QuizController {
         ModelAndView model = new ModelAndView();
         session.removeAttribute("time");
         session.removeAttribute("questionList");
+        session.removeAttribute("selectList");
         model.addObject("mark", totalMark.getMark());
         model.addObject("questionList", questionList);
         model.addObject("resultList", resultList);
@@ -150,5 +149,16 @@ public class QuizController {
         }
         model.addObject("quizList", quizService.getQuizsBySectionId(sectionId));
         return model;
+    }
+
+    @GetMapping("/select")
+    @ResponseBody
+    public void SelectAnswer(HttpServletRequest request) {
+        String answer = request.getParameter("select");
+        int count = Integer.parseInt(request.getParameter("count"));
+        HttpSession session = request.getSession();
+        String selectList[] = (String[]) session.getAttribute("selectList");
+        selectList[count - 1] = answer;
+        session.setAttribute("selectList", selectList);
     }
 }

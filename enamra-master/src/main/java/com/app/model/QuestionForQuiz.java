@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -23,6 +24,6 @@ public class QuestionForQuiz {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
-    @OneToOne(mappedBy = "questionForQuiz", cascade = CascadeType.ALL)
-    private Result resultList;
+    @OneToMany(mappedBy = "questionForQuiz", cascade = CascadeType.ALL)
+    private List<Result> resultList;
 }
