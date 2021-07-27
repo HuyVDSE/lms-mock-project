@@ -39,7 +39,7 @@
 
         <div style="padding-bottom: 10%" class="col-xl-10 col-sm-6 col-md-6 col-lg-10">
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-<!--            <div th:if="${msg}" class="alert alert-info"><a th:href="@{/manager/quiz/create_quiz/__${sectionId}__}">Go to Quiz Manager page</a></div>-->
+
             <p style="text-align: center; padding: 3rem" class="h4 mb-4">Create Quiz</p>
 
             <form style="display:block;" id="create_quiz" method="POST" th:action="@{/manager/quiz/create_new_quiz}"

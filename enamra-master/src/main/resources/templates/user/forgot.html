@@ -1,232 +1,259 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <div th:replace="/fragments/header :: header-css-and-meta"/>
-  <style>
-    .email-wrapper {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #F5F7F9;
-    }
-    .email-content {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    <div th:replace="/fragments/header :: header-css-and-meta"/>
+    <style>
+        .email-wrapper {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F7F9;
+        }
 
-    /* Masthead ----------------------- */
-    .email-masthead {
-      padding: 25px 0;
-      text-align: center;
-    }
-    .email-masthead_logo {
-      max-width: 400px;
-      border: 0;
-    }
-    .email-masthead_name {
-      font-size: 16px;
-      font-weight: bold;
-      color: #839197;
-      text-decoration: none;
-      text-shadow: 0 1px 0 white;
-    }
+        .email-content {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Body ------------------------------ */
-    .email-body {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid #E7EAEC;
-      border-bottom: 1px solid #E7EAEC;
-      background-color: #FFFFFF;
-    }
-    .email-body_inner {
-      width: 570px;
-      margin: 0 auto;
-      padding: 0;
-    }
-    .email-footer {
-      width: 570px;
-      margin: 0 auto;
-      padding: 0;
-      text-align: center;
-    }
-    .email-footer p {
-      color: #839197;
-    }
-    .body-action {
-      width: 100%;
-      margin: 30px auto;
-      padding: 0;
-      text-align: center;
-    }
-    .body-sub {
-      margin-top: 25px;
-      padding-top: 25px;
-      border-top: 1px solid #E7EAEC;
-    }
-    .content-cell {
-      padding: 35px;
-    }
-    .align-right {
-      text-align: right;
-    }
+        /* Masthead ----------------------- */
+        .email-masthead {
+            padding: 25px 0;
+            text-align: center;
+        }
 
-    /* Type ------------------------------ */
-    h1 {
-      margin-top: 0;
-      color: #292E31;
-      font-size: 19px;
-      font-weight: bold;
-      text-align: left;
-    }
-    h2 {
-      margin-top: 0;
-      color: #292E31;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: left;
-    }
-    h3 {
-      margin-top: 0;
-      color: #292E31;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: left;
-    }
-    p {
-      margin-top: 0;
-      color: #839197;
-      font-size: 16px;
-      line-height: 1.5em;
-      text-align: left;
-    }
-    p.sub {
-      font-size: 12px;
-    }
-    p.center {
-      text-align: center;
-    }
+        .email-masthead_logo {
+            max-width: 400px;
+            border: 0;
+        }
 
-    /* Buttons ------------------------------ */
-    .button {
-      display: inline-block;
-      width: 200px;
-      background-color: #414EF9;
-      border-radius: 3px;
-      color: #ffffff;
-      font-size: 15px;
-      line-height: 45px;
-      text-align: center;
-      text-decoration: none;
-      -webkit-text-size-adjust: none;
-      mso-hide: all;
-    }
-    .button--green {
-      background-color: #28DB67;
-    }
-    .button--red {
-      background-color: #FF3665;
-    }
-    .button--blue {
-      background-color: #414EF9;
-    }
+        .email-masthead_name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #839197;
+            text-decoration: none;
+            text-shadow: 0 1px 0 white;
+        }
 
-    /*Media Queries ------------------------------ */
-    @media only screen and (max-width: 600px) {
-      .email-body_inner,
-      .email-footer {
-        width: 100% !important;
-      }
-    }
-    @media only screen and (max-width: 500px) {
-      .button {
-        width: 100% !important;
-      }
-    }
-  </style>
+        /* Body ------------------------------ */
+        .email-body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid #E7EAEC;
+            border-bottom: 1px solid #E7EAEC;
+            background-color: #FFFFFF;
+        }
+
+        .email-body_inner {
+            width: 570px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .email-footer {
+            width: 570px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .email-footer p {
+            color: #839197;
+        }
+
+        .body-action {
+            width: 100%;
+            margin: 30px auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .body-sub {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #E7EAEC;
+        }
+
+        .content-cell {
+            padding: 35px;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        /* Type ------------------------------ */
+        h1 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 19px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        p {
+            margin-top: 0;
+            color: #839197;
+            font-size: 16px;
+            line-height: 1.5em;
+            text-align: left;
+        }
+
+        p.sub {
+            font-size: 12px;
+        }
+
+        p.center {
+            text-align: center;
+        }
+
+        /* Buttons ------------------------------ */
+        .button {
+            display: inline-block;
+            width: 200px;
+            background-color: #414EF9;
+            border-radius: 3px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 45px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-text-size-adjust: none;
+            mso-hide: all;
+        }
+
+        .button--green {
+            background-color: #28DB67;
+        }
+
+        .button--red {
+            background-color: #FF3665;
+        }
+
+        .button--blue {
+            background-color: #414EF9;
+        }
+
+        /*Media Queries ------------------------------ */
+        @media only screen and (max-width: 600px) {
+            .email-body_inner,
+            .email-footer {
+                width: 100% !important;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .button {
+                width: 100% !important;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container-fluid">
+<div class="container-fluid">
     <div th:replace="/fragments/header :: banner"></div>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-      <td align="center">
-        <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
-          <!-- Logo -->
-          <tr>
-            <td class="email-masthead">
-              <a class="email-masthead_name">Enemra</a>
+        <tr>
+            <td align="center">
+                <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
+                    <!-- Logo -->
+                    <tr>
+                        <td class="email-masthead">
+                            <a class="email-masthead_name">Enemra</a>
+                        </td>
+                    </tr>
+                    <!-- Email Body -->
+                    <tr>
+                        <td class="email-body" width="100%">
+                            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
+                                <!-- Body content -->
+                                <tr>
+                                    <td class="content-cell">
+                                        <div class="form-gap"></div>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-4">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="text-center" style="padding: 10%; width: 300%">
+                                                                <h2 class="text-center">Forgot Password?</h2>
+                                                                <p>You can reset your password here.</p>
+                                                                <div class="panel-body">
+
+                                                                    <form id="register-form"
+                                                                          th:action="@{/user/request_reset}" role="form"
+                                                                          autocomplete="off" class="form" method="post">
+
+                                                                        <div class="form-group">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><i
+                                                                                        class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                                                                <input id="email" name="email"
+                                                                                       placeholder="email address"
+                                                                                       class="form-control"
+                                                                                       type="email">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input name="recover-submit"
+                                                                                   class="btn btn-lg btn-primary btn-block"
+                                                                                   value="Reset Password" type="submit">
+                                                                        </div>
+
+                                                                        <input type="hidden" class="hide" name="token"
+                                                                               id="token" value="">
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="content-cell">
+                                        <p class="sub center">
+
+
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </td>
-          </tr>
-          <!-- Email Body -->
-          <tr>
-            <td class="email-body" width="100%">
-              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
-                <!-- Body content -->
-                <tr>
-                  <td class="content-cell">
-                    <div class="form-gap"></div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="text-center" style="padding: 10%; width: 300%">
-                  <h2 class="text-center">Forgot Password?</h2>
-                  <p>You can reset your password here.</p>
-                  <div class="panel-body">
-    
-                    <form id="register-form" th:action="@{/user/request_reset}" role="form" autocomplete="off" class="form" method="post">
-    
-                      <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
-                      </div>
-                      
-                      <input type="hidden" class="hide" name="token" id="token" value=""> 
-                    </form>
-    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-	</div>
-</div>
-                    
-                    
-                    
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="content-cell">
-                    <p class="sub center">
-                     
-                      
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+        </tr>
+    </table>
     <div th:replace="/fragments/header :: footer"></div>
-  </div>
+</div>
 </body>
 </html>
