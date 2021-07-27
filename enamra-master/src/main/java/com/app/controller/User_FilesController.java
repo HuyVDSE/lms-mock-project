@@ -65,6 +65,7 @@ public class User_FilesController {
     public ModelAndView deleteImg(@PathVariable("file_id") Long id) {
         ModelAndView model = new ModelAndView("redirect:/files/view");
         fileService.deleteFile(id);
+        model.addObject("msg","Delete successfully");
         return model;
     }
 

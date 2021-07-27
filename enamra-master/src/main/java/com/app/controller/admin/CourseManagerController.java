@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -75,7 +76,8 @@ public class CourseManagerController {
     @GetMapping("/delete_course/{course_id}")
     public ModelAndView deleteCourse(@PathVariable("course_id") Long id) {
         courseService.deleteCourse(id);
-        return new ModelAndView("redirect:/admin/course/last_10_course");
+        ModelAndView model =  new ModelAndView("redirect:/admin/course/last_10_course");
+        return model;
     }
 
 
@@ -84,6 +86,7 @@ public class CourseManagerController {
         ModelAndView model = new ModelAndView("admin/update_course");
         Course findCourse = courseService.findCourseById(id);
         model.addObject("course", findCourse);
+
         return model;
     }
 
@@ -113,10 +116,15 @@ public class CourseManagerController {
 
 
     @GetMapping("/last_10_course")
-    public ModelAndView show_Last_10_course() {
+    public ModelAndView show_Last_10_course(HttpServletRequest request) {
         ModelAndView model = new ModelAndView("admin/course_list_last_10");
         List<Course> courseList = courseService.getLast10Course();
         model.addObject("courseLists", courseList);
+        String msg = request.getParameter("msg");
+
+        if (msg != null && !msg.equals("")) {
+            model.addObject("msg", msg);
+        }
         return model;
     }
 

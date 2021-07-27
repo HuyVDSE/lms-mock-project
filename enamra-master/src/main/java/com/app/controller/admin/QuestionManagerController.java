@@ -145,7 +145,7 @@ public class QuestionManagerController {
 
     @PostMapping("/update")
     @Transactional
-    public String updateQuestion(HttpServletRequest request) {
+    public String updateQuestion(HttpServletRequest request, RedirectAttributes redirectAttrs) {
         Long sectionId = Long.parseLong(request.getParameter("sectionId"));
         int questionId = Integer.parseInt(request.getParameter("questionId"));
         String questionContent = request.getParameter("questionContent");
@@ -167,7 +167,7 @@ public class QuestionManagerController {
             } else ans.setStatus(false);
             answerService.saveAnswer(ans);
         }
-
+        redirectAttrs.addAttribute("msg", "Update question successfully!");
         return "redirect:/admin/question/create/" + sectionId;
     }
 
