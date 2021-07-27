@@ -20,9 +20,7 @@
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
                 <div class="alert alert-danger" role="alert" th:if="${error}" th:utext="${error}"></div>
 
-<!--                <div class="alert alert-success" role="alert" th:if="${msg}">-->
-<!--                    <a class="nav-link" href="/admin/course">go course page</a>-->
-<!--                </div>-->
+
                 <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
                   <input type="text" th:field="*{course}" th:value="${courseCC}" style="display: none">
                 <input type="hidden" th:field="*{post_id}">

@@ -85,6 +85,7 @@ public class AuthController {
     public ModelAndView signupPage(){
         ModelAndView model = new ModelAndView();
         model.addObject("user", new User());
+        model.addObject("msg","Signup successfully");
         model.setViewName("user/signup");
         return model;
     }
