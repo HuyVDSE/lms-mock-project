@@ -28,12 +28,10 @@ import java.util.Optional;
 @Controller
 public class UserController {
 
-
     @Autowired
     private UserService userService;
     @Autowired
     private Profile_pic_service pic_service;
-
 
     @GetMapping("/your_Dashboard")
     public ModelAndView userDashboard() {
@@ -53,7 +51,6 @@ public class UserController {
         model.setViewName("user/profile");
         return model;
     }
-
 
     //----------------------------------------------
 

@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/resources/static/user_files/**", "/img/**", "/fonts/**",
                         "/css/**", "/js/**").permitAll()
 
-                .antMatchers("/home", "/v/**", "/g/topic/**", "/g/**", "/blog/**")
+                .antMatchers("/profile", "/home", "/v/**", "/g/topic/**", "/g/**", "/blog/**")
                 .fullyAuthenticated()
 
                 .antMatchers("/user/quiz/**", "/user/history")

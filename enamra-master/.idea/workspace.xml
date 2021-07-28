@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseImageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseImageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/single_topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/commentForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/commentForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +138,7 @@
       <workItem from="1626770034855" duration="5237000" />
       <workItem from="1626918223997" duration="1310000" />
       <workItem from="1627382448968" duration="3213000" />
-      <workItem from="1627434209202" duration="7916000" />
+      <workItem from="1627434209202" duration="8592000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>
@@ -200,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627438564711</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- fix bug in comment function">
+      <created>1627443424422</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1627443424422</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +231,7 @@
     <MESSAGE value="- fix conflict" />
     <MESSAGE value="- commit change of target folder" />
     <MESSAGE value="- fix some sql query of course" />
-    <option name="LAST_COMMIT_MESSAGE" value="- fix some sql query of course" />
+    <MESSAGE value="- fix bug in comment function" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix bug in comment function" />
   </component>
 </project>
