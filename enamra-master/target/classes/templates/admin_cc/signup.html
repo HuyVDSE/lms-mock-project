@@ -14,7 +14,7 @@
             <!-- Default form register -->
             <form class="text-center border border-light p-5" method="POST" th:action="@{/admin/create/admin}" th:object="${user}">
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
-<!--                <div th:if="${msg}" class="alert alert-info"><a th:href="@{/admin_Dashboard}">Go to Home page</a></div>-->
+
                 <p class="h4 mb-4">Sign up</p>
 
                 <div class="form-row mb-4">

@@ -31,21 +31,21 @@
     <br>
 
 
-     <div class="row">
+    <div class="row">
         <div class="col-md-3 col-sm-3">
-            <a  class="nav-link topic_course" th:href="@{/v/course/full/__${course.course_id}__}">
-               <div class="alert alert-primary" role="alert" th:text=" 'Course Name: '+${course.course_name}"></div>
+            <a class="nav-link topic_course" th:href="@{/v/course/full/__${course.course_id}__}">
+                <div class="alert alert-primary" role="alert" th:text=" 'Course Name: '+${course.course_name}"></div>
             </a>
         </div>
         <div class="col-md-4 col-sm-4">
             <a class="nav-link topic_course" th:href="@{/v/course/all_topic/__${section.section_id}__}">
-               <div class="alert alert-light" role="alert" th:text=" '||>>Chapter Name: '+${section.name}"></div>
+                <div class="alert alert-light" role="alert" th:text=" '||>>Chapter Name: '+${section.name}"></div>
             </a>
         </div>
-         <div class="col-md-5 col-sm-5">
-             <div class="alert alert-light" role="alert" th:text=" '||>>Topic: '+${topic_single.topic_name}"></div>
-         </div>
-     </div>
+        <div class="col-md-5 col-sm-5">
+            <div class="alert alert-light" role="alert" th:text=" '||>>Topic: '+${topic_single.topic_name}"></div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-3 col-sm-3">
@@ -57,7 +57,7 @@
         <div class="col-md-9 col-sm-9">
             <div sec:authorize="!isAuthenticated()">
                 <div class="alert alert-danger" role="alert">
-                   Please Login to See Video and others features
+                    Please Login to See Video and others features
                 </div>
             </div>
             <div class="topic-video">
@@ -73,49 +73,56 @@
             <br>
             <hr>
             <div class="comments-button">
-                <a th:href="@{'/comment/{id}'(id=${topic_single.id})}" class="btn btn-info">Write Comments about this topic</a>
+                <a th:href="@{'/comment/{id}'(id=${topic_single.id})}" class="btn btn-info">Write Comments about this
+                    topic</a>
                 <br>
             </div>
             <div class="comments_and_other_tabs">
                 <br>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Comments</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Topic Reading</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tips</a>
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                           role="tab" aria-controls="nav-home" aria-selected="true">Comments</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                           role="tab" aria-controls="nav-profile" aria-selected="false">Topic Reading</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                           role="tab" aria-controls="nav-contact" aria-selected="false">Tips</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <br>
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                    <div class="row">
-                        <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                           <!-- 111111-->
-                            <!--Comments-->
-                            <div class="well" th:each="comment : ${commentsList}">
-                                <h5 th:text="${comment.comment_body}">Body</h5>
-                                <div th:text="'Created: ' + ${#dates.format(comment.comment_date, 'dd-MMM-yyyy')} + ' by '">
-                                    Created by
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                <!-- 111111-->
+                                <!--Comments-->
+                                <div class="well" th:each="comment : ${commentsList}">
+                                    <h5 th:text="${comment.comment_body}">Body</h5>
+                                    <div th:text="'Created: ' + ${#dates.format(comment.comment_date, 'dd-MMM-yyyy')} + ' by '">
+                                        Created by
+                                    </div>
+                                    <div><a th:text="${comment.user.firstname}"
+                                            th:href="@{'/#/' + ${comment.user.username}}">User</a>
+                                    </div>
+                                    <br>
                                 </div>
-                                <div><a th:text="${comment.user.firstname}" th:href="@{'/#/' + ${comment.user.username}}">User</a>
-                                </div>
-                                <br>
                             </div>
                         </div>
-                    </div>
 
                     </div>
                     <th:block th:if="${topic_single.topic_readingPDF != 'None'}">
-                        <div style="max-width: 700px;" class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div style="max-width: 700px;" class="tab-pane fade" id="nav-profile" role="tabpanel"
+                             aria-labelledby="nav-profile-tab">
                             <div id="my_pdf_viewer">
                                 <div style="width: 700px; height: 800px; margin: auto;" id="canvas_container">
                                     <canvas id="pdf_renderer"></canvas>
                                 </div>
 
-                                <div style="margin-top: 1rem; display: flex; justify-content: center" class="input-group" id="navigation_controls">
+                                <div style="margin-top: 1rem; display: flex; justify-content: center"
+                                     class="input-group" id="navigation_controls">
                                     <button class="w3-btn w3-white w3-border" id="go_previous">Previous</button>
-                                    <input id="current_page" value="1" >
+                                    <input id="current_page" value="1">
                                     <button class="w3-btn w3-white w3-border" id="go_next">Next</button>
                                 </div>
 
@@ -164,7 +171,7 @@
                                 }
 
                                 document.getElementById('go_previous').addEventListener('click', (e) => {
-                                    if(myState.pdf == null || myState.currentPage == 1)
+                                    if (myState.pdf == null || myState.currentPage == 1)
                                         return;
                                     myState.currentPage -= 1;
                                     document.getElementById("current_page").value = myState.currentPage;
@@ -172,7 +179,7 @@
                                 });
 
                                 document.getElementById('go_next').addEventListener('click', (e) => {
-                                    if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+                                    if (myState.pdf == null || myState.currentPage + 1 > myState.pdf._pdfInfo.numPages)
                                         return;
                                     myState.currentPage += 1;
                                     document.getElementById("current_page").value = myState.currentPage;
@@ -180,17 +187,17 @@
                                 });
 
                                 document.getElementById('current_page').addEventListener('keypress', (e) => {
-                                    if(myState.pdf == null) return;
+                                    if (myState.pdf == null) return;
 
                                     // Get key code
                                     var code = (e.keyCode ? e.keyCode : e.which);
 
                                     // If key code matches that of the Enter key
-                                    if(code == 13) {
+                                    if (code == 13) {
                                         var desiredPage =
                                             document.getElementById('current_page').valueAsNumber;
 
-                                        if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                                        if (desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
                                             myState.currentPage = desiredPage;
                                             document.getElementById("current_page").value = desiredPage;
                                             render();
@@ -199,24 +206,23 @@
                                 });
 
                                 document.getElementById('zoom_in').addEventListener('click', (e) => {
-                                    if(myState.pdf == null) return;
+                                    if (myState.pdf == null) return;
                                     myState.zoom += 0.5;
                                     render();
                                 });
 
                                 document.getElementById('zoom_out').addEventListener('click', (e) => {
-                                    if(myState.pdf == null) return;
+                                    if (myState.pdf == null) return;
                                     myState.zoom -= 0.5;
                                     render();
                                 });
                             </script>
                         </div>
                     </th:block>
-
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3333333333</div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        3333333333
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </div>

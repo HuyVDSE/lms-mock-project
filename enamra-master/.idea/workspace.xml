@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- fix conflict">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/AdminRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_21_2021_11_24_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_21_2021_11_24_AM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +131,7 @@
       <workItem from="1626745639272" duration="14095000" />
       <workItem from="1626770034855" duration="5237000" />
       <workItem from="1626918223997" duration="1310000" />
+      <workItem from="1627382448968" duration="3213000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>

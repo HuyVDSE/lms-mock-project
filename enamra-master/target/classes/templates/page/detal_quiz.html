@@ -44,6 +44,9 @@
     <br>
     <div th:replace="/fragments/header :: navigation_menu"></div>
     <br>
+    <div class="card border-info mb-3" style="width: 13rem;">
+        <div class="card-header"><p id="title" th:text="${'Total mark: ' + mark}"></p></div>
+    </div>
     <div style="max-width: 70%; margin: auto">
         <div th:each="question, questionStat : ${questionList}">
             <div th:id="${questionStat.count}" th:class="question"

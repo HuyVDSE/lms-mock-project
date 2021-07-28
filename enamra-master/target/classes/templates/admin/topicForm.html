@@ -24,7 +24,7 @@
 <!--                <div class="alert alert-success" role="alert" th:if="${msg}">-->
 <!--                    <a class="nav-link" href="/admin/course">go course page</a>-->
 <!--                </div>-->
-                <div class="alert alert-success" role="alert" th:if="${error}" th:utext="${error}"></div>
+
                 <input type="hidden" th:field="*{id}">
                 <input type="hidden" id="section" name="section" th:value="${sectionId}">
                 <input type="text" th:field="*{topic_name}" class="form-control mb-4"

@@ -1,16 +1,13 @@
 <html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <div th:replace="/header :: header-css-and-meta"></div>
-
-
 </head>
 <body>
 
-<div th:fragment="create_CHIF_INSTRUCTOR">
+<div th:fragment="manage_student">
     <hr>
-    <h2> Chief Instructor</h2>
+    <h2>Student</h2>
     <table class="table table-striped">
         <thead>
         <th scope="row">#ID</th>
@@ -20,53 +17,24 @@
         <th scope="row">Delete</th>
         </thead>
         <tbody>
-        <tr th:each="ci : ${ci}">
-            <td th:text="${ci.id}" ></td>
-            <td th:text="${ci.firstname + ' '+ ci.lastname}"></td>
-            <td th:text="${ci.email}"></td>
+        <tr th:each="student : ${studentList}">
+            <td th:text="${student.id}" ></td>
+            <td th:text="${student.firstname + ' ' + student.lastname}"></td>
+            <td th:text="${student.email}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/XXX}"  role="button" >Update</a>
+                <a class="btn btn-primary" th:href="@{/manager/edit/student/__${student.id}__}"  role="button" >Update</a>
             </td>
             <td>
-                <a class="btn btn-danger" th:href="@{/manager/del/ci/__${ci.id}__}" role="button" >Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <a class="btn btn-primary" th:href="@{/manager/create/chief_instructor}"  role="button" >Create  Chief Instructor</a>
-    <br>
-</div>
-<div th:fragment="create_INSTRUCTOR">
-    <hr>
-    <h2>Instructor</h2>
-    <table class="table table-striped">
-        <thead>
-        <th scope="row">#ID</th>
-        <th scope="row">Name</th>
-        <th scope="row">Email</th>
-        <th scope="row">Update</th>
-        <th scope="row">Delete</th>
-        </thead>
-        <tbody>
-        <tr th:each="ins : ${instructor}">
-            <td th:text="${ins.id}" ></td>
-            <td th:text="${ins.firstname+' '+ ins.lastname}"></td>
-            <td th:text="${ins.email}"></td>
-            <td>
-                <a class="btn btn-primary" th:href="@{/XXX}"  role="button" >Update</a>
-            </td>
-            <td>
-                <a class="btn btn-danger" th:href="@{/manager/del/instructor/__${ins.id}__}" role="button" >Delete</a>
+                <a class="btn btn-danger" th:href="@{/manager/del/student/__${student.id}__}" role="button"
+                    onclick="return confirm('Do you want to delete this student?')">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
     <br>
-    <a class="btn btn-primary" th:href="@{/manager/create/instructor}"  role="button" >Create  Instructor</a>
+    <a class="btn btn-primary" th:href="@{/manager/create/student}"  role="button" >Create Student</a>
     <br>
 </div>
-
 
 <div th:fragment="manager-dashboard">
     <div class="row admin-dashboard">
@@ -103,13 +71,9 @@
                     <a class="btn btn-secondary" th:href="@{/admin/course/course_with_section_last_10}" role="button">Last 10 Course With Section</a>
 <!--                    <a class="btn btn-success" th:href="@{/admin/course/last_10_course}" role="button">Course without Section</a>-->
                     <a class="btn btn-info" th:href="@{/admin/course/last_10_final}" role="button">Last 10 Course Final</a>
-
-
                 </div>
                 <div class="tab-pane fade" id="role" role="tabpanel" aria-labelledby="role-tab">
-                    <div th:replace="/fragments/manager ::create_CHIF_INSTRUCTOR"></div>
-                    <div th:replace="/fragments/manager ::create_INSTRUCTOR"></div>
-
+                    <div th:replace="/fragments/manager ::manage_student"></div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <h2>Contact</h2>
@@ -132,7 +96,6 @@
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
-
         </div>
     </div>
 </div>
@@ -141,16 +104,11 @@
     <div class="row"></div>
   </div>
 
-
   <div th:fragment="xxxxxxxx">
     <div class="row">
         <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12"></div>
     </div>
   </div>
-
-
-
-
 
 <div th:replace="/header :: all-js"></div>
 </body>

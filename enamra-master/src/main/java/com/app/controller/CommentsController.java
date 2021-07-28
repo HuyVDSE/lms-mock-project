@@ -52,7 +52,6 @@ public class CommentsController {
         ModelAndView model = new ModelAndView();
         Optional<User> optionalUser = Optional.ofNullable(userService.findUserByEmail(principal.getName()));
 
-
         if (bindingResult.hasErrors()) {
             model.setViewName("user/commentForm");
         } else {
@@ -60,12 +59,7 @@ public class CommentsController {
             comments.setTopic(comments.getTopic());
             commentsService.saveComment(comments);
             model.setViewName("redirect:/g/topic/single_topic/" + comments.getTopic().getId());
-            //  model.setViewName("redirect:/");
         }
-
-
         return model;
     }
-
-
 }

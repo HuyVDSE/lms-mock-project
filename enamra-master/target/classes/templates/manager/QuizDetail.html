@@ -38,6 +38,7 @@
         <div class="col-xl-3 col-sm-3 col-md-3 col-lg-3"></div>
 
         <div style="padding-bottom: 10%" class="col-xl-10 col-sm-6 col-md-6 col-lg-10">
+            <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
 <!--            <div th:if="${msg}" class="alert alert-info"><a th:href="@{/manager/quiz/create_quiz/__${sectionId}__}">Go-->
 <!--                to Quiz Manager page</a></div>-->
 
@@ -50,7 +51,7 @@
                     <input type="text" th:value="${quiz.getName()}" th:name="txtQuizName" class="form-control mb-4"><br><br>
                     <!-- Quiz Time -->
                     <label>Time of Quiz:</label>
-                    <input type="text" th:name="TimeOfQuiz" th:value="${quiz.getTotalTime()}" class="form-control mb-4"><br><br>
+                    <input type="number" th:name="TimeOfQuiz" th:value="${quiz.getTotalTime()}" class="form-control mb-4"><br><br>
                     <!-- Set Start Time -->
                     <div style="display: flex; flex-direction: column;">
                         <div style="display: flex; flex-direction: column">
