@@ -35,7 +35,6 @@ public class CourseImageServiceImpl implements CourseImageService {
         }
     }
 
-    @Override
     public void deleteImage(String imageUrl) {
         File courseFileInServer = new File(courseImageDir + "/" + imageUrl);
         courseFileInServer.delete();

@@ -1,6 +1,5 @@
 package com.app.controller;
 
-
 import com.app.model.Comments;
 import com.app.model.Topic;
 import com.app.model.User;
@@ -22,7 +21,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/comment")
-public class CommentsController {
+public class CommentController {
 
     @Autowired
     private CommentsService commentsService;
@@ -30,7 +29,6 @@ public class CommentsController {
     private TopicService topicService;
     @Autowired
     private UserService userService;
-
 
     @GetMapping("/{id}")
     public ModelAndView commentPage(@PathVariable("id") Long id, Principal principal) {
