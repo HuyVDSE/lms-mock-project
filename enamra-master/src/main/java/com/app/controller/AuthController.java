@@ -64,6 +64,24 @@ public class AuthController {
         if(usercc == null) {
             model.setViewName("/user/login");
             return model;
+        } else if(usercc.getActive() == 0) {
+            HttpSession session = request.getSession();
+            Random rnd = new Random();
+            int leftLimit = 97; // letter 'a'
+            int rightLimit = 122; // letter 'z'
+            int targetStringLength = 100;
+            Random rndd = new Random();
+            String generatedString = rndd.ints(leftLimit, rightLimit + 1)
+                    .limit(targetStringLength)
+                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                    .toString();
+            int number = rnd.nextInt(999999999);
+            String random = String.format("%09d", number);
+            session.setAttribute("CODE", random + generatedString);
+            session.setMaxInactiveInterval(60*5);
+            sendMailService.sendMail(usercc.getEmail(), random + generatedString, "VERIFY");
+            model.setViewName("/user/verify");
+            return model;
         }
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication =
@@ -85,7 +103,6 @@ public class AuthController {
     public ModelAndView signupPage(){
         ModelAndView model = new ModelAndView();
         model.addObject("user", new User());
-        model.addObject("msg","Signup successfully");
         model.setViewName("user/signup");
         return model;
     }
