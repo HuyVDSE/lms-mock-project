@@ -33,8 +33,10 @@ public class BlogController {
 
     @Autowired
     private CourseService courseService;
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private TopicService topicService;
 
@@ -49,7 +51,6 @@ public class BlogController {
         model.setViewName("page/post_list");
         return model;
     }
-
 
     @GetMapping("/single_post/{post_id}")
     public ModelAndView singlePostPage(@PathVariable("post_id") Long id) {
@@ -95,8 +96,6 @@ public class BlogController {
     @Autowired
     private User_File_Service fileService;
 
-// /blog/file_upload
-
     @GetMapping("/file_upload")
     public ModelAndView fileUpload() {
         ModelAndView model = new ModelAndView();
@@ -104,7 +103,6 @@ public class BlogController {
         model.setViewName("page/file_upload");
         return model;
     }
-
 
     @PostMapping("/file_upload")
     public ModelAndView uploadFile(@Valid @ModelAttribute User_files user_file, BindingResult bindingResult,
@@ -121,6 +119,4 @@ public class BlogController {
         model.setViewName("redirect:/profile");
         return model;
     }
-
-
 }

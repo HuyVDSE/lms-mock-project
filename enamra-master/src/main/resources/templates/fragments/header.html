@@ -239,108 +239,13 @@
 </div>
 
 
-<div th:fragment="cards">
+<div th:fragment="cards" sec:authorize="isAuthenticated()">
     <div class="row">
         <br>
         <div class="col-12"><h2>Recently Added Course</h2></div>
         <br>
     </div>
-   <!-- <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name </h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <br>
     <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Name</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the
-                        panel's content.</p>
-                    <a class="card-link">Card link</a>
-                    <a class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-
-    </div>-->
-    <div class="row" sec:authorize="isAuthenticated()">
         <div class="col-3" th:each="first : ${recently_4}">
             <a  th:href="@{/v/course/full/__${first.course_id}__}" class="nav-link">
                 <div class="card">
@@ -351,7 +256,6 @@
                              height="130px" width="auto">
                         <p class="card-text" th:text="${first.description}">Some quick example text to build on the panel title and make up the bulk of the
                             panel's content.</p>
-
                         <a class="card-link">See All</a>
                         <a class="card-link">Full Course</a>
                     </div>
@@ -359,12 +263,14 @@
             </a>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-3" th:each="second : ${second_4}">
             <a  th:href="@{/v/course/full/__${second.course_id}__}" class="nav-link">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${second.course_name}">Course Name </h5>
+                        <img th:src="@{/v/course/load-image/__${second.course_id}__}" alt="Course Image"
+                             height="130px" width="auto">
                         <p class="card-text" th:text="${second.description}">Some quick example text to build on the panel title and make up the bulk of the
                             panel's content.</p>
                         <a class="card-link">See All</a>

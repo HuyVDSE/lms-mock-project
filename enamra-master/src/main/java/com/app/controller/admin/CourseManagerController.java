@@ -7,6 +7,7 @@ import com.app.repository.CourseRepository;
 import com.app.repository.SectionRepository;
 import com.app.service.CourseImageService;
 import com.app.service.impl.CourseService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +26,6 @@ public class CourseManagerController {
 
     @Autowired
     private CourseService courseService;
-
-    @Autowired
-    private CourseRepository courseRepository;
 
     @Autowired
     private SectionRepository sectionRepository;
@@ -142,7 +140,6 @@ public class CourseManagerController {
         return "admin/single_course_with_all_sec";
     }
 
-    // last_10_final
     @GetMapping("/last_10_final")
     public ModelAndView finalCourse() {
         ModelAndView model = new ModelAndView("admin/last_10_final");
@@ -151,7 +148,6 @@ public class CourseManagerController {
         return model;
     }
 
-    //admin/course/full_details
     @GetMapping("/full_details/{course_id}")
     public ModelAndView loadFullDetailOfCourse(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/full_course");
@@ -162,7 +158,6 @@ public class CourseManagerController {
         return model;
     }
 
-    // /admin/course/blog/__${course_id}__
     @GetMapping("/blog/{course_id}")
     public ModelAndView loadBlogPage(@PathVariable("course_id") Long id) {
         ModelAndView model = new ModelAndView("admin/blog");
@@ -171,5 +166,4 @@ public class CourseManagerController {
 
         return model;
     }
-
 }

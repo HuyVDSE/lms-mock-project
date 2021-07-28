@@ -24,7 +24,6 @@ import java.util.Optional;
 @RequestMapping("/comment")
 public class CommentsController {
 
-
     @Autowired
     private CommentsService commentsService;
     @Autowired
@@ -45,7 +44,6 @@ public class CommentsController {
         model.addObject("topicCC", findtopic);
         return model;
     }
-
 
     @PostMapping("/create")
     public ModelAndView createComment(@Valid Comments comments, BindingResult bindingResult, Principal principal) {

@@ -23,7 +23,6 @@ public class WelcomeController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/")
     public ModelAndView welcome(){
         ModelAndView model = new ModelAndView("welcome");
@@ -42,27 +41,12 @@ public class WelcomeController {
         String role = String.valueOf(userCC.getRoles());
         role.substring(1,role.length()-1);
 
-
         if (role.equals("STUDENT")){
             model.addObject("user", role);
-        }else if (role.equals("ADMIN")){
+        } else if (role.equals("ADMIN")){
             model.addObject("admin", role);
-        }else if (role.equals("HR")){
-            model.addObject("hr", role);
-        }else if (role.equals("TEACHER")){
+        } else if (role.equals("TEACHER")){
             model.addObject("manager", role);
-        }else if (role.equals("CHIF INSTRUCTOR")){
-            model.addObject("CHIF_INSTRUCTOR", role);
-        }else if (role.equals("INSTRUCTOR")){
-            model.addObject("INSTRUCTOR", role);
-        }else if (role.equals("Assistant INSTRUCTOR")){
-            model.addObject("Assistant_INSTRUCTOR", role);
-        }else if (role.equals("Teaching Assistant")){
-            model.addObject("Teaching_Assistant", role);
-        }else if (role.equals("STUFF")){
-            model.addObject("STUFF", role);
-        }else if (role.equals("EMPLOYEE")){
-            model.addObject("EMPLOYEE", role);
         }
 
         List<Course> second_4_from_last = courseRepository.recently_added_second_four_course();
@@ -70,8 +54,4 @@ public class WelcomeController {
         model.addObject("second_4", second_4_from_last);
         return model;
     }
-
-
-
-
 }

@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="- fix conflict">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_21_2021_11_24_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_21_2021_11_24_AM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="1b48b250-5419-4a9e-9325-3942a9bfecad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/CommentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/controller/admin/QuestionManagerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/create_question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manager/manager_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/page/single_topic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/CourseManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/admin/CourseManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/CourseImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/CourseImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/service/impl/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
       <map>
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
-        <entry key="JPA Structure" value="true" />
+        <entry key="JPA Structure" value="false" />
       </map>
     </option>
   </component>
@@ -84,6 +84,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EnamraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="enamra" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.app.EnamraApplication" />
@@ -132,6 +143,7 @@
       <workItem from="1626770034855" duration="5237000" />
       <workItem from="1626918223997" duration="1310000" />
       <workItem from="1627382448968" duration="3213000" />
+      <workItem from="1627434209202" duration="4143000" />
     </task>
     <task id="LOCAL-00005" summary="- update Class name">
       <created>1626752077571</created>
@@ -168,7 +180,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626793597929</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- commit change of target folder">
+      <created>1627434408105</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1627434408105</updated>
+    </task>
+    <task id="LOCAL-00011" summary="- fix some sql query of course">
+      <created>1627437018785</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1627437018785</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +220,8 @@
     <MESSAGE value="- update Class name" />
     <MESSAGE value="- add download template" />
     <MESSAGE value="- fix conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="- fix conflict" />
+    <MESSAGE value="- commit change of target folder" />
+    <MESSAGE value="- fix some sql query of course" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix some sql query of course" />
   </component>
 </project>

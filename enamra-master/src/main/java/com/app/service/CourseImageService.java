@@ -8,6 +8,4 @@ import java.io.IOException;
 public interface CourseImageService {
 
     void saveImage(MultipartFile file);
-
-    void deleteImage(String ImageUrl);
 }

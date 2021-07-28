@@ -16,9 +16,6 @@ public class CourseService implements ICourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    @Autowired
-    private CourseImageService courseImageService;
-
     @Override
     public List<Course> findAllCourse() {
         return courseRepository.findAll();
