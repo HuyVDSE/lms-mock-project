@@ -109,9 +109,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <th:block th:if="${topic_single.topic_readingPDF != 'None'}">
+                    <th:block th:if="${topic_single.topic_readingPDF != 'None' or topic_single.topic_readingPDF == null}">
                         <div style="max-width: 700px;" class="tab-pane fade" id="nav-profile" role="tabpanel"
                              aria-labelledby="nav-profile-tab">
                             <div id="my_pdf_viewer">

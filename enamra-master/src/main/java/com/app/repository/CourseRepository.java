@@ -20,4 +20,6 @@ public interface CourseRepository extends JpaRepository<Course,Long> {
     @Query(value = "select * from course c order by course_id desc limit 4,4", nativeQuery = true)
     List<Course> recently_added_second_four_course();
 
+    @Query(value = "SELECT c FROM course c where c.course_id in (select s.course.course_id from section s)")
+    List<Course> findAllCourseWithSection();
 }

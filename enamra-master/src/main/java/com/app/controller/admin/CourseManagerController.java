@@ -5,7 +5,6 @@ import com.app.model.Course;
 import com.app.model.Section;
 import com.app.repository.CourseRepository;
 import com.app.repository.SectionRepository;
-import com.app.repository.TopicRepository;
 import com.app.service.CourseImageService;
 import com.app.service.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,6 @@ public class CourseManagerController {
 
     @Autowired
     private SectionRepository sectionRepository;
-
-    @Autowired
-    private TopicRepository topicRepository;
 
     @Autowired
     private CourseImageService courseImageService;
@@ -116,9 +112,9 @@ public class CourseManagerController {
 
 
     @GetMapping("/last_10_course")
-    public ModelAndView show_Last_10_course(HttpServletRequest request) {
+    public ModelAndView showAllCourses(HttpServletRequest request) {
         ModelAndView model = new ModelAndView("admin/course_list_last_10");
-        List<Course> courseList = courseService.getLast10Course();
+        List<Course> courseList = courseService.getAllCourses();
         model.addObject("courseLists", courseList);
         String msg = request.getParameter("msg");
 
@@ -129,20 +125,20 @@ public class CourseManagerController {
     }
 
     @GetMapping("/course_with_section_last_10")
-    public ModelAndView course_with_section() {
+    public ModelAndView showCourseWithSection() {
         ModelAndView model = new ModelAndView();
-        List<Course> courseList = courseRepository.findAll();
+        List<Course> courseList = courseService.getCourseWithSection();
         model.addObject("course_w_sec", courseList);
         model.setViewName("admin/course_with_section");
         return model;
     }
 
     @GetMapping("/single_course_with_all_section/{course_id}")
-    public String single_course_wit_all_section(@PathVariable("course_id") Long id, Model model) {
+    public String singleCourseWithAllSection(@PathVariable("course_id") Long id, Model model) {
         Course courseFound = courseService.findCourseById(id);
-        List<Section> allSectionByCourseId = sectionRepository.loadSectionByCourseId(courseFound.getCourse_id());
+        List<Section> sections = sectionRepository.loadSectionByCourseId(id);
         model.addAttribute("course", courseFound);
-        model.addAttribute("all_sec", allSectionByCourseId);
+        model.addAttribute("all_sec", sections);
         return "admin/single_course_with_all_sec";
     }
 
@@ -150,7 +146,7 @@ public class CourseManagerController {
     @GetMapping("/last_10_final")
     public ModelAndView finalCourse() {
         ModelAndView model = new ModelAndView("admin/last_10_final");
-        List<Course> courseList = courseService.getLast10Course();
+        List<Course> courseList = courseService.getAllCourses();
         model.addObject("courseLists", courseList);
         return model;
     }
