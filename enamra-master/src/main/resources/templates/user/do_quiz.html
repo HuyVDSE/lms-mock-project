@@ -68,8 +68,7 @@
 
     <div th:replace="/fragments/header :: banner"></div>
     <br>
-    <div th:replace="/fragments/header :: navigation_menu"></div>
-    <br>
+
     <div class="card border-info mb-3" style="width: 15rem; position: fixed;">
         <div class="card-header"><p id="title">Doing quiz</p></div>
         <div class="card-body">
@@ -91,7 +90,7 @@
             }
         </script>
     </div>
-    <div style="max-width: 70%; margin: auto">
+    <div style="max-width: 70%; margin-left: auto; margin-right: 10%">
         <form th:method="POST" th:action="@{/user/quiz/submit}">
             <input type="hidden" name="size_question" th:value="${quiz_size}">
             <input type="hidden" name="user_email" th:value="${#authentication.getName()}">

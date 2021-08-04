@@ -45,6 +45,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public boolean checkById(Integer questionId) {
+        Question quiz = questionRepo.findByQuestionID(questionId);
+        try{
+            if(quiz.getQuestion() != null) {
+                return true;
+            }
+        } catch (Exception e){
+            return false;
+        }
+        return false;
+    }
+
+    @Override
     public int getLastID() {
         try {
             return questionRepo.getLastID();

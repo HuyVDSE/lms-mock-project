@@ -17,8 +17,8 @@ import javax.mail.internet.MimeMessage;
 public class SendMailServiceImpl implements SendMailService {
     @Override
     public void sendMail(String email, String random, String msg) {
-        String from = "tringuyen1032";
-        String pass = "Pucapro1032";
+        String from = "huyv46";
+        String pass = "thehuan1204";
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");

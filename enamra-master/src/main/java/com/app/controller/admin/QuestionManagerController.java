@@ -36,9 +36,7 @@ import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/question")
@@ -55,10 +53,14 @@ public class QuestionManagerController {
                                    HttpServletRequest request,
                                    Model model) {
         String msg = request.getParameter("msg");
+        String error = request.getParameter("error");
         model.addAttribute("sectionId", sectionId);
         model.addAttribute("number", 4);
         if (msg != null && !msg.equals("")) {
             model.addAttribute("msg", msg);
+        }
+        if (error != null && !error.equals("")) {
+            model.addAttribute("error", error);
         }
 
         return findPaginated(1, sectionId, "", model);
@@ -195,12 +197,34 @@ public class QuestionManagerController {
         List<Question> listQuestions = readQuestionsFromExcelFile(path.toString(), sectionId);
         List<Question> listDeleteQuestions = new ArrayList<Question>();
         for (Question question : listQuestions) {
-            boolean check = questionService.findByQuestion(question.getQuestion());
+            System.out.println(question.getQuestionID());
+            boolean check = questionService.checkById(question.getQuestionID());
             if (!check) {
                 questionService.saveQuestion(question);
+                for (Question ques : listQuestions) {
+                    if(ques.getQuestionID() == question.getQuestionID()) {
+                        listQuestions.remove(ques);
+                    }
+                }
             } else {
                 listDeleteQuestions.add(question);
             }
+        }
+        if(listDeleteQuestions.size() > 0) {
+            String id = "";
+            int current_id = 0;
+            for(int i = 0; i < listDeleteQuestions.size();i++) {
+                    if (i == 0) {
+                        current_id = listDeleteQuestions.get(i).getQuestionID();
+                        id = listDeleteQuestions.get(i).getQuestionID() + "";
+                    } else {
+                        if(listDeleteQuestions.get(i).getQuestionID() != current_id) {
+                            current_id = listDeleteQuestions.get(i).getQuestionID();
+                            id = id + ", " + listDeleteQuestions.get(i).getQuestionID();
+                        }
+                    }
+            }
+            redirectAttrs.addAttribute("error", "Duplicate question id: " + id +"!");
         }
         List<Answer> listAnss = readAnswersFromExcelFile(path.toString());
         for (Question question : listDeleteQuestions) {
@@ -220,7 +244,7 @@ public class QuestionManagerController {
             Files.deleteIfExists(path);
         } catch (FileSystemException ex) {
         }
-        redirectAttrs.addAttribute("msg", "Create question successfully!");
+            redirectAttrs.addAttribute("msg", "Create question successfully!");
         return "redirect:/admin/question/create/" + sectionId;
     }
 
@@ -272,7 +296,6 @@ public class QuestionManagerController {
 
         workBook.close();
         inputStream.close();
-
         return listQuestions;
     }
 
