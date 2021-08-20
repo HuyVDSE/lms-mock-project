@@ -29,7 +29,7 @@ A big project about building a LMS with full service
 Project is: _finished_
 
 ## Inspiration
-Project inspired by BlankSpace (me), based on JavaEE
+Project inspired by One Team, based on Spring Framework
 
 ## Contact
 Created by [@BlankSpace](https://www.linkedin.com/in/huyvd2000/) - feel free to contact me!
